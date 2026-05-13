@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Organization, UserProfile, Notification, ConnectionRequest
+from .models import Organization, UserProfile, Notification, ConnectionRequest, Tariff
+
+@admin.register(Tariff)
+class TariffAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'currency', 'period', 'status', 'is_featured', 'created_at')
+    list_filter = ('status', 'is_featured')
+    search_fields = ('name', 'description')
 
 
 @admin.register(Organization)

@@ -2,6 +2,39 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Tariff(models.Model):
+    """Тарифный план для организаций."""
+    STATUS_CHOICES = (
+        ('active', 'Активен'),
+        ('inactive', 'Отключен'),
+    )
+    
+    name = models.CharField('Название тарифа', max_length=100)
+    description = models.TextField('Описание', blank=True, default='')
+    price = models.CharField('Цена', max_length=100, default='по запросу')
+    currency = models.CharField('Валюта', max_length=10, default='KGS')
+    period = models.CharField('Период оплаты', max_length=50, default='месяц')
+    
+    max_objects = models.CharField('Лимит объектов', max_length=50, default='1')
+    max_devices = models.CharField('Лимит устройств', max_length=50, default='5')
+    max_users = models.CharField('Лимит пользователей', max_length=50, default='2')
+    history_days = models.CharField('Хранение истории (дней)', max_length=50, default='30')
+    
+    is_featured = models.BooleanField('Популярный', default=False)
+    status = models.CharField('Статус', max_length=20, choices=STATUS_CHOICES, default='active')
+    
+    created_at = models.DateTimeField('Дата создания', auto_now_add=True)
+    updated_at = models.DateTimeField('Дата обновления', auto_now=True)
+
+    class Meta:
+        verbose_name = 'Тариф'
+        verbose_name_plural = 'Тарифы'
+        ordering = ['price']
+
+    def __str__(self):
+        return self.name
+
+
 class Organization(models.Model):
     """Организация-клиент платформы Green Energy."""
 
@@ -18,6 +51,7 @@ class Organization(models.Model):
     email = models.EmailField('Email', blank=True, default='')
     address = models.CharField('Адрес', max_length=255, blank=True, default='')
     contract_number = models.CharField('Номер договора', max_length=100, blank=True, default='')
+    tariff = models.ForeignKey(Tariff, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Тариф', related_name='organizations')
     status = models.CharField('Статус', max_length=20, choices=STATUS_CHOICES, default='active')
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField('Дата обновления', auto_now=True)

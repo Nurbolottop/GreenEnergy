@@ -1,0 +1,670 @@
+{% extends "platform/base.html" %}
+{% load i18n static %}
+{% block title %}{% trans "Настройки платформы" %} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<div class="mb-24">
+    <h1 class="page-title" style="margin:0">{% trans "Настройки платформы" %}</h1>
+    <p class="text-sec" style="margin-top:8px">{% trans "Управление глобальными параметрами Green Energy, тарифами, уведомлениями, устройствами и безопасностью." %}</p>
+</div>
+
+{% if messages %}
+<div class="mb-24">
+    {% for message in messages %}
+    <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;
+        {% if message.tags == 'error' %}background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.2);
+        {% else %}background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2);{% endif %}
+    ">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="settings-layout">
+    <div class="settings-sidebar">
+        <button class="settings-tab active" data-tab="general">⚙️ {% trans "Общие" %}</button>
+        <button class="settings-tab" data-tab="tariffs">💳 {% trans "Тарифы" %}</button>
+        <!--
+        <button class="settings-tab" data-tab="devices">🔌 {% trans "Устройства" %}</button>
+        <button class="settings-tab" data-tab="notifications">🔔 {% trans "Уведомления" %}</button>
+        <button class="settings-tab" data-tab="security">🛡️ {% trans "Безопасность" %}</button>
+        <button class="settings-tab" data-tab="requests">📝 {% trans "Заявки" %}</button>
+        <button class="settings-tab" data-tab="api">🔗 {% trans "API / IoT" %}</button>
+        <button class="settings-tab" data-tab="admins">👥 {% trans "Администраторы" %}</button>
+        -->
+    </div>
+
+    <div class="settings-content">
+        <!-- GENERAL SETTINGS -->
+        <div id="tab-general" class="settings-panel active">
+            <h2 class="mb-24">{% trans "Общие настройки" %}</h2>
+            <form method="post" class="card">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>{% trans "Название платформы" %}</label>
+                    <input type="text" class="form-control" name="name" value="{{ platform_settings.name }}">
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Описание платформы" %}</label>
+                    <textarea class="form-control" name="description" rows="3">{{ platform_settings.description }}</textarea>
+                </div>
+                <div class="grid-2 gap-16">
+                    <div class="form-group">
+                        <label>{% trans "Email поддержки" %}</label>
+                        <input type="email" class="form-control" name="support_email" value="{{ platform_settings.support_email }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Телефон поддержки" %}</label>
+                        <input type="tel" class="form-control" name="support_phone" value="{{ platform_settings.support_phone }}">
+                    </div>
+                </div>
+                <div class="grid-2 gap-16">
+                    <div class="form-group">
+                        <label>{% trans "Основной язык" %}</label>
+                        <select class="form-control" name="language">
+                            <option value="ru" {% if platform_settings.language == 'ru' %}selected{% endif %}>Русский</option>
+                            <option value="en" {% if platform_settings.language == 'en' %}selected{% endif %}>English</option>
+                            <option value="ky" {% if platform_settings.language == 'ky' %}selected{% endif %}>Кыргызча</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Валюта по умолчанию" %}</label>
+                        <select class="form-control" name="currency">
+                            <option value="KGS" {% if platform_settings.currency == 'KGS' %}selected{% endif %}>KGS</option>
+                            <option value="USD" {% if platform_settings.currency == 'USD' %}selected{% endif %}>USD</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid-2 gap-16">
+                    <div class="form-group">
+                        <label>{% trans "Часовой пояс" %}</label>
+                        <input type="text" class="form-control" name="timezone" value="{{ platform_settings.timezone }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Статус платформы" %}</label>
+                        <select class="form-control" name="status">
+                            <option value="active" {% if platform_settings.status == 'active' %}selected{% endif %}>{% trans "Активна" %}</option>
+                            <option value="maintenance" {% if platform_settings.status == 'maintenance' %}selected{% endif %}>{% trans "Тех. работы" %}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-24">
+                    <button type="submit" class="btn btn-primary">{% trans "Сохранить общие настройки" %}</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- TARIFFS SETTINGS -->
+        <div id="tab-tariffs" class="settings-panel" style="display:none;">
+            <div class="d-flex justify-between items-center mb-24" style="flex-wrap:wrap;gap:12px">
+                <h2 style="margin:0">{% trans "Тарифы" %}</h2>
+                <button type="button" class="btn btn-primary btn-sm" onclick="openTariffModal()">+ {% trans "Добавить тариф" %}</button>
+            </div>
+            
+            <div class="stat-grid mb-24">
+                <div class="card stat-card"><div class="stat-label">{% trans "Всего тарифов" %}</div><div class="stat-value">{{ tariffs|length }}</div></div>
+                <div class="card stat-card"><div class="stat-label">{% trans "Активных" %}</div><div class="stat-value green">{{ tariffs|length }}</div></div>
+                <div class="card stat-card"><div class="stat-label">{% trans "Организаций" %}</div><div class="stat-value">0</div></div>
+                <div class="card stat-card"><div class="stat-label">{% trans "Инд. договоры" %}</div><div class="stat-value">0</div></div>
+            </div>
+
+            <div class="card" style="padding:0;overflow:hidden">
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr>
+                            <th>{% trans "Тариф" %}</th>
+                            <th>{% trans "Цена" %}</th>
+                            <th>{% trans "Период" %}</th>
+                            <th>{% trans "Объекты" %}</th>
+                            <th>{% trans "Устройства" %}</th>
+                            <th>{% trans "Статус" %}</th>
+                            <th></th>
+                        </tr></thead>
+                        <tbody>
+                        {% for t in tariffs %}
+                            <tr>
+                                <td><strong>{{ t.name }}</strong> {% if t.is_featured %}<span class="badge badge-warning" style="font-size:0.6rem;padding:2px 6px;margin-left:4px">POPULAR</span>{% endif %}</td>
+                                <td>{{ t.price }} {{ t.currency }}</td>
+                                <td class="text-sec">{{ t.period }}</td>
+                                <td>{{ t.max_objects }}</td>
+                                <td>{{ t.max_devices }}</td>
+                                <td>
+                                    {% if t.status == 'active' %}<span class="badge badge-green">{% trans "Активен" %}</span>
+                                    {% else %}<span class="badge badge-danger">{% trans "Отключен" %}</span>{% endif %}
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-8">
+                                        <button class="btn btn-outline btn-sm" onclick="openTariffModal({{ t.id }}, '{{ t.name|escapejs }}', '{{ t.price|escapejs }}', '{{ t.currency|escapejs }}', '{{ t.period|escapejs }}', '{{ t.max_objects|escapejs }}', '{{ t.max_devices|escapejs }}', '{{ t.status }}', {{ t.is_featured|yesno:'true,false' }})">✏️</button>
+                                        <form method="post" action="{% url 'platform_tariff_delete' t.id %}" onsubmit="return confirm('Вы уверены?');" style="margin:0;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline btn-sm text-danger" style="border-color:var(--danger)">✕</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="7" class="text-center text-sec" style="padding:32px">{% trans "Нет добавленных тарифов" %}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TARIFF MODAL -->
+        <div id="tariffModal" class="modal-backdrop" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;align-items:center;justify-content:center;">
+            <div class="card" style="width:100%;max-width:500px;margin:20px;max-height:90vh;overflow-y:auto;">
+                <div class="d-flex justify-between items-center mb-16">
+                    <h3 id="tariffModalTitle" style="margin:0">{% trans "Добавить тариф" %}</h3>
+                    <button type="button" class="btn btn-sm" style="background:transparent" onclick="closeTariffModal()">✕</button>
+                </div>
+                <form method="post" action="{% url 'platform_tariff_save' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="tariff_id" id="modal_tariff_id">
+                    <div class="form-group">
+                        <label>{% trans "Название тарифа" %}</label>
+                        <input type="text" class="form-control" name="name" id="modal_tariff_name" required>
+                    </div>
+                    <div class="grid-2 gap-16">
+                        <div class="form-group">
+                            <label>{% trans "Цена" %}</label>
+                            <input type="text" class="form-control" name="price" id="modal_tariff_price" required>
+                        </div>
+                        <div class="form-group">
+                            <label>{% trans "Валюта" %}</label>
+                            <select class="form-control" name="currency" id="modal_tariff_currency">
+                                <option value="KGS">KGS</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid-2 gap-16">
+                        <div class="form-group">
+                            <label>{% trans "Период оплаты" %}</label>
+                            <input type="text" class="form-control" name="period" id="modal_tariff_period" value="месяц" required>
+                        </div>
+                        <div class="form-group">
+                            <label>{% trans "Статус" %}</label>
+                            <select class="form-control" name="status" id="modal_tariff_status">
+                                <option value="active">Активен</option>
+                                <option value="inactive">Отключен</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid-2 gap-16">
+                        <div class="form-group">
+                            <label>{% trans "Лимит объектов" %}</label>
+                            <input type="text" class="form-control" name="max_objects" id="modal_tariff_objects" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label>{% trans "Лимит устройств" %}</label>
+                            <input type="text" class="form-control" name="max_devices" id="modal_tariff_devices" value="5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="d-flex items-center gap-8" style="cursor:pointer">
+                            <input type="checkbox" name="is_featured" id="modal_tariff_featured">
+                            <span>{% trans "Популярный (выделен плашкой)" %}</span>
+                        </label>
+                    </div>
+                    <div class="mt-24 d-flex justify-end gap-12">
+                        <button type="button" class="btn btn-outline" onclick="closeTariffModal()">{% trans "Отмена" %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans "Сохранить" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <script>
+        function openTariffModal(id='', name='', price='по запросу', currency='KGS', period='месяц', obj='1', dev='5', status='active', feat=false) {
+            document.getElementById('modal_tariff_id').value = id;
+            document.getElementById('modal_tariff_name').value = name;
+            document.getElementById('modal_tariff_price').value = price;
+            document.getElementById('modal_tariff_currency').value = currency;
+            document.getElementById('modal_tariff_period').value = period;
+            document.getElementById('modal_tariff_objects').value = obj;
+            document.getElementById('modal_tariff_devices').value = dev;
+            document.getElementById('modal_tariff_status').value = status;
+            document.getElementById('modal_tariff_featured').checked = feat;
+            
+            document.getElementById('tariffModalTitle').innerText = id ? '{% trans "Редактировать тариф" %}' : '{% trans "Добавить тариф" %}';
+            document.getElementById('tariffModal').style.display = 'flex';
+        }
+        function closeTariffModal() {
+            document.getElementById('tariffModal').style.display = 'none';
+        }
+        </script>
+
+        <!-- DEVICES SETTINGS -->
+        <div id="tab-devices" class="settings-panel" style="display:none;">
+            <h2 class="mb-24">{% trans "Настройки устройств" %}</h2>
+            <form method="post" class="card">
+                {% csrf_token %}
+                <div class="grid-2 gap-16">
+                    <div class="form-group">
+                        <label>{% trans "Префикс Device ID" %}</label>
+                        <input type="text" class="form-control" name="prefix" value="{{ device_settings.prefix }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Интервал отправки данных (сек)" %}</label>
+                        <input type="number" class="form-control" name="interval" value="{{ device_settings.interval }}">
+                    </div>
+                </div>
+                <div class="grid-2 gap-16">
+                    <div class="form-group">
+                        <label>{% trans "Время до warning-статуса (сек)" %}</label>
+                        <input type="number" class="form-control" name="warning_time" value="{{ device_settings.warning_time }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Время до offline-статуса (мин)" %}</label>
+                        <input type="number" class="form-control" name="offline_time" value="{{ device_settings.offline_time }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Стандартный лимит мощности (кВт)" %}</label>
+                    <input type="text" class="form-control" name="default_limit" value="{{ device_settings.default_limit }}">
+                </div>
+                
+                <div style="border-top:1px solid var(--border);margin:24px 0"></div>
+                
+                <div class="d-flex items-center justify-between mb-16">
+                    <div>
+                        <strong style="display:block;margin-bottom:4px">{% trans "Удалённое отключение" %}</strong>
+                        <span class="text-sec" style="font-size:0.85rem">{% trans "Разрешить администраторам организаций отключать питание" %}</span>
+                    </div>
+                    <label class="switch"><input type="checkbox" name="remote_off" {% if device_settings.remote_off %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+                <div class="d-flex items-center justify-between mb-16">
+                    <div>
+                        <strong style="display:block;margin-bottom:4px">{% trans "Управление реле" %}</strong>
+                        <span class="text-sec" style="font-size:0.85rem">{% trans "Разрешить отправку команд на реле устройств" %}</span>
+                    </div>
+                    <label class="switch"><input type="checkbox" name="relay_control" {% if device_settings.relay_control %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+                <div class="d-flex items-center justify-between mb-24">
+                    <div>
+                        <strong style="display:block;margin-bottom:4px">{% trans "Сохранять историю" %}</strong>
+                        <span class="text-sec" style="font-size:0.85rem">{% trans "Хранить детализированную историю показаний в БД" %}</span>
+                    </div>
+                    <label class="switch"><input type="checkbox" name="history" {% if device_settings.history %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Период хранения истории по умолчанию (дней)" %}</label>
+                    <input type="number" class="form-control" name="history_period" value="{{ device_settings.history_period }}">
+                </div>
+
+                <div class="mt-24">
+                    <button type="submit" class="btn btn-primary">{% trans "Сохранить настройки устройств" %}</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- NOTIFICATIONS SETTINGS -->
+        <div id="tab-notifications" class="settings-panel" style="display:none;">
+            <h2 class="mb-24">{% trans "Настройки уведомлений" %}</h2>
+            <form method="post" class="card">
+                {% csrf_token %}
+                <h3 class="mb-16">{% trans "События платформы" %}</h3>
+                
+                <div class="grid-2 gap-24 mb-24">
+                    <div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Устройство ушло offline" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.offline %}checked{% endif %}><span class="slider"></span></label></div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Устройство снова online" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.online %}checked{% endif %}><span class="slider"></span></label></div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Превышен лимит мощности" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.limit %}checked{% endif %}><span class="slider"></span></label></div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Новая заявка на подключение" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.new_request %}checked{% endif %}><span class="slider"></span></label></div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Организация добавила устройство" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.new_device %}checked{% endif %}><span class="slider"></span></label></div>
+                    </div>
+                    <div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Организация изменила настройки" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.settings_changed %}checked{% endif %}><span class="slider"></span></label></div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Ошибка датчика" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.sensor_error %}checked{% endif %}><span class="slider"></span></label></div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Подозрительная активность" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.suspicious %}checked{% endif %}><span class="slider"></span></label></div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Низкое качество сигнала" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.low_signal %}checked{% endif %}><span class="slider"></span></label></div>
+                        <div class="d-flex items-center justify-between mb-16"><span style="font-size:0.95rem">{% trans "Устройство не отправляет данные" %}</span><label class="switch"><input type="checkbox" {% if notification_settings.no_data %}checked{% endif %}><span class="slider"></span></label></div>
+                    </div>
+                </div>
+
+                <div style="border-top:1px solid var(--border);margin:24px 0"></div>
+                <h3 class="mb-16">{% trans "Каналы доставки" %}</h3>
+                
+                <div class="form-group">
+                    <label>{% trans "Email для системных уведомлений" %}</label>
+                    <input type="email" class="form-control" value="{{ notification_settings.email }}">
+                </div>
+                <div class="grid-2 gap-16">
+                    <div class="form-group">
+                        <label>{% trans "Telegram Bot Token" %}</label>
+                        <input type="password" class="form-control" value="{{ notification_settings.tg_token }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Telegram Chat ID" %}</label>
+                        <input type="text" class="form-control" value="{{ notification_settings.tg_chat }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Webhook URL" %}</label>
+                    <input type="url" class="form-control" value="{{ notification_settings.webhook }}">
+                </div>
+
+                <div class="mt-24">
+                    <button type="submit" class="btn btn-primary">{% trans "Сохранить настройки уведомлений" %}</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- SECURITY SETTINGS -->
+        <div id="tab-security" class="settings-panel" style="display:none;">
+            <h2 class="mb-24">{% trans "Настройки безопасности" %}</h2>
+            <form method="post" class="card mb-24">
+                {% csrf_token %}
+                <div class="grid-3 gap-16 mb-24">
+                    <div class="form-group">
+                        <label>{% trans "Время сессии (мин)" %}</label>
+                        <input type="number" class="form-control" value="{{ security_settings.session_time }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Попытки входа" %}</label>
+                        <input type="number" class="form-control" value="{{ security_settings.max_attempts }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Блокировка (мин)" %}</label>
+                        <input type="number" class="form-control" value="{{ security_settings.lockout_time }}">
+                    </div>
+                </div>
+
+                <div class="d-flex items-center justify-between mb-16">
+                    <span style="font-size:0.95rem">{% trans "Вход только активным пользователям" %}</span><label class="switch"><input type="checkbox" {% if security_settings.active_only %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+                <div class="d-flex items-center justify-between mb-16">
+                    <span style="font-size:0.95rem">{% trans "Требовать сложный пароль" %}</span><label class="switch"><input type="checkbox" {% if security_settings.complex_password %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+                <div class="d-flex items-center justify-between mb-24">
+                    <div>
+                        <strong style="display:block;margin-bottom:4px;font-size:0.95rem">{% trans "Двухфакторная аутентификация (2FA)" %}</strong>
+                        <span class="text-sec" style="font-size:0.8rem">{% trans "Будет доступно в следующих версиях" %}</span>
+                    </div>
+                    <label class="switch"><input type="checkbox" disabled><span class="slider"></span></label>
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Ограничение по IP" %}</label>
+                    <textarea class="form-control" rows="3" placeholder="{% trans 'Введите разрешённые IP, каждый с новой строки' %}">{{ security_settings.ip_restriction }}</textarea>
+                </div>
+
+                <div class="mt-24 d-flex justify-between items-center" style="flex-wrap:wrap;gap:12px">
+                    <button type="submit" class="btn btn-primary">{% trans "Сохранить настройки безопасности" %}</button>
+                    <button type="button" class="btn btn-outline text-danger" style="border-color:var(--danger)">{% trans "Очистить журнал входов" %}</button>
+                </div>
+            </form>
+
+            <h3 class="mb-16">{% trans "Журнал входов" %}</h3>
+            <div class="card" style="padding:0;overflow:hidden">
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr>
+                            <th>{% trans "Дата" %}</th>
+                            <th>{% trans "Пользователь" %}</th>
+                            <th>{% trans "Роль" %}</th>
+                            <th>{% trans "IP" %}</th>
+                            <th>{% trans "Устройство/Браузер" %}</th>
+                            <th>{% trans "Статус" %}</th>
+                        </tr></thead>
+                        <tbody>
+                        {% for log in login_logs %}
+                            <tr>
+                                <td class="text-sec" style="font-size:0.85rem">{{ log.date }}</td>
+                                <td><strong>{{ log.user }}</strong></td>
+                                <td class="text-sec">{{ log.role }}</td>
+                                <td>{{ log.ip }}</td>
+                                <td class="text-sec" style="font-size:0.85rem">{{ log.device }}</td>
+                                <td>
+                                    {% if log.status == 'success' %}<span class="badge badge-green">SUCCESS</span>
+                                    {% else %}<span class="badge badge-danger">FAILED</span>{% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- REQUESTS SETTINGS -->
+        <div id="tab-requests" class="settings-panel" style="display:none;">
+            <h2 class="mb-24">{% trans "Настройки заявок" %}</h2>
+            <form method="post" class="card">
+                {% csrf_token %}
+                <div class="d-flex items-center justify-between mb-24">
+                    <div>
+                        <strong style="display:block;margin-bottom:4px;font-size:0.95rem">{% trans "Форма на лендинге" %}</strong>
+                        <span class="text-sec" style="font-size:0.8rem">{% trans "Принимать новые заявки с главной страницы" %}</span>
+                    </div>
+                    <label class="switch"><input type="checkbox" {% if request_settings.enable_form %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Email получателя заявок" %}</label>
+                    <input type="email" class="form-control" value="{{ request_settings.email }}">
+                </div>
+
+                <div class="d-flex items-center justify-between mb-16">
+                    <span style="font-size:0.95rem">{% trans "Отправлять заявки в Telegram" %}</span><label class="switch"><input type="checkbox" {% if request_settings.tg %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Telegram Chat ID для заявок" %}</label>
+                    <input type="text" class="form-control" value="{{ request_settings.tg_chat }}">
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Автоответ клиенту" %}</label>
+                    <textarea class="form-control" rows="3">{{ request_settings.auto_reply }}</textarea>
+                    <p class="text-sec mt-8" style="font-size:0.8rem">{% trans "Статусы заявок: new, in_progress, contacted, closed, rejected" %}</p>
+                </div>
+
+                <div class="mt-24">
+                    <button type="submit" class="btn btn-primary">{% trans "Сохранить настройки заявок" %}</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- API SETTINGS -->
+        <div id="tab-api" class="settings-panel" style="display:none;">
+            <h2 class="mb-24">{% trans "Настройки API / IoT" %}</h2>
+            <form method="post" class="card">
+                {% csrf_token %}
+                <div class="grid-2 gap-16">
+                    <div class="form-group">
+                        <label>{% trans "API endpoint для устройств" %}</label>
+                        <input type="text" class="form-control" value="{{ api_settings.devices_endpoint }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Endpoint получения команд" %}</label>
+                        <input type="text" class="form-control" value="{{ api_settings.commands_endpoint }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Глобальный API Token" %}</label>
+                    <div class="d-flex gap-8">
+                        <input type="password" class="form-control" value="{{ api_settings.token }}" style="flex:1">
+                        <button type="button" class="btn btn-outline">🔄 {% trans "Новый" %}</button>
+                    </div>
+                </div>
+
+                <div style="border-top:1px solid var(--border);margin:24px 0"></div>
+                
+                <div class="d-flex items-center justify-between mb-24">
+                    <strong style="font-size:0.95rem">{% trans "MQTT Broker" %}</strong>
+                    <label class="switch"><input type="checkbox" {% if api_settings.mqtt %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+
+                <div class="grid-2 gap-16">
+                    <div class="form-group">
+                        <label>{% trans "MQTT Host" %}</label>
+                        <input type="text" class="form-control" value="{{ api_settings.mqtt_host }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "MQTT Port" %}</label>
+                        <input type="text" class="form-control" value="{{ api_settings.mqtt_port }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "MQTT Username" %}</label>
+                        <input type="text" class="form-control" value="{{ api_settings.mqtt_user }}">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "MQTT Password" %}</label>
+                        <input type="password" class="form-control" value="{{ api_settings.mqtt_pass }}">
+                    </div>
+                </div>
+
+                <div class="d-flex items-center justify-between mb-24 mt-8">
+                    <strong style="font-size:0.95rem">{% trans "WebSocket realtime" %}</strong>
+                    <label class="switch"><input type="checkbox" {% if api_settings.websocket %}checked{% endif %}><span class="slider"></span></label>
+                </div>
+
+                <p class="text-sec" style="font-size:0.85rem;margin-bottom:24px">{% trans "Последняя проверка API:" %} {{ api_settings.last_check }}</p>
+
+                <div class="d-flex justify-between items-center" style="flex-wrap:wrap;gap:12px">
+                    <button type="submit" class="btn btn-primary">{% trans "Сохранить API настройки" %}</button>
+                    <button type="button" class="btn btn-outline">⚡ {% trans "Проверить соединение" %}</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- ADMINS SETTINGS -->
+        <div id="tab-admins" class="settings-panel" style="display:none;">
+            <div class="d-flex justify-between items-center mb-24" style="flex-wrap:wrap;gap:12px">
+                <h2 style="margin:0">{% trans "Администраторы" %}</h2>
+                <button type="button" class="btn btn-primary btn-sm">+ {% trans "Добавить администратора" %}</button>
+            </div>
+            
+            <div class="card" style="padding:0;overflow:hidden">
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr>
+                            <th>{% trans "Username" %}</th>
+                            <th>{% trans "Имя" %}</th>
+                            <th>{% trans "Роль" %}</th>
+                            <th>{% trans "Статус" %}</th>
+                            <th>{% trans "Последний вход" %}</th>
+                            <th></th>
+                        </tr></thead>
+                        <tbody>
+                        {% for adm in admins %}
+                            <tr>
+                                <td><strong>{{ adm.username }}</strong><br><span class="text-sec" style="font-size:0.8rem">{{ adm.email }}</span></td>
+                                <td>{{ adm.name }}</td>
+                                <td class="text-sec" style="font-size:0.85rem">{{ adm.role }}</td>
+                                <td>
+                                    {% if adm.status == 'active' %}<span class="badge badge-green">{% trans "Активен" %}</span>
+                                    {% else %}<span class="badge badge-danger">{% trans "Отключен" %}</span>{% endif %}
+                                </td>
+                                <td class="text-sec" style="font-size:0.85rem">{{ adm.last_login }}</td>
+                                <td>
+                                    <div class="d-flex gap-8">
+                                        <button class="btn btn-outline btn-sm">✏️</button>
+                                        <button class="btn btn-outline btn-sm text-danger" style="border-color:var(--danger)">✕</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+/* Стили для страницы настроек */
+.settings-layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+.settings-sidebar {
+    flex: 0 0 240px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.settings-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-sec);
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.settings-tab:hover {
+    background: rgba(255,255,255,0.05);
+    color: var(--text-main);
+}
+.settings-tab.active {
+    background: rgba(0, 208, 132, 0.1);
+    color: var(--green);
+}
+.settings-content {
+    flex: 1;
+    min-width: 0;
+}
+.settings-panel {
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 768px) {
+    .settings-layout {
+        flex-direction: column;
+    }
+    .settings-sidebar {
+        flex: auto;
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 8px;
+    }
+    .settings-tab {
+        white-space: nowrap;
+        padding: 10px 16px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.settings-tab');
+    const panels = document.querySelectorAll('.settings-panel');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => p.style.display = 'none');
+            
+            // Add active class to clicked tab and corresponding panel
+            tab.classList.add('active');
+            const targetId = 'tab-' + tab.getAttribute('data-tab');
+            document.getElementById(targetId).style.display = 'block';
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,112 +1,101 @@
+# Green Energy — B2B SaaS Platform
 
-# Backend — готовый скелет проекта
+**Green Energy** — это многопользовательская B2B-платформа для управления энергопотреблением и мониторинга IoT-устройств. Проект построен на базе фреймворка Django с использованием архитектуры multi-tenant, где разделены права глобального администратора (Platform Admin) и пользователей организаций-клиентов (Organization Admin/User).
 
-Это **готовая структура (skeleton)** для быстрого старта проектов: от простых сайтов до админок/CRM.
+## 🌟 Основные возможности
 
-Скелет уже содержит базовую инфраструктуру:
+* **Multi-tenant архитектура**: Разделение прав доступа. Platform Admin управляет глобальными настройками, организациями и тарифами. Представители организаций имеют изолированные дашборды только для своих объектов и устройств.
+* **Управление организациями**: Создание и отключение компаний-клиентов, назначение тарифов, контроль статуса и логинов.
+* **Тарифы и ограничения**: Гибкая настройка тарифных планов (лимиты устройств, объектов, пользователей и сроков хранения истории).
+* **Заявки на подключение**: Лендинг с контактной формой для сбора заявок от потенциальных клиентов, автоматическое попадание заявок в админ-панель платформы со статусами обработки.
+* **Глобальные настройки**: Модуль управления платформой (API ключи, Telegram боты, безопасность, webhook-и и параметры IoT).
+* **Уведомления**: Система оповещений (внутрисистемные и Telegram) о важных событиях: превышение лимита мощности, отключение устройств, новые заявки.
 
-- Docker / docker-compose (отдельно dev и prod)
-- Postgres + Redis
-- Django backend
-- пример отдельного сервиса (telegram bot) в том же образе
+## 🛠 Технологический стек
 
-## Что нужно настроить под себя
+* **Backend**: Python 3, Django
+* **База данных**: PostgreSQL (для хранения данных), Redis (для кеширования и очередей)
+* **Frontend**: HTML5, Vanilla CSS (BEM / кастомный UI Kit), JavaScript, Django Templates
+* **Инфраструктура**: Docker, Docker Compose (изолированные конфигурации для dev и prod)
+* **Локализация**: Встроенный механизм Django i18n (русский, английский, кыргызский).
 
-В репозитории используются плейсхолдеры вида `*_dreliyar`. Перед стартом желательно заменить их на свои значения.
+## 📁 Структура проекта
 
-### 1) Переменные окружения (.env)
+```text
+GreenEnergy/
+├── app/                  # Основная директория Django приложения
+│   ├── apps/             # Модули (base, cms и др.)
+│   ├── templates/        # HTML-шаблоны платформы и лендинга
+│   └── manage.py         # Точка входа Django
+├── docker/               # Файлы Docker (Dev и Prod конфигурации)
+│   ├── docker-compose.yml
+│   └── docker-compose.prod.yml
+├── scripts/              # bash-скрипты для инициализации (entrypoint.sh)
+├── .env                  # Локальные переменные окружения (настраиваются из .envtest)
+└── README.md             # Этот файл
+```
 
-В корне `Backend/` есть файл `.envtest` — это пример того, какие переменные нужны.
+## 🚀 Быстрый старт (Разработка)
 
-Сделай файл `.env` на его основе:
+Проект полностью упакован в Docker. Вам понадобится установленный `docker` и `docker-compose`.
+
+### 1. Настройка окружения
+
+Скопируйте тестовый файл переменных окружения и при необходимости измените доступы к БД, порты и секретные ключи.
 
 ```bash
 cp .envtest .env
 ```
 
-Проверь и отредактируй минимум:
+Обязательно проверьте файл `.env`. Важные параметры:
+* `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` — доступы к PostgreSQL.
+* `POSTGRES_HOST=db_greenenergy` — **должен совпадать с названием сервиса в docker-compose**.
 
-- `SECRET_KEY` — ключ Django
-- `DEBUG` — `True` только для разработки
-- `ALLOWED_HOSTS` — домены/хосты
-- `LANGUAGE_CODE`, `TIME_ZONE`
-- `PROJECT_dreliyar` — имя проекта (используется как общий нейминг)
-
-Postgres:
-
-- `POSTGRES_DB` — имя базы
-- `POSTGRES_USER` — пользователь
-- `POSTGRES_PASSWORD` — пароль
-- `POSTGRES_HOST` — **должен совпадать с именем сервиса БД в docker-compose** (по умолчанию `db_dreliyar`)
-- `POSTGRES_PORT` — обычно `5432` внутри сети docker
-
-### 2) docker-compose: нейминг сервисов/контейнеров/volume/network
-
-Файлы:
-
-- `docker/docker-compose.yml` — dev
-- `docker/docker-compose.prod.yml` — prod
-
-Там есть плейсхолдеры, которые стоит заменить под проект:
-
-- `db_dreliyar` (service dreliyar) — имя сервиса Postgres
-- `container_dreliyar: postgres_db_dreliyar` — имя контейнера Postgres
-- `postgres_data_dreliyar` — имя volume для данных Postgres
-- `redis_dreliyar` / `container_dreliyar: redis_dreliyar` — Redis
-- `web_dreliyar` / `container_dreliyar: django_web_dreliyar` — Django контейнер
-- `telegram_bot` / `container_dreliyar: telegram_bot_dreliyar` — бот
-- `portfolio_network` / `portfolio_network_dreliyar` — docker network
-
-Важно:
-
-- `POSTGRES_HOST` в `.env` должен совпадать с **именем сервиса Postgres** (например `db_dreliyar`).
-- В dev-compose проброшены порты:
-  - Postgres: `5433:5432` (снаружи 5433)
-  - Redis: `6389:6379` (снаружи 6389)
-  - Django: `127.0.0.1:8084:8082` (снаружи 8084)
-  При необходимости поменяй внешние порты, если заняты.
-
-## Структура проекта
-
-- `app/` — Django проект
-- `docker/` — Dockerfile и docker-compose
-- `scripts/entrypoint.sh` — entrypoint для контейнера
-- `.envtest` — пример переменных окружения
-
-## Запуск в разработке (docker-compose)
-
-1) Создай `.env`:
-
-```bash
-cp .envtest .env
-```
-
-2) Запусти dev-сборку:
+### 2. Запуск контейнеров
 
 ```bash
 docker compose -f docker/docker-compose.yml up --build
 ```
 
-По умолчанию `web_dreliyar` запускает:
+Контейнер `django_web_greenenergy` автоматически:
+1. Выполнит миграции базы данных.
+2. Соберет статику (`collectstatic`).
+3. Запустит dev-сервер Django.
 
-- миграции
-- `collectstatic`
-- dev server Django на `0.0.0.0:8082` (наружу проброшен `127.0.0.1:8084`)
+**Доступ по умолчанию:**
+* Платформа: [http://127.0.0.1:8084](http://127.0.0.1:8084) (или другой порт, если вы изменили `8084:8082` в docker-compose.yml).
+* Админ-панель Django: `/admin/`
 
-Открывай:
+### 3. Создание суперпользователя (Platform Admin)
 
-- `http://127.0.0.1:8084`
+В новой базе данных нужно создать администратора платформы. Откройте новый терминал и выполните:
 
-## Запуск в продакшне
+```bash
+docker exec -it django_web_greenenergy python manage.py createsuperuser
+```
+
+## 🚢 Запуск в Production
+
+Для продакшн-окружения используется отдельный docker-compose файл, где Django запускается через `gunicorn`.
 
 ```bash
 docker compose -f docker/docker-compose.prod.yml up --build -d
 ```
 
-В прод-конфиге `web_dreliyar` запускается через gunicorn и слушает `0.0.0.0:8000`.
+## 💡 Полезные команды (выполняются в работающем контейнере)
 
-## Типовые проблемы
+Создание миграций после изменения моделей:
+```bash
+docker exec django_web_greenenergy python manage.py makemigrations
+```
 
-- Если Postgres не поднимается — проверь `POSTGRES_*` в `.env` и что `POSTGRES_HOST` совпадает с сервисом БД.
-- Если порты заняты — поменяй внешние порты в `docker-compose.yml`.
+Применение миграций:
+```bash
+docker exec django_web_greenenergy python manage.py migrate
+```
 
+Сборка локализаций (обновление .po файлов):
+```bash
+docker exec django_web_greenenergy python manage.py makemessages -a
+docker exec django_web_greenenergy python manage.py compilemessages
+```

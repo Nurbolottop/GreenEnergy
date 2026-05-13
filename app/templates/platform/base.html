@@ -18,7 +18,7 @@
             <a href="#" class="nav-item">🔌 {% trans "Устройства" %}</a>
             <a href="{% url 'platform_notifications' %}" class="nav-item {% if 'notification' in request.resolver_match.url_name %}active{% endif %}">🔔 {% trans "Уведомления" %}</a>
             <a href="{% url 'platform_requests' %}" class="nav-item {% if 'request' in request.resolver_match.url_name %}active{% endif %}">📝 {% trans "Заявки" %}</a>
-            <a href="#" class="nav-item">⚙️ {% trans "Настройки" %}</a>
+            <a href="{% url 'platform_settings' %}" class="nav-item {% if 'setting' in request.resolver_match.url_name %}active{% endif %}">⚙️ {% trans "Настройки" %}</a>
         </nav>
         <div class="sidebar-foot">
             <a href="{% url 'logout' %}" class="nav-item text-danger">🚪 {% trans "Выйти" %}</a>

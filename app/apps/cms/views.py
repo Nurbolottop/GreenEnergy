@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from functools import wraps
-from .models import Organization, UserProfile, Notification, ConnectionRequest
+from .models import Organization, UserProfile, Notification, ConnectionRequest, Tariff
 
 
 # ============================================================
@@ -97,6 +97,7 @@ def platform_organization_create_view(request):
         email = request.POST.get('email', '').strip()
         address = request.POST.get('address', '').strip()
         contract_number = request.POST.get('contract_number', '').strip()
+        tariff_id = request.POST.get('tariff_id')
         username = request.POST.get('username', '').strip()
         password = request.POST.get('password', '')
 
@@ -116,6 +117,7 @@ def platform_organization_create_view(request):
             email=email,
             address=address,
             contract_number=contract_number,
+            tariff_id=tariff_id if tariff_id else None,
             status='active',
         )
 
@@ -148,7 +150,8 @@ def platform_organization_create_view(request):
         messages.success(request, f'Организация "{name}" создана. Логин: {username}')
         return redirect('platform_organizations')
 
-    return render(request, 'platform/organization_create.html')
+    tariffs = Tariff.objects.filter(status='active')
+    return render(request, 'platform/organization_create.html', {'tariffs': tariffs})
 
 
 @platform_admin_required
@@ -157,6 +160,7 @@ def platform_organization_detail_view(request, org_id):
     org_users = UserProfile.objects.filter(organization=org).select_related('user')
     org_notifications = Notification.objects.filter(organization=org)[:10]
     edit_mode = request.GET.get('edit') == '1'
+    tariffs = Tariff.objects.filter(status='active')
 
     if request.method == 'POST':
         action = request.POST.get('action', '')
@@ -168,6 +172,11 @@ def platform_organization_detail_view(request, org_id):
             org.email = request.POST.get('email', '').strip()
             org.address = request.POST.get('address', '').strip()
             org.contract_number = request.POST.get('contract_number', '').strip()
+            tariff_id = request.POST.get('tariff_id')
+            if tariff_id:
+                org.tariff_id = tariff_id
+            else:
+                org.tariff = None
             org.status = request.POST.get('status', org.status)
             org.save()
 
@@ -215,6 +224,7 @@ def platform_organization_detail_view(request, org_id):
         'org_users': org_users,
         'notifications': org_notifications,
         'edit_mode': edit_mode,
+        'tariffs': tariffs,
     }
     return render(request, 'platform/organization_detail.html', context)
 
@@ -271,6 +281,145 @@ def platform_request_update_view(request, req_id):
         
     context = {'req': req_obj}
     return render(request, 'platform/request_detail.html', context)
+
+
+@platform_admin_required
+def platform_settings_view(request):
+    """Глобальные настройки платформы."""
+    
+    # Mock context data for the settings page
+    context = {
+        'platform_settings': {
+            'name': 'Green Energy',
+            'description': 'B2B-платформа для мониторинга и управления электропотреблением организаций',
+            'support_email': 'support@greenenergy.kg',
+            'support_phone': '+996 555 911 911',
+            'language': 'ru',
+            'currency': 'KGS',
+            'timezone': 'Asia/Bishkek',
+            'status': 'active',
+        },
+        'tariffs': Tariff.objects.all(),
+        'device_settings': {
+            'prefix': 'GE-',
+            'interval': '5',
+            'warning_time': '60',
+            'offline_time': '10',
+            'default_limit': '2.5',
+            'remote_off': True,
+            'relay_control': True,
+            'history': True,
+            'history_period': '90',
+        },
+        'notification_settings': {
+            'offline': True,
+            'online': True,
+            'limit': True,
+            'new_request': True,
+            'new_device': True,
+            'settings_changed': False,
+            'sensor_error': True,
+            'suspicious': True,
+            'low_signal': False,
+            'no_data': True,
+            'email': 'admin@greenenergy.kg',
+            'tg_token': '123456789:AAH...mock',
+            'tg_chat': '-100123456789',
+            'webhook': 'https://example.com/webhook',
+        },
+        'security_settings': {
+            'session_time': '60',
+            'max_attempts': '5',
+            'lockout_time': '15',
+            'active_only': True,
+            'complex_password': True,
+            'two_factor': False,
+            'ip_restriction': '',
+        },
+        'request_settings': {
+            'enable_form': True,
+            'email': 'sales@greenenergy.kg',
+            'tg': False,
+            'tg_chat': '',
+            'auto_reply': 'Спасибо за заявку. Команда Green Energy свяжется с вами в ближайшее время.',
+        },
+        'api_settings': {
+            'devices_endpoint': '/api/devices/data/',
+            'commands_endpoint': '/api/devices/commands/',
+            'token': 'GE-API-998877665544332211',
+            'mqtt': False,
+            'mqtt_host': 'mqtt.greenenergy.kg',
+            'mqtt_port': '1883',
+            'mqtt_user': 'admin',
+            'mqtt_pass': 'secret',
+            'websocket': False,
+            'last_check': 'успешно, 2 минуты назад',
+        },
+        'admins': [
+            {'username': 'admin', 'name': 'Главный администратор', 'email': 'admin@greenenergy.kg', 'role': 'platform_admin', 'status': 'active', 'last_login': 'Сегодня, 10:45'},
+            {'username': 'support', 'name': 'Поддержка', 'email': 'support@greenenergy.kg', 'role': 'support_manager', 'status': 'active', 'last_login': 'Вчера, 16:30'},
+            {'username': 'technician', 'name': 'Техник', 'email': 'tech@greenenergy.kg', 'role': 'technician', 'status': 'inactive', 'last_login': '12.04.2026, 09:15'},
+        ],
+        'login_logs': [
+            {'date': '13.05.2026 10:45', 'user': 'admin', 'role': 'platform_admin', 'ip': '192.168.1.1', 'device': 'Mac OS / Chrome', 'status': 'success'},
+            {'date': '13.05.2026 09:30', 'user': 'demo_company', 'role': 'organization_admin', 'ip': '10.0.0.5', 'device': 'Windows / Edge', 'status': 'success'},
+            {'date': '13.05.2026 08:15', 'user': 'unknown_user', 'role': '—', 'ip': '45.33.22.11', 'device': 'Linux / Firefox', 'status': 'failed'},
+        ],
+    }
+    
+    if request.method == 'POST':
+        # Simulate saving settings
+        messages.success(request, 'Настройки успешно сохранены.')
+        return redirect('platform_settings')
+        
+    return render(request, 'platform/settings.html', context)
+
+
+@platform_admin_required
+def platform_tariff_save_view(request):
+    """Добавление или обновление тарифа."""
+    if request.method == 'POST':
+        tariff_id = request.POST.get('tariff_id')
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        currency = request.POST.get('currency')
+        period = request.POST.get('period')
+        max_objects = request.POST.get('max_objects')
+        max_devices = request.POST.get('max_devices')
+        status = request.POST.get('status', 'active')
+        is_featured = request.POST.get('is_featured') == 'on'
+        
+        if tariff_id:
+            tariff = get_object_or_404(Tariff, id=tariff_id)
+            tariff.name = name
+            tariff.price = price
+            tariff.currency = currency
+            tariff.period = period
+            tariff.max_objects = max_objects
+            tariff.max_devices = max_devices
+            tariff.status = status
+            tariff.is_featured = is_featured
+            tariff.save()
+            messages.success(request, f'Тариф "{name}" обновлен.')
+        else:
+            Tariff.objects.create(
+                name=name, price=price, currency=currency, period=period,
+                max_objects=max_objects, max_devices=max_devices,
+                status=status, is_featured=is_featured
+            )
+            messages.success(request, f'Тариф "{name}" создан.')
+    return redirect('platform_settings')
+
+
+@platform_admin_required
+def platform_tariff_delete_view(request, tariff_id):
+    """Удаление тарифа."""
+    if request.method == 'POST':
+        tariff = get_object_or_404(Tariff, id=tariff_id)
+        name = tariff.name
+        tariff.delete()
+        messages.success(request, f'Тариф "{name}" удален.')
+    return redirect('platform_settings')
 
 
 # ============================================================

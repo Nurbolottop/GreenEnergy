@@ -20,13 +20,17 @@
 <div class="d-flex justify-between items-center mt-16 mb-24" style="flex-wrap:wrap;gap:16px">
     <div>
         <h1 class="page-title" style="margin:0">{{ org.name }}</h1>
-        <div class="d-flex gap-12 items-center" style="margin-top:6px;flex-wrap:wrap">
-            {% if org.status == 'active' %}<span class="badge badge-green">{% trans "Активна" %}</span>
-            {% elif org.status == 'blocked' %}<span class="badge badge-danger">{% trans "Заблокирована" %}</span>
-            {% elif org.status == 'pending' %}<span class="badge badge-warning">{% trans "Ожидает" %}</span>
-            {% else %}<span class="badge badge-danger">{% trans "Неактивна" %}</span>{% endif %}
-            <span class="text-sec" style="font-size:.85rem">{% trans "Создана" %}: {{ org.created_at|date:"d.m.Y H:i" }}</span>
-            {% if org.updated_at %}<span class="text-sec" style="font-size:.85rem">{% trans "Обновлена" %}: {{ org.updated_at|date:"d.m.Y H:i" }}</span>{% endif %}
+        <div class="d-flex items-center gap-12" style="margin-top:6px;flex-wrap:wrap">
+            <span class="badge {% if org.status == 'active' %}badge-green{% elif org.status == 'inactive' %}badge-danger{% else %}badge-warning{% endif %}">
+                {{ org.get_status_display }}
+            </span>
+            {% if org.tariff %}
+                <span class="badge" style="background:rgba(255,193,7,0.15);color:var(--warning);border:1px solid rgba(255,193,7,0.3)">
+                    💳 {{ org.tariff.name }}
+                </span>
+            {% endif %}
+            <span class="text-sec" style="font-size:0.9rem">{% trans "Создана:" %} {{ org.created_at|date:"d.m.Y H:i" }}</span>
+            {% if org.updated_at %}<span class="text-sec" style="font-size:0.9rem">{% trans "Обновлена:" %} {{ org.updated_at|date:"d.m.Y H:i" }}</span>{% endif %}
         </div>
     </div>
     <div class="d-flex gap-8 flex-wrap">
@@ -92,6 +96,16 @@
         </div>
 
         <div class="form-group">
+            <label>{% trans "Тарифный план" %}</label>
+            <select name="tariff_id" class="form-control">
+                <option value="">{% trans "Без тарифа" %}</option>
+                {% for t in tariffs %}
+                    <option value="{{ t.id }}" {% if org.tariff_id == t.id %}selected{% endif %}>{{ t.name }} ({{ t.price }} {{ t.currency }} / {{ t.period }})</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
             <label>{% trans "Статус" %}</label>
             <select name="status" class="form-control">
                 <option value="active" {% if org.status == 'active' %}selected{% endif %}>{% trans "Активна" %}</option>
@@ -132,6 +146,16 @@
     <div class="card stat-card">
         <div class="stat-label">{% trans "Договор" %}</div>
         <div class="stat-value" style="font-size:1rem">{{ org.contract_number|default:"—" }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Тариф" %}</div>
+        <div class="stat-value" style="font-size:1rem">
+            {% if org.tariff %}
+                {{ org.tariff.name }} <span class="text-sec" style="font-size:0.8rem">({{ org.tariff.price }} {{ org.tariff.currency }})</span>
+            {% else %}
+                <span class="text-sec">{% trans "Без тарифа" %}</span>
+            {% endif %}
+        </div>
     </div>
     <div class="card stat-card">
         <div class="stat-label">{% trans "Пользователей" %}</div>
