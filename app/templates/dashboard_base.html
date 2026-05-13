@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="{% url 'landing' %}" class="logo">Green <span>Energy</span></a>
+            <button class="mobile-close" id="sidebarClose">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{% url 'dashboard' %}" class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">{% trans "Главная" %}</a>
+            <a href="#" class="nav-item">{% trans "Объекты" %}</a>
+            <a href="{% url 'devices' %}" class="nav-item {% if 'device' in request.resolver_match.url_name %}active{% endif %}">{% trans "Устройства" %}</a>
+            <a href="{% url 'monitoring' %}" class="nav-item {% if request.resolver_match.url_name == 'monitoring' %}active{% endif %}">{% trans "Мониторинг" %}</a>
+            <a href="{% url 'alerts' %}" class="nav-item {% if request.resolver_match.url_name == 'alerts' %}active{% endif %}">{% trans "Уведомления" %}</a>
+            <a href="#" class="nav-item">{% trans "Настройки" %}</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="{% url 'login' %}" class="nav-item text-danger">{% trans "Выйти" %}</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+            <div class="topbar-org">{% trans "ОсОО Demo Organization" %}</div>
+            <div class="topbar-status"><span class="status-indicator online"></span> 8 {% trans "устройств онлайн" %}</div>
+            <div class="topbar-actions">
+                <div class="lang-switcher">
+                    <select>
+                        <option value="ru">RU</option>
+                        <option value="en">EN</option>
+                        <option value="kg">KG</option>
+                    </select>
+                </div>
+                <div class="notifications">
+                    <a href="{% url 'alerts' %}">🔔</a>
+                </div>
+                <div class="avatar">AD</div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            {% block dashboard_content %}{% endblock %}
+        </div>
+    </main>
+</div>
+{% endblock %}

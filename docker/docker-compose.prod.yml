@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  db_greenenergy:
+    image: postgres:14
+    container_name: postgres_db_greenenergy
+    env_file:
+      - ../.env
+    volumes:
+      - postgres_data_greenenergy:/var/lib/postgresql/data
+    networks:
+      - portfolio_network_greenenergy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis_greenenergy:
+    image: redis:6
+    container_name: redis_greenenergy
+    networks:
+      - portfolio_network_greenenergy
+
+  web_greenenergy:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: django_web_greenenergy
+    command: sh -c "/entrypoint.sh && gunicorn core.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - ../app:/app
+      - ../app/static:/app/static
+      - ../app/media:/app/media
+    env_file:
+      - ../.env
+    environment:
+      - DJANGO_SETTINGS_MODULE=core.settings.prod
+    depends_on:
+      db_greenenergy:
+        condition: service_healthy
+      redis_greenenergy:
+        condition: service_started
+    ports:
+      - "8000:8000"
+    networks:
+      - portfolio_network_greenenergy
+
+  telegram_bot_greenenergy:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: telegram_bot_greenenergy
+    command: python manage.py bot
+    volumes:
+      - ../app:/app
+    env_file:
+      - ../.env
+    depends_on:
+      - db_greenenergy
+      - web_greenenergy
+    networks:
+      - portfolio_network_greenenergy
+
+networks:
+  portfolio_network_greenenergy:
+    driver: bridge
+
+volumes:
+  postgres_data_greenenergy:

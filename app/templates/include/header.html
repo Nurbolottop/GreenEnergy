@@ -1,0 +1,26 @@
+{% load i18n %}
+<header class="navbar">
+    <div class="container d-flex justify-between align-center" style="width: 100%;">
+        <a href="{% url 'landing' %}" class="logo">Green <span>Energy</span></a>
+        
+        <nav class="nav-links">
+            <a href="#features">{% trans "Возможности" %}</a>
+            <a href="#how-it-works">{% trans "Как работает" %}</a>
+            <a href="#industries">{% trans "Для бизнеса" %}</a>
+            <a href="#pricing">{% trans "Тарифы" %}</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        
+        <div class="nav-actions">
+            <select style="border:none; padding-right:10px;">
+                <option value="ru">RU</option>
+                <option value="en">EN</option>
+                <option value="kg">KG</option>
+            </select>
+            <a href="{% url 'login' %}" class="btn btn-outline">{% trans "Войти" %}</a>
+            <a href="#contact" class="btn btn-primary">{% trans "Оставить заявку" %}</a>
+        </div>
+        
+        <button class="mobile-toggle">☰</button>
+    </div>
+</header>

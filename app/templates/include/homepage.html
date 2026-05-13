@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}Green Energy - B2B SaaS{% endblock %}
+
+{% block content %}
+    {% include "include/header.html" %}
+
+    <main>
+        <!-- Hero Section -->
+        <section class="container hero">
+            <div class="hero-content">
+                <h1>{% trans "Удалённый контроль электропотребления для бизнеса" %}</h1>
+                <p>{% blocktrans %}Green Energy помогает организациям отслеживать энергопотребление, управлять подключёнными устройствами, контролировать расходы и получать уведомления в режиме реального времени.{% endblocktrans %}</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">{% trans "Оставить заявку" %}</a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline">{% trans "Посмотреть демо" %}</a>
+                </div>
+            </div>
+            <div class="hero-mockup">
+                <h3 style="margin-bottom: 20px;">{% trans "Real-time monitoring" %} <span class="status-indicator online" style="float: right;"></span></h3>
+                <div class="stats-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 20px;">
+                    <div class="card" style="padding: 15px;">
+                        <div style="color: var(--text-secondary); font-size: 0.875rem;">{% trans "Потребление" %}</div>
+                        <div style="font-size: 1.5rem; color: var(--accent-green); font-weight: bold;">12.4 кВт⋅ч</div>
+                    </div>
+                    <div class="card" style="padding: 15px;">
+                        <div style="color: var(--text-secondary); font-size: 0.875rem;">{% trans "Устройства онлайн" %}</div>
+                        <div style="font-size: 1.5rem; color: var(--text-main); font-weight: bold;">8 / 10</div>
+                    </div>
+                </div>
+                <div style="height: 150px; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">Mock Chart Area</div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="container section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>24/7</h3>
+                    <p style="color: var(--text-secondary);">{% trans "мониторинг" %}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>< 5 {% trans "сек" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "обновление данных" %}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>3</h3>
+                    <p style="color: var(--text-secondary);">{% trans "языка интерфейса" %}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>B2B</h3>
+                    <p style="color: var(--text-secondary);">{% trans "ready архитектура" %}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="container section">
+            <h2 class="section-title">{% trans "Возможности" %}</h2>
+            <div class="features-grid">
+                <div class="card">
+                    <h3 style="margin-bottom: 12px;">{% trans "Мониторинг энергопотребления" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Отслеживайте расход электроэнергии в реальном времени." %}</p>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 12px;">{% trans "Управление устройствами" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Удаленное включение и выключение питания." %}</p>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 12px;">{% trans "Объекты и зоны" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Структурируйте инфраструктуру по филиалам и кабинетам." %}</p>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 12px;">{% trans "История и аналитика" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Детальные графики и отчеты за любой период." %}</p>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 12px;">{% trans "Уведомления о перегрузке" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Мгновенные алерты при превышении лимитов мощности." %}</p>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 12px;">{% trans "Ролевая система доступа" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Гибкое управление правами сотрудников организации." %}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section id="how-it-works" class="container section">
+            <h2 class="section-title">{% trans "Как это работает" %}</h2>
+            <div class="stats-grid">
+                <div class="card text-center">
+                    <div style="font-size: 2rem; color: var(--accent-purple); margin-bottom: 16px;">1</div>
+                    <h3 style="margin-bottom: 12px;">{% trans "Создание организации" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Регистрация профиля компании." %}</p>
+                </div>
+                <div class="card text-center">
+                    <div style="font-size: 2rem; color: var(--accent-purple); margin-bottom: 16px;">2</div>
+                    <h3 style="margin-bottom: 12px;">{% trans "Подключение объектов" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Добавление IoT устройств." %}</p>
+                </div>
+                <div class="card text-center">
+                    <div style="font-size: 2rem; color: var(--accent-purple); margin-bottom: 16px;">3</div>
+                    <h3 style="margin-bottom: 12px;">{% trans "Контроль и аналитика" %}</h3>
+                    <p style="color: var(--text-secondary);">{% trans "Удаленное управление 24/7." %}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries -->
+        <section id="industries" class="container section">
+            <h2 class="section-title">{% trans "Для бизнеса" %}</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+                <span class="btn btn-outline">Офисы</span>
+                <span class="btn btn-outline">Магазины</span>
+                <span class="btn btn-outline">Склады</span>
+                <span class="btn btn-outline">Кафе</span>
+                <span class="btn btn-outline">Университеты</span>
+                <span class="btn btn-outline">Гостиницы</span>
+                <span class="btn btn-outline">Арендные помещения</span>
+                <span class="btn btn-outline">Производственные зоны</span>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="container section">
+            <h2 class="section-title">{% trans "Тарифы" %}</h2>
+            <div class="pricing-grid">
+                <div class="card text-center">
+                    <h3>Start</h3>
+                    <p class="mt-24 mb-24" style="color: var(--text-secondary);">{% trans "по запросу" %}</p>
+                    <button class="btn btn-outline" style="width: 100%;">{% trans "Выбрать" %}</button>
+                </div>
+                <div class="card text-center" style="border-color: var(--accent-green); transform: scale(1.05);">
+                    <div style="background: var(--accent-green); color: var(--bg-main); padding: 4px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-bottom: 12px; display: inline-block;">ПОПУЛЯРНЫЙ</div>
+                    <h3>Business</h3>
+                    <p class="mt-24 mb-24" style="color: var(--text-secondary);">{% trans "по запросу" %}</p>
+                    <button class="btn btn-primary" style="width: 100%;">{% trans "Выбрать" %}</button>
+                </div>
+                <div class="card text-center">
+                    <h3>Enterprise</h3>
+                    <p class="mt-24 mb-24" style="color: var(--text-secondary);">{% trans "индивидуально" %}</p>
+                    <button class="btn btn-outline" style="width: 100%;">{% trans "Выбрать" %}</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="container section" style="max-width: 800px;">
+            <h2 class="section-title">FAQ</h2>
+            <div class="faq-item">
+                <div class="faq-q">{% trans "Как подключить организацию?" %} <span>+</span></div>
+                <div class="faq-a">{% trans "Оставьте заявку, и наш менеджер свяжется с вами для заключения договора и настройки." %}</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">{% trans "Можно ли подключить несколько объектов?" %} <span>+</span></div>
+                <div class="faq-a">{% trans "Да, платформа поддерживает иерархию: Организация -> Объекты -> Зоны -> Устройства." %}</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">{% trans "Можно ли управлять питанием удалённо?" %} <span>+</span></div>
+                <div class="faq-a">{% trans "Да, через личный кабинет вы можете в один клик включать или отключать устройства." %}</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">{% trans "Поддерживается ли кыргызский язык?" %} <span>+</span></div>
+                <div class="faq-a">{% trans "Да, интерфейс полностью поддерживает русский, английский и кыргызский языки." %}</div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="container section" style="max-width: 600px;">
+            <h2 class="section-title">{% trans "Оставить заявку" %}</h2>
+            <form class="card">
+                <div class="form-group">
+                    <label>{% trans "Название организации" %}</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Имя" %}</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Телефон" %}</label>
+                    <input type="tel" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Email" %}</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>{% trans "Комментарий" %}</label>
+                    <textarea class="form-control" rows="4"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" style="width: 100%;">{% trans "Отправить заявку" %}</button>
+            </form>
+        </section>
+    </main>
+
+    {% include "include/footer.html" %}
+{% endblock %}
