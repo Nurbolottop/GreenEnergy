@@ -1,0 +1,51 @@
+{% extends "dashboard_base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Дашборд" %} — Green Energy{% endblock %}
+
+{% block dashboard_content %}
+<h1 class="page-title">{% trans "Обзор" %}</h1>
+
+<div class="stat-grid">
+    <div class="card stat-card"><div class="stat-label">{% trans "Потребление сегодня" %}</div><div class="stat-value green">12.4 кВт⋅ч</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Текущая мощность" %}</div><div class="stat-value">0.56 кВт</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Устройств онлайн" %}</div><div class="stat-value">8 / 10</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Уведомления" %}</div><div class="stat-value" style="color:var(--warning)">2</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Расход за месяц" %}</div><div class="stat-value">1 240 сом</div></div>
+</div>
+
+<div class="chart-box">
+    <h3>{% trans "Потребление за 24 часа" %}</h3>
+    <div class="chart-area"><canvas id="mainChart"></canvas></div>
+</div>
+
+<div class="card">
+    <div class="d-flex justify-between items-center mb-16" style="flex-wrap:wrap;gap:12px">
+        <h3>{% trans "Активные устройства" %}</h3>
+        <a href="{% url 'devices' %}" class="btn btn-outline btn-sm">{% trans "Все" %} →</a>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr>
+                <th>{% trans "Устройство" %}</th><th>{% trans "Объект" %}</th><th>{% trans "Зона" %}</th>
+                <th>{% trans "Статус" %}</th><th>{% trans "Мощность" %}</th><th>{% trans "Питание" %}</th><th></th>
+            </tr></thead>
+            <tbody>
+                <tr>
+                    <td><a href="{% url 'device_detail' 1 %}">Кондиционер</a></td><td>Главный офис</td><td>Каб. 101</td>
+                    <td><span class="status"><span class="status-dot on"></span>Онлайн</span></td>
+                    <td>1.2 кВт</td>
+                    <td><label class="switch"><input type="checkbox" checked class="power-toggle" data-id="d1"><span class="slider"></span></label></td>
+                    <td><a href="{% url 'device_detail' 1 %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a></td>
+                </tr>
+                <tr>
+                    <td><a href="{% url 'device_detail' 2 %}">Освещение</a></td><td>Склад А</td><td>Сектор 1</td>
+                    <td><span class="status"><span class="status-dot on"></span>Онлайн</span></td>
+                    <td>0.8 кВт</td>
+                    <td><label class="switch"><input type="checkbox" checked class="power-toggle" data-id="d2"><span class="slider"></span></label></td>
+                    <td><a href="{% url 'device_detail' 2 %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

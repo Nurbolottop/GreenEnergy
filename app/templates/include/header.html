@@ -1,26 +1,51 @@
 {% load i18n %}
-<header class="navbar">
-    <div class="container d-flex justify-between align-center" style="width: 100%;">
-        <a href="{% url 'landing' %}" class="logo">Green <span>Energy</span></a>
-        
-        <nav class="nav-links">
+{% get_current_language as LANGUAGE_CODE %}
+<nav class="navbar">
+    <div class="container navbar-inner">
+        <a href="{% url 'landing' %}" class="logo">⚡ Green <span>Energy</span></a>
+
+        <div class="nav-center">
             <a href="#features">{% trans "Возможности" %}</a>
             <a href="#how-it-works">{% trans "Как работает" %}</a>
-            <a href="#industries">{% trans "Для бизнеса" %}</a>
             <a href="#pricing">{% trans "Тарифы" %}</a>
             <a href="#faq">FAQ</a>
-        </nav>
-        
-        <div class="nav-actions">
-            <select style="border:none; padding-right:10px;">
-                <option value="ru">RU</option>
-                <option value="en">EN</option>
-                <option value="kg">KG</option>
-            </select>
-            <a href="{% url 'login' %}" class="btn btn-outline">{% trans "Войти" %}</a>
-            <a href="#contact" class="btn btn-primary">{% trans "Оставить заявку" %}</a>
         </div>
-        
-        <button class="mobile-toggle">☰</button>
+
+        <div class="nav-right">
+            <div class="lang-sw">
+                <button class="lang-btn {% if LANGUAGE_CODE == 'ru' or not LANGUAGE_CODE %}active{% endif %}" data-lang="ru">RU</button>
+                <button class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}" data-lang="en">EN</button>
+                <button class="lang-btn {% if LANGUAGE_CODE == 'ky' %}active{% endif %}" data-lang="ky">KG</button>
+            </div>
+            <button class="theme-toggle" title="{% trans 'Сменить тему' %}">🌙</button>
+            <a href="{% url 'login' %}" class="btn btn-outline btn-sm">{% trans "Войти" %}</a>
+            <a href="#contact" class="btn btn-primary btn-sm">{% trans "Заявка" %}</a>
+        </div>
+
+        <button class="burger" id="burger">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-</header>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer-panel">
+        <a href="#features">{% trans "Возможности" %}</a>
+        <a href="#how-it-works">{% trans "Как работает" %}</a>
+        <a href="#pricing">{% trans "Тарифы" %}</a>
+        <a href="#faq">FAQ</a>
+        <hr style="border-color:var(--border)">
+        <div class="d-flex items-center gap-12">
+            <div class="lang-sw">
+                <button class="lang-btn {% if LANGUAGE_CODE == 'ru' or not LANGUAGE_CODE %}active{% endif %}" data-lang="ru">RU</button>
+                <button class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}" data-lang="en">EN</button>
+                <button class="lang-btn {% if LANGUAGE_CODE == 'ky' %}active{% endif %}" data-lang="ky">KG</button>
+            </div>
+            <button class="theme-toggle">🌙</button>
+        </div>
+        <a href="{% url 'login' %}" class="btn btn-outline btn-block">{% trans "Войти" %}</a>
+        <a href="#contact" class="btn btn-primary btn-block">{% trans "Оставить заявку" %}</a>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+{% extends "platform/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Заявки на подключение" %} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<div class="d-flex justify-between items-center mb-24" style="flex-wrap:wrap;gap:12px">
+    <h1 class="page-title" style="margin:0">{% trans "Заявки на подключение" %}</h1>
+</div>
+
+{% if messages %}
+<div style="margin-bottom:20px">
+    {% for message in messages %}
+    <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;
+        {% if message.tags == 'error' %}background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.2);
+        {% else %}background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2);{% endif %}
+    ">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if requests %}
+<div class="card">
+    <div class="table-wrap">
+        <table>
+            <thead><tr>
+                <th>{% trans "Дата" %}</th>
+                <th>{% trans "Организация" %}</th>
+                <th>{% trans "Контакт" %}</th>
+                <th>{% trans "Телефон / Email" %}</th>
+                <th>{% trans "Комментарий" %}</th>
+                <th>{% trans "Статус" %}</th>
+                <th>{% trans "Действие" %}</th>
+            </tr></thead>
+            <tbody>
+            {% for req in requests %}
+                <tr>
+                    <td class="text-sec">{{ req.created_at|date:"d.m.Y H:i" }}</td>
+                    <td><strong>{{ req.organization_name }}</strong></td>
+                    <td>{{ req.contact_name }}</td>
+                    <td>
+                        {{ req.phone }}<br>
+                        <span class="text-sec" style="font-size:0.8rem">{{ req.email }}</span>
+                    </td>
+                    <td style="max-width:200px;white-space:normal;font-size:0.85rem;" class="text-sec">
+                        {{ req.comment|default:"—" }}
+                    </td>
+                    <td>
+                        {% if req.status == 'new' %}<span class="badge badge-info">{% trans "Новая" %}</span>
+                        {% elif req.status == 'in_progress' %}<span class="badge badge-warning">{% trans "В обработке" %}</span>
+                        {% elif req.status == 'completed' %}<span class="badge badge-green">{% trans "Обработана" %}</span>
+                        {% else %}<span class="badge badge-danger">{% trans "Отклонена" %}</span>{% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'platform_request_update' req.id %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="card text-center" style="padding:48px">
+    <p class="text-sec" style="font-size:1.1rem;margin-bottom:16px">{% trans "Пока нет заявок на подключение" %}</p>
+</div>
+{% endif %}
+{% endblock %}

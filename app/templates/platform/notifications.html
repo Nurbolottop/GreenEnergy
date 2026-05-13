@@ -1,0 +1,57 @@
+{% extends "platform/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Уведомления" %} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<div class="d-flex justify-between items-center mb-24" style="flex-wrap:wrap;gap:12px">
+    <h1 class="page-title" style="margin:0">{% trans "Уведомления" %}
+        {% if unread_count %}<span class="badge badge-danger" style="font-size:.8rem;vertical-align:middle;margin-left:8px">{{ unread_count }}</span>{% endif %}
+    </h1>
+    {% if unread_count %}
+    <a href="{% url 'platform_notifications_read_all' %}" class="btn btn-outline btn-sm">✓ {% trans "Прочитать все" %}</a>
+    {% endif %}
+</div>
+
+{% if messages %}
+<div style="margin-bottom:20px">
+    {% for message in messages %}
+    <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2)">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if notifications %}
+<div style="display:flex;flex-direction:column;gap:12px">
+    {% for notif in notifications %}
+    <div class="card alert-card level-{{ notif.level }}" style="margin:0;{% if not notif.is_read %}border-left:3px solid var(--green);{% endif %}">
+        <div class="d-flex justify-between items-center" style="gap:12px;flex-wrap:wrap">
+            <div style="flex:1">
+                <div class="d-flex items-center gap-8 mb-4">
+                    {% if notif.level == 'success' %}<span style="color:var(--green)">✅</span>
+                    {% elif notif.level == 'danger' %}<span style="color:var(--danger)">🔴</span>
+                    {% elif notif.level == 'warning' %}<span style="color:var(--warning)">⚠️</span>
+                    {% else %}<span style="color:var(--info)">ℹ️</span>{% endif %}
+                    <strong style="font-size:.95rem">{{ notif.title }}</strong>
+                    {% if not notif.is_read %}<span class="badge badge-green" style="font-size:.7rem">{% trans "Новое" %}</span>{% endif %}
+                </div>
+                <p class="text-sec" style="font-size:.85rem;margin:4px 0">{{ notif.message }}</p>
+                <div class="d-flex gap-12 items-center" style="margin-top:6px">
+                    <span class="text-sec" style="font-size:.8rem">{{ notif.time_display }}</span>
+                    {% if notif.organization %}
+                    <span class="text-sec" style="font-size:.8rem">🏢 {{ notif.organization.name }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% if not notif.is_read %}
+            <a href="{% url 'platform_notification_read' notif.id %}" class="btn btn-outline btn-sm" style="white-space:nowrap">{% trans "Прочитано" %}</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card text-center" style="padding:48px">
+    <p class="text-sec" style="font-size:1.1rem">{% trans "Нет уведомлений" %}</p>
+</div>
+{% endif %}
+{% endblock %}

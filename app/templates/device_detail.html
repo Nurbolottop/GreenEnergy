@@ -1,0 +1,55 @@
+{% extends "dashboard_base.html" %}
+{% load i18n %}
+{% block title %}Кондиционер — Green Energy{% endblock %}
+
+{% block dashboard_content %}
+<a href="{% url 'devices' %}" class="text-sec" style="font-size:.9rem">← {% trans "Назад к списку" %}</a>
+
+<div class="d-flex justify-between items-center mt-16 mb-24" style="flex-wrap:wrap;gap:16px">
+    <div>
+        <h1 class="page-title" style="margin:0;display:flex;align-items:center;gap:10px">Кондиционер <span class="badge badge-info">DEV-1001</span></h1>
+        <div class="text-sec mt-8">{% trans "Главный офис" %} / {% trans "Каб." %} 101</div>
+    </div>
+    <div class="d-flex items-center gap-16">
+        <span class="status"><span class="status-dot on" id="dot-dd"></span><span id="plabel-dd">{% trans "Вкл" %}</span></span>
+        <label class="switch"><input type="checkbox" checked class="power-toggle" data-id="dd"><span class="slider"></span></label>
+    </div>
+</div>
+
+<div class="grid-2 mb-24">
+    <div class="card" style="padding:0;overflow:hidden">
+        <div class="img-placeholder" style="aspect-ratio:16/9;border:none;border-radius:0">
+            <span class="icon">📷</span>
+            <span class="label">{% trans "Фото устройства — 800×450" %}</span>
+        </div>
+    </div>
+    <div>
+        <div class="stat-grid" style="grid-template-columns:1fr 1fr">
+            <div class="card stat-card"><div class="stat-label">{% trans "Мощность" %}</div><div class="stat-value green">1.2 кВт</div></div>
+            <div class="card stat-card"><div class="stat-label">{% trans "Напряжение" %}</div><div class="stat-value">220 В</div></div>
+            <div class="card stat-card"><div class="stat-label">{% trans "Ток" %}</div><div class="stat-value">5.4 А</div></div>
+            <div class="card stat-card"><div class="stat-label">{% trans "Лимит" %}</div><div class="stat-value">2.0 кВт</div></div>
+        </div>
+    </div>
+</div>
+
+<div class="chart-box">
+    <h3>{% trans "Потребление за 24 часа" %}</h3>
+    <div class="chart-area"><canvas id="mainChart"></canvas></div>
+</div>
+
+<div class="card">
+    <h3 class="mb-16">{% trans "История команд" %}</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>{% trans "Время" %}</th><th>{% trans "Команда" %}</th><th>{% trans "Инициатор" %}</th><th>{% trans "Статус" %}</th></tr></thead>
+            <tbody>
+                <tr><td>{% trans "Сегодня" %} 14:30</td><td><code>turn_on</code></td><td>Admin</td><td><span class="text-green">✓</span></td></tr>
+                <tr><td>{% trans "Сегодня" %} 09:15</td><td><code>limit_changed (2.0)</code></td><td>System</td><td><span class="text-green">✓</span></td></tr>
+                <tr><td>{% trans "Вчера" %} 18:00</td><td><code>turn_off</code></td><td>Admin</td><td><span class="text-green">✓</span></td></tr>
+                <tr><td>{% trans "Вчера" %} 12:40</td><td><code>alert_created</code></td><td>System</td><td><span class="text-warning">⚠</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

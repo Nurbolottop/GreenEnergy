@@ -1,0 +1,209 @@
+{% extends "platform/base.html" %}
+{% load i18n %}
+{% block title %}{{ org.name }} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<a href="{% url 'platform_organizations' %}" class="text-sec" style="font-size:.9rem">← {% trans "Назад к списку" %}</a>
+
+{% if messages %}
+<div style="margin:16px 0">
+    {% for message in messages %}
+    <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;
+        {% if message.tags == 'error' %}background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.2);
+        {% else %}background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2);{% endif %}
+    ">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Header -->
+<div class="d-flex justify-between items-center mt-16 mb-24" style="flex-wrap:wrap;gap:16px">
+    <div>
+        <h1 class="page-title" style="margin:0">{{ org.name }}</h1>
+        <div class="d-flex gap-12 items-center" style="margin-top:6px;flex-wrap:wrap">
+            {% if org.status == 'active' %}<span class="badge badge-green">{% trans "Активна" %}</span>
+            {% elif org.status == 'blocked' %}<span class="badge badge-danger">{% trans "Заблокирована" %}</span>
+            {% elif org.status == 'pending' %}<span class="badge badge-warning">{% trans "Ожидает" %}</span>
+            {% else %}<span class="badge badge-danger">{% trans "Неактивна" %}</span>{% endif %}
+            <span class="text-sec" style="font-size:.85rem">{% trans "Создана" %}: {{ org.created_at|date:"d.m.Y H:i" }}</span>
+            {% if org.updated_at %}<span class="text-sec" style="font-size:.85rem">{% trans "Обновлена" %}: {{ org.updated_at|date:"d.m.Y H:i" }}</span>{% endif %}
+        </div>
+    </div>
+    <div class="d-flex gap-8 flex-wrap">
+        {% if not edit_mode %}
+            <a href="?edit=1" class="btn btn-primary btn-sm">✏️ {% trans "Изменить" %}</a>
+        {% else %}
+            <a href="{% url 'platform_organization_detail' org.id %}" class="btn btn-outline btn-sm">{% trans "Отмена" %}</a>
+        {% endif %}
+        <form method="post" style="display:inline">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="toggle_status">
+            {% if org.status == 'active' %}
+                <button type="submit" class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger)">{% trans "Отключить" %}</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary btn-sm">{% trans "Активировать" %}</button>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+{% if edit_mode %}
+<!-- ======================== EDIT MODE ======================== -->
+<form method="post" action="{% url 'platform_organization_detail' org.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="update">
+
+    <div class="card mb-24" style="padding:32px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px">
+            <span style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--green-glow),var(--purple-glow));font-size:1.1rem">🏢</span>
+            <h3 style="margin:0">{% trans "Данные организации" %}</h3>
+        </div>
+
+        <div class="form-group">
+            <label>{% trans "Название" %} <span style="color:var(--danger)">*</span></label>
+            <input type="text" name="name" class="form-control" value="{{ org.name }}" required>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group">
+                <label>{% trans "Контактное лицо" %}</label>
+                <input type="text" name="contact_person" class="form-control" value="{{ org.contact_person }}">
+            </div>
+            <div class="form-group">
+                <label>{% trans "Телефон" %}</label>
+                <input type="tel" name="phone" class="form-control" value="{{ org.phone }}">
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group">
+                <label>{% trans "Email" %}</label>
+                <input type="email" name="email" class="form-control" value="{{ org.email }}">
+            </div>
+            <div class="form-group">
+                <label>{% trans "Номер договора" %}</label>
+                <input type="text" name="contract_number" class="form-control" value="{{ org.contract_number }}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{% trans "Адрес" %}</label>
+            <input type="text" name="address" class="form-control" value="{{ org.address }}">
+        </div>
+
+        <div class="form-group">
+            <label>{% trans "Статус" %}</label>
+            <select name="status" class="form-control">
+                <option value="active" {% if org.status == 'active' %}selected{% endif %}>{% trans "Активна" %}</option>
+                <option value="inactive" {% if org.status == 'inactive' %}selected{% endif %}>{% trans "Неактивна" %}</option>
+                <option value="pending" {% if org.status == 'pending' %}selected{% endif %}>{% trans "Ожидает" %}</option>
+                <option value="blocked" {% if org.status == 'blocked' %}selected{% endif %}>{% trans "Заблокирована" %}</option>
+            </select>
+        </div>
+
+        <div class="d-flex gap-12 mt-16">
+            <button type="submit" class="btn btn-primary" style="padding:12px 32px">{% trans "Сохранить изменения" %}</button>
+            <a href="{% url 'platform_organization_detail' org.id %}" class="btn btn-outline" style="padding:12px 32px">{% trans "Отмена" %}</a>
+        </div>
+    </div>
+</form>
+
+{% else %}
+<!-- ======================== VIEW MODE ======================== -->
+
+<!-- Info Cards -->
+<div class="stat-grid mb-24">
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Контактное лицо" %}</div>
+        <div class="stat-value" style="font-size:1rem">{{ org.contact_person|default:"—" }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Телефон" %}</div>
+        <div class="stat-value" style="font-size:1rem">{{ org.phone|default:"—" }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Email" %}</div>
+        <div class="stat-value" style="font-size:1rem">{{ org.email|default:"—" }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Адрес" %}</div>
+        <div class="stat-value" style="font-size:1rem">{{ org.address|default:"—" }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Договор" %}</div>
+        <div class="stat-value" style="font-size:1rem">{{ org.contract_number|default:"—" }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Пользователей" %}</div>
+        <div class="stat-value green">{{ org_users|length }}</div>
+    </div>
+</div>
+
+{% endif %}
+
+<!-- Users of this org -->
+<div class="card mb-24">
+    <div class="d-flex justify-between items-center mb-16" style="flex-wrap:wrap;gap:12px">
+        <h3 style="margin:0">{% trans "Пользователи организации" %}</h3>
+    </div>
+    {% if org_users %}
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>{% trans "Username" %}</th><th>{% trans "Email" %}</th><th>{% trans "Роль" %}</th><th>{% trans "Статус" %}</th></tr></thead>
+            <tbody>
+            {% for p in org_users %}
+                <tr>
+                    <td><strong>{{ p.user.username }}</strong></td>
+                    <td class="text-sec">{{ p.user.email|default:"—" }}</td>
+                    <td>{{ p.get_role_display }}</td>
+                    <td>
+                        {% if p.status == 'active' %}<span class="badge badge-green">{% trans "Активен" %}</span>
+                        {% else %}<span class="badge badge-danger">{{ p.get_status_display }}</span>{% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-sec">{% trans "Нет пользователей" %}</p>
+    {% endif %}
+</div>
+
+<!-- Reset Password -->
+{% if org_users %}
+<div class="card mb-24">
+    <h3 class="mb-16">{% trans "Сброс пароля" %}</h3>
+    <form method="post" class="d-flex gap-12 items-end" style="flex-wrap:wrap">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="reset_password">
+        <div class="form-group" style="margin:0;flex:1;min-width:200px">
+            <label>{% trans "Новый пароль для" %} <code>{{ org_users.0.user.username }}</code></label>
+            <input type="password" name="new_password" class="form-control" placeholder="{% trans 'Введите новый пароль' %}" required>
+        </div>
+        <button type="submit" class="btn btn-outline btn-sm" style="height:42px">{% trans "Сбросить" %}</button>
+    </form>
+</div>
+{% endif %}
+
+<!-- Notifications for this org -->
+{% if notifications %}
+<div class="card">
+    <h3 class="mb-16">{% trans "Уведомления" %}</h3>
+    <div style="display:flex;flex-direction:column;gap:10px">
+    {% for notif in notifications %}
+        <div class="card alert-card level-{{ notif.level }}" style="margin:0;{% if not notif.is_read %}border-left:3px solid var(--green);{% endif %}">
+            <div class="alert-head">
+                <h3 style="font-size:.95rem">
+                    {% if notif.level == 'success' %}✅{% elif notif.level == 'danger' %}🔴{% elif notif.level == 'warning' %}⚠️{% else %}ℹ️{% endif %}
+                    {{ notif.title }}
+                </h3>
+                <span class="alert-time">{{ notif.time_display }}</span>
+            </div>
+            <p class="text-sec" style="font-size:.85rem;margin:4px 0">{{ notif.message }}</p>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

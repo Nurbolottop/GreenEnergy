@@ -1,0 +1,78 @@
+{% extends "dashboard_base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Устройства" %} — Green Energy{% endblock %}
+
+{% block dashboard_content %}
+<div class="d-flex justify-between items-center mb-24" style="flex-wrap:wrap;gap:12px">
+    <h1 class="page-title" style="margin:0">{% trans "Устройства" %}</h1>
+    <div class="tabs" style="margin:0">
+        <div class="tab active">{% trans "Все" %}</div>
+        <div class="tab">{% trans "Онлайн" %}</div>
+        <div class="tab">{% trans "Офлайн" %}</div>
+        <div class="tab">{% trans "Вкл" %}</div>
+        <div class="tab">{% trans "Выкл" %}</div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card device-card">
+        <div class="device-header">
+            <div><h3>Кондиционер</h3><div class="device-meta">ID: DEV-1001 · {% trans "Главный офис" %} · {% trans "Каб." %} 101</div></div>
+            <span class="status"><span class="status-dot on" id="dot-c1"></span><span id="plabel-c1">{% trans "Вкл" %}</span></span>
+        </div>
+        <div class="img-placeholder" style="aspect-ratio:3/1;margin-bottom:16px"><span class="icon">📷</span><span class="label">{% trans "Фото устройства — 600×200" %}</span></div>
+        <div class="device-stats">
+            <div><div class="ds-val">1.2 кВт</div><div class="ds-label">{% trans "Мощность" %}</div></div>
+            <div><div class="ds-val">220В</div><div class="ds-label">{% trans "Напряжение" %}</div></div>
+            <div><div class="ds-val">5.4А</div><div class="ds-label">{% trans "Ток" %}</div></div>
+        </div>
+        <div class="device-footer">
+            <a href="{% url 'device_detail' 1001 %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a>
+            <div class="d-flex items-center gap-8">
+                <span class="text-sec" style="font-size:.85rem">{% trans "Питание" %}</span>
+                <label class="switch"><input type="checkbox" checked class="power-toggle" data-id="c1"><span class="slider"></span></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card device-card">
+        <div class="device-header">
+            <div><h3>{% trans "Серверная стойка" %}</h3><div class="device-meta">ID: DEV-1002 · {% trans "Главный офис" %} · {% trans "Серверная" %}</div></div>
+            <span class="status"><span class="status-dot on" id="dot-c2"></span><span id="plabel-c2">{% trans "Вкл" %}</span></span>
+        </div>
+        <div class="img-placeholder" style="aspect-ratio:3/1;margin-bottom:16px"><span class="icon">📷</span><span class="label">{% trans "Фото устройства — 600×200" %}</span></div>
+        <div class="device-stats">
+            <div><div class="ds-val">2.4 кВт</div><div class="ds-label">{% trans "Мощность" %}</div></div>
+            <div><div class="ds-val">225В</div><div class="ds-label">{% trans "Напряжение" %}</div></div>
+            <div><div class="ds-val">10.6А</div><div class="ds-label">{% trans "Ток" %}</div></div>
+        </div>
+        <div class="device-footer">
+            <a href="{% url 'device_detail' 1002 %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a>
+            <div class="d-flex items-center gap-8">
+                <span class="text-sec" style="font-size:.85rem">{% trans "Питание" %}</span>
+                <label class="switch"><input type="checkbox" checked class="power-toggle" data-id="c2"><span class="slider"></span></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card device-card">
+        <div class="device-header">
+            <div><h3>{% trans "Освещение" %}</h3><div class="device-meta">ID: DEV-1003 · {% trans "Склад А" %} · {% trans "Сектор" %} 1</div></div>
+            <span class="status"><span class="status-dot off" id="dot-c3"></span><span id="plabel-c3">{% trans "Выкл" %}</span></span>
+        </div>
+        <div class="img-placeholder" style="aspect-ratio:3/1;margin-bottom:16px"><span class="icon">📷</span><span class="label">{% trans "Фото устройства — 600×200" %}</span></div>
+        <div class="device-stats">
+            <div><div class="ds-val">0 кВт</div><div class="ds-label">{% trans "Мощность" %}</div></div>
+            <div><div class="ds-val">—</div><div class="ds-label">{% trans "Напряжение" %}</div></div>
+            <div><div class="ds-val">—</div><div class="ds-label">{% trans "Ток" %}</div></div>
+        </div>
+        <div class="device-footer">
+            <a href="{% url 'device_detail' 1003 %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a>
+            <div class="d-flex items-center gap-8">
+                <span class="text-sec" style="font-size:.85rem">{% trans "Питание" %}</span>
+                <label class="switch"><input type="checkbox" class="power-toggle" data-id="c3"><span class="slider"></span></label>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

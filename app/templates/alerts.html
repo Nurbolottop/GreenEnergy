@@ -1,0 +1,41 @@
+{% extends "dashboard_base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Уведомления" %} — Green Energy{% endblock %}
+
+{% block dashboard_content %}
+<h1 class="page-title">{% trans "Уведомления" %}</h1>
+
+<div class="tabs">
+    <div class="tab active">{% trans "Все" %}</div>
+    <div class="tab">{% trans "Непрочитанные" %} (2)</div>
+    <div class="tab">{% trans "Важные" %}</div>
+    <div class="tab">{% trans "Предупреждения" %}</div>
+    <div class="tab">{% trans "Инфо" %}</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+    <div class="card alert-card level-danger unread">
+        <div class="alert-head"><h3>{% trans "Устройство офлайн" %}</h3><span class="alert-time">10 {% trans "мин назад" %}</span></div>
+        <p class="text-sec mb-8">{% trans "Устройство" %} <strong>Кондиционер (DEV-1001)</strong> {% trans "перестало отвечать." %}</p>
+        <div class="d-flex justify-between items-center"><span class="badge badge-danger">Danger</span><button class="btn btn-outline btn-sm">{% trans "Прочитано" %}</button></div>
+    </div>
+
+    <div class="card alert-card level-warning unread">
+        <div class="alert-head"><h3>{% trans "Превышен лимит" %}</h3><span class="alert-time">1 {% trans "час назад" %}</span></div>
+        <p class="text-sec mb-8">{% trans "Устройство" %} <strong>{% trans "Серверная стойка" %} (DEV-1002)</strong> — 2.4 кВт ({% trans "лимит" %} 2.0 кВт).</p>
+        <div class="d-flex justify-between items-center"><span class="badge badge-warning">Warning</span><button class="btn btn-outline btn-sm">{% trans "Прочитано" %}</button></div>
+    </div>
+
+    <div class="card alert-card level-info">
+        <div class="alert-head"><h3>{% trans "Питание выключено" %}</h3><span class="alert-time">{% trans "Вчера" %}, 18:00</span></div>
+        <p class="text-sec mb-8">{% trans "Освещение (Склад А) отключено пользователем Admin." %}</p>
+        <div class="d-flex justify-between items-center"><span class="badge badge-info">Info</span><span class="text-sec" style="font-size:.8rem">✓ {% trans "Прочитано" %}</span></div>
+    </div>
+
+    <div class="card alert-card level-success">
+        <div class="alert-head"><h3>{% trans "Синхронизация завершена" %}</h3><span class="alert-time">{% trans "Вчера" %}, 10:00</span></div>
+        <p class="text-sec mb-8">{% trans "Данные объекта Главный офис успешно получены." %}</p>
+        <div class="d-flex justify-between items-center"><span class="badge badge-green">Success</span><span class="text-sec" style="font-size:.8rem">✓ {% trans "Прочитано" %}</span></div>
+    </div>
+</div>
+{% endblock %}

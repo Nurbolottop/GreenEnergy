@@ -1,0 +1,37 @@
+{% extends "dashboard_base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Мониторинг" %} — Green Energy{% endblock %}
+
+{% block dashboard_content %}
+<h1 class="page-title">{% trans "Мониторинг" %}</h1>
+
+<div class="filter-bar">
+    <select class="form-control"><option>{% trans "Все объекты" %}</option><option>{% trans "Главный офис" %}</option><option>{% trans "Склад А" %}</option></select>
+    <select class="form-control"><option>{% trans "Все устройства" %}</option><option>{% trans "Кондиционеры" %}</option><option>{% trans "Освещение" %}</option></select>
+    <div class="tabs" style="margin:0">
+        <div class="tab active">24ч</div>
+        <div class="tab">7д</div>
+        <div class="tab">30д</div>
+    </div>
+</div>
+
+<div class="chart-box">
+    <h3>{% trans "Общее потребление" %}</h3>
+    <div class="chart-area" style="height:350px"><canvas id="mainChart"></canvas></div>
+</div>
+
+<div class="card">
+    <h3 class="mb-16">{% trans "Детализация по зонам" %}</h3>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>{% trans "Объект" %}</th><th>{% trans "Зона" %}</th><th>{% trans "Потребление" %}</th><th>%</th><th>{% trans "Пик" %}</th></tr></thead>
+            <tbody>
+                <tr><td>{% trans "Главный офис" %}</td><td>{% trans "Серверная" %}</td><td>450 кВт⋅ч</td><td>45%</td><td>2.8 кВт</td></tr>
+                <tr><td>{% trans "Главный офис" %}</td><td>{% trans "Каб." %} 101</td><td>120 кВт⋅ч</td><td>12%</td><td>1.2 кВт</td></tr>
+                <tr><td>{% trans "Склад А" %}</td><td>{% trans "Сектор" %} 1</td><td>230 кВт⋅ч</td><td>23%</td><td>3.5 кВт</td></tr>
+                <tr><td>{% trans "Склад А" %}</td><td>{% trans "Освещение" %}</td><td>200 кВт⋅ч</td><td>20%</td><td>1.0 кВт</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

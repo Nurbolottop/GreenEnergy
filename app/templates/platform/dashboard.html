@@ -1,0 +1,88 @@
+{% extends "platform/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Platform Dashboard" %} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<h1 class="page-title">{% trans "Platform Dashboard" %}</h1>
+
+<!-- Stats -->
+<div class="stat-grid">
+    <div class="card stat-card"><div class="stat-label">{% trans "Всего организаций" %}</div><div class="stat-value">{{ stats.total_organizations }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Активных" %}</div><div class="stat-value green">{{ stats.active_organizations }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Всего устройств" %}</div><div class="stat-value">{{ stats.total_devices }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Онлайн" %}</div><div class="stat-value green">{{ stats.online_devices }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Офлайн" %}</div><div class="stat-value" style="color:var(--danger)">{{ stats.offline_devices }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Уведомления" %}</div><div class="stat-value" style="color:var(--warning)">{{ stats.active_alerts }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Заявки" %}</div><div class="stat-value" style="color:var(--info)">{{ stats.connection_requests }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Общее потребление" %}</div><div class="stat-value green">{{ stats.total_consumption }}</div></div>
+</div>
+
+<!-- Quick Actions -->
+<div class="d-flex gap-12 mb-24 flex-wrap">
+    <a href="{% url 'platform_organization_create' %}" class="btn btn-primary btn-sm">+ {% trans "Добавить организацию" %}</a>
+    <a href="{% url 'platform_organizations' %}" class="btn btn-outline btn-sm">{% trans "Все организации" %}</a>
+    <a href="{% url 'platform_notifications' %}" class="btn btn-outline btn-sm">🔔 {% trans "Все уведомления" %}{% if unread_count %} ({{ unread_count }}){% endif %}</a>
+</div>
+
+<!-- Organizations Table -->
+{% if organizations %}
+<div class="card mb-24">
+    <div class="d-flex justify-between items-center mb-16" style="flex-wrap:wrap;gap:12px">
+        <h3>{% trans "Организации" %}</h3>
+        <a href="{% url 'platform_organizations' %}" class="btn btn-outline btn-sm">{% trans "Все" %} →</a>
+    </div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr>
+                <th>{% trans "Организация" %}</th><th>{% trans "Контакт" %}</th><th>{% trans "Телефон" %}</th>
+                <th>{% trans "Статус" %}</th><th>{% trans "Пользователей" %}</th><th>{% trans "Дата" %}</th><th></th>
+            </tr></thead>
+            <tbody>
+            {% for org in organizations %}
+                <tr>
+                    <td><strong>{{ org.name }}</strong></td>
+                    <td>{{ org.contact_person|default:"—" }}</td>
+                    <td>{{ org.phone|default:"—" }}</td>
+                    <td>
+                        {% if org.status == 'active' %}<span class="badge badge-green">{% trans "Активна" %}</span>
+                        {% else %}<span class="badge badge-danger">{% trans "Неактивна" %}</span>{% endif %}
+                    </td>
+                    <td>{{ org.users.count }}</td>
+                    <td>{{ org.created_at|date:"d.m.Y" }}</td>
+                    <td><a href="{% url 'platform_organization_detail' org.id %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+<!-- Notifications from DB -->
+<div class="card">
+    <div class="d-flex justify-between items-center mb-16" style="flex-wrap:wrap;gap:12px">
+        <h3>{% trans "Уведомления" %} {% if unread_count %}<span class="badge badge-danger" style="font-size:.75rem">{{ unread_count }}</span>{% endif %}</h3>
+        <a href="{% url 'platform_notifications' %}" class="btn btn-outline btn-sm">{% trans "Все" %} →</a>
+    </div>
+    {% if notifications %}
+    <div style="display:flex;flex-direction:column;gap:10px">
+        {% for notif in notifications %}
+        <div class="card alert-card level-{{ notif.level }}" style="margin:0;{% if not notif.is_read %}border-left:3px solid var(--green);{% endif %}">
+            <div class="alert-head">
+                <h3 style="font-size:.95rem">
+                    {% if notif.level == 'success' %}✅{% elif notif.level == 'danger' %}🔴{% elif notif.level == 'warning' %}⚠️{% else %}ℹ️{% endif %}
+                    {{ notif.title }}
+                    {% if not notif.is_read %}<span class="badge badge-green" style="font-size:.65rem;margin-left:6px">{% trans "Новое" %}</span>{% endif %}
+                </h3>
+                <span class="alert-time">{{ notif.time_display }}</span>
+            </div>
+            <p class="text-sec" style="font-size:.85rem;margin:4px 0">{{ notif.message }}</p>
+            {% if notif.organization %}<span class="text-sec" style="font-size:.8rem">🏢 {{ notif.organization.name }}</span>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-sec">{% trans "Нет уведомлений" %}</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "platform/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Заявка" %} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<a href="{% url 'platform_requests' %}" class="text-sec" style="font-size:.9rem">← {% trans "Назад к списку" %}</a>
+
+{% if messages %}
+<div style="margin:16px 0">
+    {% for message in messages %}
+    <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;
+        {% if message.tags == 'error' %}background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.2);
+        {% else %}background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2);{% endif %}
+    ">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="d-flex justify-between items-center mt-16 mb-24" style="flex-wrap:wrap;gap:16px">
+    <div>
+        <h1 class="page-title" style="margin:0">{% trans "Заявка от" %} {{ req.organization_name }}</h1>
+        <div class="d-flex gap-12 items-center" style="margin-top:6px;flex-wrap:wrap">
+            {% if req.status == 'new' %}<span class="badge badge-info">{% trans "Новая" %}</span>
+            {% elif req.status == 'in_progress' %}<span class="badge badge-warning">{% trans "В обработке" %}</span>
+            {% elif req.status == 'completed' %}<span class="badge badge-green">{% trans "Обработана" %}</span>
+            {% else %}<span class="badge badge-danger">{% trans "Отклонена" %}</span>{% endif %}
+            <span class="text-sec" style="font-size:.85rem">{% trans "Отправлена" %}: {{ req.created_at|date:"d.m.Y H:i" }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-24" style="padding:32px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px">
+        <span style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--green-glow),var(--purple-glow));font-size:1.1rem">📝</span>
+        <h3 style="margin:0">{% trans "Детали заявки" %}</h3>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="form-group">
+            <label>{% trans "Организация" %}</label>
+            <div class="form-control" style="background:var(--card-bg);border:1px solid var(--border)">{{ req.organization_name }}</div>
+        </div>
+        <div class="form-group">
+            <label>{% trans "Контактное лицо" %}</label>
+            <div class="form-control" style="background:var(--card-bg);border:1px solid var(--border)">{{ req.contact_name }}</div>
+        </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="form-group">
+            <label>{% trans "Телефон" %}</label>
+            <div class="form-control" style="background:var(--card-bg);border:1px solid var(--border)">{{ req.phone }}</div>
+        </div>
+        <div class="form-group">
+            <label>{% trans "Email" %}</label>
+            <div class="form-control" style="background:var(--card-bg);border:1px solid var(--border)">{{ req.email }}</div>
+        </div>
+    </div>
+
+    <div class="form-group mb-24">
+        <label>{% trans "Комментарий" %}</label>
+        <div class="form-control" style="background:var(--card-bg);border:1px solid var(--border);min-height:80px;height:auto;white-space:pre-wrap">{% if req.comment %}{{ req.comment }}{% else %}<span class="text-sec">{% trans "Без комментария" %}</span>{% endif %}</div>
+    </div>
+
+    <div style="border-top:1px solid var(--border);margin:24px 0"></div>
+
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px">
+        <span style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--green-glow),var(--purple-glow));font-size:1.1rem">⚙️</span>
+        <h3 style="margin:0">{% trans "Действия" %}</h3>
+    </div>
+
+    <form method="post" action="{% url 'platform_request_update' req.id %}">
+        {% csrf_token %}
+        <div class="d-flex gap-12 items-end">
+            <div class="form-group" style="margin:0;flex:1;max-width:300px">
+                <label>{% trans "Изменить статус" %}</label>
+                <select name="status" class="form-control">
+                    <option value="new" {% if req.status == 'new' %}selected{% endif %}>Новая</option>
+                    <option value="in_progress" {% if req.status == 'in_progress' %}selected{% endif %}>В обработке</option>
+                    <option value="completed" {% if req.status == 'completed' %}selected{% endif %}>Обработана</option>
+                    <option value="rejected" {% if req.status == 'rejected' %}selected{% endif %}>Отклонена</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="height:42px">{% trans "Сохранить статус" %}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

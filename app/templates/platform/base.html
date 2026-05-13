@@ -8,15 +8,16 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-head">
-            <a href="{% url 'landing' %}" class="logo" style="font-size:1.15rem">⚡ Green <span>Energy</span></a>
+            <a href="{% url 'platform_dashboard' %}" class="logo" style="font-size:1.15rem">⚡ Green <span>Energy</span></a>
             <button class="sidebar-close" id="sidebarClose">✕</button>
         </div>
+        <div style="padding:8px 20px;font-size:.75rem;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:1px">{% trans "Администратор" %}</div>
         <nav class="sidebar-nav">
-            <a href="{% url 'dashboard' %}" class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">📊 {% trans "Главная" %}</a>
-            <a href="#" class="nav-item">🏢 {% trans "Объекты" %}</a>
-            <a href="{% url 'devices' %}" class="nav-item {% if 'device' in request.resolver_match.url_name %}active{% endif %}">🔌 {% trans "Устройства" %}</a>
-            <a href="{% url 'monitoring' %}" class="nav-item {% if request.resolver_match.url_name == 'monitoring' %}active{% endif %}">📈 {% trans "Мониторинг" %}</a>
-            <a href="{% url 'alerts' %}" class="nav-item {% if request.resolver_match.url_name == 'alerts' %}active{% endif %}">🔔 {% trans "Уведомления" %}</a>
+            <a href="{% url 'platform_dashboard' %}" class="nav-item {% if request.resolver_match.url_name == 'platform_dashboard' %}active{% endif %}">📊 {% trans "Dashboard" %}</a>
+            <a href="{% url 'platform_organizations' %}" class="nav-item {% if 'organization' in request.resolver_match.url_name %}active{% endif %}">🏢 {% trans "Организации" %}</a>
+            <a href="#" class="nav-item">🔌 {% trans "Устройства" %}</a>
+            <a href="{% url 'platform_notifications' %}" class="nav-item {% if 'notification' in request.resolver_match.url_name %}active{% endif %}">🔔 {% trans "Уведомления" %}</a>
+            <a href="{% url 'platform_requests' %}" class="nav-item {% if 'request' in request.resolver_match.url_name %}active{% endif %}">📝 {% trans "Заявки" %}</a>
             <a href="#" class="nav-item">⚙️ {% trans "Настройки" %}</a>
         </nav>
         <div class="sidebar-foot">
@@ -28,7 +29,7 @@
         <header class="topbar">
             <div class="topbar-left">
                 <button class="topbar-burger" id="sidebarToggle">☰</button>
-                <span class="text-sec" style="font-size:.9rem">{% trans "ОсОО Demo Organization" %}</span>
+                <span class="badge badge-info" style="font-size:.75rem">{% trans "Platform Admin" %}</span>
             </div>
             <div class="topbar-right">
                 <div class="lang-sw">
@@ -37,12 +38,11 @@
                     <button class="lang-btn {% if LANGUAGE_CODE == 'ky' %}active{% endif %}" data-lang="ky">KG</button>
                 </div>
                 <button class="theme-toggle">🌙</button>
-                <a href="{% url 'alerts' %}" class="btn-icon">🔔</a>
-                <div class="avatar">AD</div>
+                <div class="avatar">PA</div>
             </div>
         </header>
         <div class="dash-content">
-            {% block dashboard_content %}{% endblock %}
+            {% block platform_content %}{% endblock %}
         </div>
     </main>
 </div>

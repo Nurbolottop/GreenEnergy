@@ -1,0 +1,90 @@
+{% extends "platform/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Добавить организацию" %} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<a href="{% url 'platform_organizations' %}" class="text-sec" style="font-size:.9rem">← {% trans "Назад к списку" %}</a>
+
+<h1 class="page-title mt-16">{% trans "Новая организация" %}</h1>
+
+{% if messages %}
+<div style="margin-bottom:20px;max-width:640px">
+    {% for message in messages %}
+    <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;
+        {% if message.tags == 'error' %}background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.2);
+        {% else %}background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2);{% endif %}
+    ">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div style="max-width:640px">
+    <form class="card" style="padding:32px" method="post" action="{% url 'platform_organization_create' %}">
+        {% csrf_token %}
+
+        <!-- Секция: Организация -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px">
+            <span style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--green-glow),var(--purple-glow));font-size:1.1rem">🏢</span>
+            <h3 style="margin:0">{% trans "Данные организации" %}</h3>
+        </div>
+
+        <div class="form-group">
+            <label>{% trans "Название организации" %} <span style="color:var(--danger)">*</span></label>
+            <input type="text" name="name" class="form-control" placeholder="{% trans 'ОсОО Green Tech' %}" required>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group">
+                <label>{% trans "Контактное лицо" %}</label>
+                <input type="text" name="contact_person" class="form-control" placeholder="{% trans 'Азамат Исмаилов' %}">
+            </div>
+            <div class="form-group">
+                <label>{% trans "Телефон" %}</label>
+                <input type="tel" name="phone" class="form-control" placeholder="+996 555 000 000">
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group">
+                <label>{% trans "Email" %}</label>
+                <input type="email" name="email" class="form-control" placeholder="info@company.kg">
+            </div>
+            <div class="form-group">
+                <label>{% trans "Номер договора" %}</label>
+                <input type="text" name="contract_number" class="form-control" placeholder="GE-2026-001">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{% trans "Адрес" %}</label>
+            <input type="text" name="address" class="form-control" placeholder="{% trans 'г. Бишкек, ул. Киевская 120' %}">
+        </div>
+
+        <!-- Разделитель -->
+        <div style="border-top:1px solid var(--border);margin:28px 0"></div>
+
+        <!-- Секция: Аккаунт -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px">
+            <span style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--green-glow),var(--purple-glow));font-size:1.1rem">🔐</span>
+            <h3 style="margin:0">{% trans "Аккаунт для входа" %}</h3>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group">
+                <label>{% trans "Username" %} <span style="color:var(--danger)">*</span></label>
+                <input type="text" name="username" class="form-control" placeholder="demo_company" required>
+            </div>
+            <div class="form-group">
+                <label>{% trans "Password" %} <span style="color:var(--danger)">*</span></label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+        </div>
+
+        <p class="text-sec" style="font-size:.8rem;margin-bottom:24px">
+            {% trans "Будет создан: Organization + User + UserProfile (role=organization_admin)." %}
+        </p>
+
+        <button type="submit" class="btn btn-primary btn-block" style="padding:14px">{% trans "Создать организацию" %}</button>
+    </form>
+</div>
+{% endblock %}

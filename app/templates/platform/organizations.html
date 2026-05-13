@@ -1,0 +1,59 @@
+{% extends "platform/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Организации" %} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<div class="d-flex justify-between items-center mb-24" style="flex-wrap:wrap;gap:12px">
+    <h1 class="page-title" style="margin:0">{% trans "Организации" %} ({{ organizations|length }})</h1>
+    <a href="{% url 'platform_organization_create' %}" class="btn btn-primary btn-sm">+ {% trans "Добавить организацию" %}</a>
+</div>
+
+{% if messages %}
+<div style="margin-bottom:20px">
+    {% for message in messages %}
+    <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;
+        {% if message.tags == 'error' %}background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.2);
+        {% else %}background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2);{% endif %}
+    ">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if organizations %}
+<div class="card">
+    <div class="table-wrap">
+        <table>
+            <thead><tr>
+                <th>{% trans "Организация" %}</th><th>{% trans "Контакт" %}</th><th>{% trans "Телефон" %}</th>
+                <th>{% trans "Договор" %}</th><th>{% trans "Статус" %}</th>
+                <th>{% trans "Пользователей" %}</th><th>{% trans "Дата" %}</th><th></th>
+            </tr></thead>
+            <tbody>
+            {% for org in organizations %}
+                <tr>
+                    <td><strong>{{ org.name }}</strong></td>
+                    <td>{{ org.contact_person|default:"—" }}</td>
+                    <td>{{ org.phone|default:"—" }}</td>
+                    <td class="text-sec">{{ org.contract_number|default:"—" }}</td>
+                    <td>
+                        {% if org.status == 'active' %}<span class="badge badge-green">{% trans "Активна" %}</span>
+                        {% elif org.status == 'blocked' %}<span class="badge badge-danger">{% trans "Заблокирована" %}</span>
+                        {% elif org.status == 'pending' %}<span class="badge badge-warning">{% trans "Ожидает" %}</span>
+                        {% else %}<span class="badge badge-danger">{% trans "Неактивна" %}</span>{% endif %}
+                    </td>
+                    <td>{{ org.users.count }}</td>
+                    <td>{{ org.created_at|date:"d.m.Y" }}</td>
+                    <td><a href="{% url 'platform_organization_detail' org.id %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="card text-center" style="padding:48px">
+    <p class="text-sec" style="font-size:1.1rem;margin-bottom:16px">{% trans "Пока нет организаций" %}</p>
+    <a href="{% url 'platform_organization_create' %}" class="btn btn-primary">+ {% trans "Добавить первую" %}</a>
+</div>
+{% endif %}
+{% endblock %}
