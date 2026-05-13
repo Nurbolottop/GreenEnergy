@@ -11,7 +11,7 @@ services:
     volumes:
       - postgres_data_greenenergy:/var/lib/postgresql/data
     networks:
-      - portfolio_network
+      - portfolio_network_greenenergy
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 10s
@@ -24,7 +24,7 @@ services:
     ports:
       - "6389:6379"
     networks:
-      - portfolio_network
+      - portfolio_network_greenenergy
 
   web_greenenergy:
     build:
@@ -48,7 +48,7 @@ services:
     ports:
       - "127.0.0.1:8084:8082"
     networks:
-      - portfolio_network
+      - portfolio_network_greenenergy
 
   telegram_bot_greenenergy:
     build:
@@ -64,10 +64,10 @@ services:
       - db_greenenergy
       - web_greenenergy
     networks:
-      - portfolio_network
+      - portfolio_network_greenenergy
 
 networks:
-  portfolio_network:
+  portfolio_network_greenenergy:
     driver: bridge
 
 volumes:
