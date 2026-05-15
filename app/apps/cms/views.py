@@ -586,3 +586,43 @@ def monitoring_view(request):
 @organization_user_required
 def alerts_view(request):
     return render(request, 'alerts.html')
+
+
+@organization_user_required
+def organization_settings_view(request):
+    organization = request.user.profile.organization
+    
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'profile':
+            user = request.user
+            user.first_name = request.POST.get('first_name', user.first_name)
+            user.last_name = request.POST.get('last_name', user.last_name)
+            user.save()
+            messages.success(request, 'Профиль обновлен.')
+        elif action == 'organization':
+            organization.contact_person = request.POST.get('contact_person', organization.contact_person)
+            organization.phone = request.POST.get('phone', organization.phone)
+            organization.address = request.POST.get('address', organization.address)
+            organization.save()
+            messages.success(request, 'Настройки организации обновлены.')
+        elif action == 'password':
+            from django.contrib.auth import update_session_auth_hash
+            user = request.user
+            current_password = request.POST.get('current_password')
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('confirm_password')
+            
+            if not user.check_password(current_password):
+                messages.error(request, 'Текущий пароль неверен.')
+            elif new_password != confirm_password:
+                messages.error(request, 'Новые пароли не совпадают.')
+            else:
+                user.set_password(new_password)
+                user.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Пароль успешно изменен.')
+            
+        return redirect('organization_settings')
+
+    return render(request, 'settings.html', {'organization': organization})

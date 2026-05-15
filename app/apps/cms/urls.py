@@ -24,4 +24,5 @@ urlpatterns = [
     path('devices/<int:device_id>/', views.device_detail_view, name='device_detail'),
     path('monitoring/', views.monitoring_view, name='monitoring'),
     path('alerts/', views.alerts_view, name='alerts'),
+    path('settings/', views.organization_settings_view, name='organization_settings'),
 ]

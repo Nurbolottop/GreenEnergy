@@ -1,0 +1,84 @@
+{% extends "dashboard_base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Настройки" %} — Green Energy{% endblock %}
+
+{% block dashboard_content %}
+<h1 class="page-title mb-24">{% trans "Настройки" %}</h1>
+
+<div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 24px; display: grid;">
+    <!-- Настройки профиля -->
+    <div class="card mb-24">
+        <h3 class="mb-16">{% trans "Профиль пользователя" %}</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="profile">
+            <div class="form-group mb-16">
+                <label>{% trans "Имя пользователя (Логин)" %}</label>
+                <input type="text" class="form-control" value="{{ request.user.username }}" disabled style="opacity:0.7">
+                <small class="text-sec">Логин изменить нельзя</small>
+            </div>
+            <div class="form-group mb-16">
+                <label>{% trans "Email" %}</label>
+                <input type="email" class="form-control" value="{{ request.user.email }}" disabled style="opacity:0.7">
+            </div>
+            <div class="form-group mb-16">
+                <label>{% trans "Имя" %}</label>
+                <input type="text" name="first_name" class="form-control" value="{{ request.user.first_name }}">
+            </div>
+            <div class="form-group mb-24">
+                <label>{% trans "Фамилия" %}</label>
+                <input type="text" name="last_name" class="form-control" value="{{ request.user.last_name }}">
+            </div>
+            <button type="submit" class="btn btn-primary">{% trans "Сохранить профиль" %}</button>
+        </form>
+    </div>
+
+    <!-- Настройки организации -->
+    <div class="card mb-24">
+        <h3 class="mb-16">{% trans "Данные организации" %}</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="organization">
+            <div class="form-group mb-16">
+                <label>{% trans "Название компании" %}</label>
+                <input type="text" class="form-control" value="{{ organization.name }}" disabled style="opacity:0.7">
+            </div>
+            <div class="form-group mb-16">
+                <label>{% trans "Контактное лицо" %}</label>
+                <input type="text" name="contact_person" class="form-control" value="{{ organization.contact_person|default:'' }}">
+            </div>
+            <div class="form-group mb-16">
+                <label>{% trans "Телефон" %}</label>
+                <input type="tel" name="phone" class="form-control" value="{{ organization.phone|default:'' }}">
+            </div>
+            <div class="form-group mb-24">
+                <label>{% trans "Адрес" %}</label>
+                <input type="text" name="address" class="form-control" value="{{ organization.address|default:'' }}">
+            </div>
+            <button type="submit" class="btn btn-primary">{% trans "Сохранить организацию" %}</button>
+        </form>
+    </div>
+
+    <!-- Изменение пароля -->
+    <div class="card mb-24" style="grid-column: 1 / -1; max-width: 50%;">
+        <h3 class="mb-16">{% trans "Изменение пароля" %}</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="password">
+            <div class="form-group mb-16">
+                <label>{% trans "Текущий пароль" %}</label>
+                <input type="password" name="current_password" class="form-control" required>
+            </div>
+            <div class="form-group mb-16">
+                <label>{% trans "Новый пароль" %}</label>
+                <input type="password" name="new_password" class="form-control" required>
+            </div>
+            <div class="form-group mb-24">
+                <label>{% trans "Подтвердите пароль" %}</label>
+                <input type="password" name="confirm_password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-outline" style="border-color:var(--danger); color:var(--danger);">{% trans "Изменить пароль" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

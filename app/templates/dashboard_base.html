@@ -13,10 +13,9 @@
         </div>
         <nav class="sidebar-nav">
             <a href="{% url 'dashboard' %}" class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">📊 {% trans "Главная" %}</a>
-            <a href="#" class="nav-item">🏢 {% trans "Объекты" %}</a>
             <a href="{% url 'devices' %}" class="nav-item {% if 'device' in request.resolver_match.url_name %}active{% endif %}">🔌 {% trans "Устройства" %}</a>
             <a href="{% url 'monitoring' %}" class="nav-item {% if request.resolver_match.url_name == 'monitoring' %}active{% endif %}">📈 {% trans "Мониторинг" %}</a>
-            <a href="#" class="nav-item">⚙️ {% trans "Настройки" %}</a>
+            <a href="{% url 'organization_settings' %}" class="nav-item {% if request.resolver_match.url_name == 'organization_settings' %}active{% endif %}">⚙️ {% trans "Настройки" %}</a>
         </nav>
         <div class="sidebar-foot">
             <a href="{% url 'logout' %}" class="nav-item text-danger">🚪 {% trans "Выйти" %}</a>
