@@ -3,35 +3,257 @@
 {% block title %}{% trans "Мониторинг" %} — Green Energy{% endblock %}
 
 {% block dashboard_content %}
-<h1 class="page-title">{% trans "Мониторинг" %}</h1>
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<div class="filter-bar">
-    <select class="form-control"><option>{% trans "Все объекты" %}</option><option>{% trans "Главный офис" %}</option><option>{% trans "Склад А" %}</option></select>
-    <select class="form-control"><option>{% trans "Все устройства" %}</option><option>{% trans "Кондиционеры" %}</option><option>{% trans "Освещение" %}</option></select>
-    <div class="tabs" style="margin:0">
-        <div class="tab active">24ч</div>
-        <div class="tab">7д</div>
-        <div class="tab">30д</div>
+<div class="d-flex justify-between items-center mb-24" style="flex-wrap:wrap;gap:12px">
+    <h1 class="page-title" style="margin:0">{% trans "Аналитика и Мониторинг" %}</h1>
+    <div class="filter-bar" style="margin:0">
+        <select class="form-control" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;">
+            <option>{% trans "Все объекты" %}</option>
+            <option>{% trans "Главный офис" %}</option>
+            <option>{% trans "Склад А" %}</option>
+        </select>
+        <select class="form-control" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;">
+            <option>{% trans "Все устройства" %}</option>
+            <option>{% trans "Кондиционеры" %}</option>
+            <option>{% trans "Освещение" %}</option>
+        </select>
+        <div class="tabs" style="margin:0">
+            <div class="tab active" style="padding: 6px 16px;">24ч</div>
+            <div class="tab" style="padding: 6px 16px;">7д</div>
+            <div class="tab" style="padding: 6px 16px;">30д</div>
+        </div>
     </div>
 </div>
 
-<div class="chart-box">
-    <h3>{% trans "Общее потребление" %}</h3>
-    <div class="chart-area" style="height:350px"><canvas id="mainChart"></canvas></div>
+<!-- Сводка (Mock Data) -->
+<div class="stat-grid mb-24" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+    <div class="card stat-card" style="background:linear-gradient(135deg, rgba(0,230,118,0.1) 0%, rgba(0,0,0,0.2) 100%); border-left: 4px solid #00e676;">
+        <div class="stat-label">{% trans "Текущая нагрузка" %}</div>
+        <div class="stat-value text-green">14.2 кВт</div>
+        <div style="font-size:0.8rem; color:#aaa; margin-top:4px;">↑ 1.2% с прошлого часа</div>
+    </div>
+    <div class="card stat-card" style="background:linear-gradient(135deg, rgba(33,150,243,0.1) 0%, rgba(0,0,0,0.2) 100%); border-left: 4px solid #2196f3;">
+        <div class="stat-label">{% trans "Потреблено за 24ч" %}</div>
+        <div class="stat-value" style="color:#64b5f6;">340.5 кВт·ч</div>
+        <div style="font-size:0.8rem; color:#aaa; margin-top:4px;">↓ 5.4% со вчера</div>
+    </div>
+    <div class="card stat-card" style="background:linear-gradient(135deg, rgba(255,193,7,0.1) 0%, rgba(0,0,0,0.2) 100%); border-left: 4px solid #ffc107;">
+        <div class="stat-label">{% trans "Пик нагрузки" %}</div>
+        <div class="stat-value" style="color:#ffd54f;">18.5 кВт</div>
+        <div style="font-size:0.8rem; color:#aaa; margin-top:4px;">В 14:30</div>
+    </div>
+    <div class="card stat-card" style="background:linear-gradient(135deg, rgba(156,39,176,0.1) 0%, rgba(0,0,0,0.2) 100%); border-left: 4px solid #9c27b0;">
+        <div class="stat-label">{% trans "Сэкономлено CO₂" %}</div>
+        <div class="stat-value" style="color:#ba68c8;">145 кг</div>
+        <div style="font-size:0.8rem; color:#aaa; margin-top:4px;">За текущий месяц</div>
+    </div>
+</div>
+
+<div class="grid-2 mb-24" style="grid-template-columns: 2fr 1fr;">
+    <!-- Главный график -->
+    <div class="card" style="display:flex; flex-direction:column;">
+        <h3 class="mb-16">{% trans "Общее потребление энергии (кВт·ч)" %}</h3>
+        <div style="flex:1; position:relative; min-height: 300px;">
+            <canvas id="consumptionChart"></canvas>
+        </div>
+    </div>
+
+    <!-- График распределения по зонам -->
+    <div class="card" style="display:flex; flex-direction:column;">
+        <h3 class="mb-16">{% trans "Потребление по зонам" %}</h3>
+        <div style="flex:1; position:relative; min-height: 300px; display:flex; align-items:center; justify-content:center;">
+            <canvas id="zonesChart"></canvas>
+        </div>
+    </div>
 </div>
 
 <div class="card">
     <h3 class="mb-16">{% trans "Детализация по зонам" %}</h3>
     <div class="table-wrap">
-        <table>
-            <thead><tr><th>{% trans "Объект" %}</th><th>{% trans "Зона" %}</th><th>{% trans "Потребление" %}</th><th>%</th><th>{% trans "Пик" %}</th></tr></thead>
+        <table class="table" style="width:100%; text-align:left; border-collapse:collapse;">
+            <thead>
+                <tr style="border-bottom:1px solid #333;">
+                    <th style="padding:12px; color:#888;">{% trans "Объект" %}</th>
+                    <th style="padding:12px; color:#888;">{% trans "Зона" %}</th>
+                    <th style="padding:12px; color:#888;">{% trans "Устройств" %}</th>
+                    <th style="padding:12px; color:#888;">{% trans "Потребление (24ч)" %}</th>
+                    <th style="padding:12px; color:#888;">{% trans "Доля" %}</th>
+                    <th style="padding:12px; color:#888;">{% trans "Пик" %}</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr><td>{% trans "Главный офис" %}</td><td>{% trans "Серверная" %}</td><td>450 кВт⋅ч</td><td>45%</td><td>2.8 кВт</td></tr>
-                <tr><td>{% trans "Главный офис" %}</td><td>{% trans "Каб." %} 101</td><td>120 кВт⋅ч</td><td>12%</td><td>1.2 кВт</td></tr>
-                <tr><td>{% trans "Склад А" %}</td><td>{% trans "Сектор" %} 1</td><td>230 кВт⋅ч</td><td>23%</td><td>3.5 кВт</td></tr>
-                <tr><td>{% trans "Склад А" %}</td><td>{% trans "Освещение" %}</td><td>200 кВт⋅ч</td><td>20%</td><td>1.0 кВт</td></tr>
+                <tr style="border-bottom:1px solid #222;">
+                    <td style="padding:12px"><strong>Главный офис</strong></td>
+                    <td style="padding:12px; color:#ccc;">Серверная</td>
+                    <td style="padding:12px">8</td>
+                    <td style="padding:12px"><span class="text-green">145.5 кВт⋅ч</span></td>
+                    <td style="padding:12px">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <div style="width:100px; height:6px; background:#333; border-radius:3px; overflow:hidden;">
+                                <div style="width:42%; height:100%; background:#00e676;"></div>
+                            </div>
+                            <span style="font-size:0.85rem">42%</span>
+                        </div>
+                    </td>
+                    <td style="padding:12px; color:#ccc;">5.8 кВт</td>
+                </tr>
+                <tr style="border-bottom:1px solid #222;">
+                    <td style="padding:12px"><strong>Главный офис</strong></td>
+                    <td style="padding:12px; color:#ccc;">Каб. 101</td>
+                    <td style="padding:12px">3</td>
+                    <td style="padding:12px"><span class="text-green">52.0 кВт⋅ч</span></td>
+                    <td style="padding:12px">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <div style="width:100px; height:6px; background:#333; border-radius:3px; overflow:hidden;">
+                                <div style="width:15%; height:100%; background:#00e676;"></div>
+                            </div>
+                            <span style="font-size:0.85rem">15%</span>
+                        </div>
+                    </td>
+                    <td style="padding:12px; color:#ccc;">2.2 кВт</td>
+                </tr>
+                <tr style="border-bottom:1px solid #222;">
+                    <td style="padding:12px"><strong>Склад А</strong></td>
+                    <td style="padding:12px; color:#ccc;">Сектор 1</td>
+                    <td style="padding:12px">12</td>
+                    <td style="padding:12px"><span class="text-green">83.0 кВт⋅ч</span></td>
+                    <td style="padding:12px">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <div style="width:100px; height:6px; background:#333; border-radius:3px; overflow:hidden;">
+                                <div style="width:24%; height:100%; background:#00e676;"></div>
+                            </div>
+                            <span style="font-size:0.85rem">24%</span>
+                        </div>
+                    </td>
+                    <td style="padding:12px; color:#ccc;">3.5 кВт</td>
+                </tr>
+                <tr>
+                    <td style="padding:12px"><strong>Склад А</strong></td>
+                    <td style="padding:12px; color:#ccc;">Освещение</td>
+                    <td style="padding:12px">20</td>
+                    <td style="padding:12px"><span class="text-green">60.0 кВт⋅ч</span></td>
+                    <td style="padding:12px">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <div style="width:100px; height:6px; background:#333; border-radius:3px; overflow:hidden;">
+                                <div style="width:19%; height:100%; background:#00e676;"></div>
+                            </div>
+                            <span style="font-size:0.85rem">19%</span>
+                        </div>
+                    </td>
+                    <td style="padding:12px; color:#ccc;">2.0 кВт</td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Настройки по умолчанию для графиков под темную тему
+    Chart.defaults.color = '#888';
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    
+    // График потребления (Line Chart)
+    const ctxConsumption = document.getElementById('consumptionChart').getContext('2d');
+    
+    // Создаем градиент для графика
+    let gradient = ctxConsumption.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(0, 230, 118, 0.5)');
+    gradient.addColorStop(1, 'rgba(0, 230, 118, 0.0)');
+
+    new Chart(ctxConsumption, {
+        type: 'line',
+        data: {
+            labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
+            datasets: [{
+                label: 'Потребление (кВт·ч)',
+                data: [12.5, 8.2, 35.4, 42.1, 38.0, 25.6, 15.2],
+                borderColor: '#00e676',
+                backgroundColor: gradient,
+                borderWidth: 3,
+                pointBackgroundColor: '#121212',
+                pointBorderColor: '#00e676',
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                fill: true,
+                tension: 0.4 // Плавные изгибы
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#00e676',
+                    padding: 12,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return context.parsed.y + ' кВт·ч';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { color: 'rgba(255, 255, 255, 0.05)', drawBorder: false }
+                },
+                y: {
+                    grid: { color: 'rgba(255, 255, 255, 0.05)', drawBorder: false },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // График по зонам (Doughnut Chart)
+    const ctxZones = document.getElementById('zonesChart').getContext('2d');
+    new Chart(ctxZones, {
+        type: 'doughnut',
+        data: {
+            labels: ['Серверная', 'Каб. 101', 'Склад Сектор 1', 'Склад Освещение'],
+            datasets: [{
+                data: [42, 15, 24, 19],
+                backgroundColor: [
+                    '#00e676',
+                    '#2196f3',
+                    '#ffc107',
+                    '#9c27b0'
+                ],
+                borderWidth: 0,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '75%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    callbacks: {
+                        label: function(context) {
+                            return ' ' + context.label + ': ' + context.parsed + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
 {% endblock %}

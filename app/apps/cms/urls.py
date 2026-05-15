@@ -9,6 +9,7 @@ urlpatterns = [
     path('platform/organizations/<int:org_id>/', views.platform_organization_detail_view, name='platform_organization_detail'),
     path('platform/notifications/', views.platform_notifications_view, name='platform_notifications'),
     path('platform/notifications/<int:notif_id>/read/', views.platform_notification_read_view, name='platform_notification_read'),
+    path('platform/notifications/read-all/', views.platform_notifications_read_all_view, name='platform_notifications_read_all'),
     path('platform/requests/', views.platform_requests_view, name='platform_requests'),
     path('platform/requests/<int:req_id>/', views.platform_request_update_view, name='platform_request_update'),
     path('platform/settings/', views.platform_settings_view, name='platform_settings'),

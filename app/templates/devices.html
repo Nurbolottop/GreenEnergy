@@ -36,68 +36,227 @@
     </div>
 </div>
 
+<style>
+/* Стили для современных карточек устройств */
+.device-card-modern {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+}
+.device-card-modern:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 230, 118, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+}
+.dcm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.dcm-title h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.3px;
+}
+.dcm-meta {
+    font-size: 0.8rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.dcm-status-badge {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+.dcm-status-badge.online {
+    background: rgba(0, 230, 118, 0.1);
+    color: #00e676;
+    border: 1px solid rgba(0, 230, 118, 0.2);
+}
+.dcm-status-badge.offline {
+    background: rgba(255, 255, 255, 0.03);
+    color: #888;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dcm-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+.dcm-status-badge.online .dcm-status-dot {
+    background: #00e676;
+    box-shadow: 0 0 8px #00e676;
+    animation: pulse 2s infinite;
+}
+.dcm-status-badge.offline .dcm-status-dot {
+    background: #555;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(0, 230, 118, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+}
+.dcm-body {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+.dcm-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+.dcm-stat-item {
+    display: flex;
+    flex-direction: column;
+}
+.dcm-stat-val {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+}
+.dcm-stat-val.active {
+    color: #00e676;
+}
+.dcm-stat-lbl {
+    font-size: 0.7rem;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+.dcm-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.dcm-relay {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+.relay-indicator {
+    width: 32px;
+    height: 18px;
+    border-radius: 10px;
+    background: #333;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.relay-indicator::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+.relay-indicator.on {
+    background: #00e676;
+    box-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
+}
+.relay-indicator.on::after {
+    transform: translateX(14px);
+}
+</style>
+
 <!-- Список устройств -->
-<div class="card" style="padding:0; overflow-x:auto;">
-    <table class="table" style="width:100%; text-align:left; border-collapse:collapse;">
-        <thead>
-            <tr style="border-bottom:1px solid #333;">
-                <th style="padding:12px">ID / Название</th>
-                <th style="padding:12px">Тип</th>
-                <th style="padding:12px">Статус</th>
-                <th style="padding:12px">Онлайн</th>
-                <th style="padding:12px">Показания</th>
-                <th style="padding:12px">Объект / Зона</th>
-                <th style="padding:12px">Последний контакт</th>
-                <th style="padding:12px">Действие</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for device in devices %}
-            <tr style="border-bottom:1px solid #222;">
-                <td style="padding:12px">
-                    <div><strong>{{ device.device_id }}</strong></div>
-                    <div class="text-sec" style="font-size:0.85rem">{{ device.name }}</div>
-                </td>
-                <td style="padding:12px">{{ device.get_device_type_display }}</td>
-                <td style="padding:12px">
-                    <span class="badge {% if device.status == 'active' %}badge-success{% elif device.status == 'maintenance' %}badge-warning{% elif device.status == 'blocked' %}badge-danger{% else %}badge-info{% endif %}">{{ device.get_status_display }}</span>
-                </td>
-                <td style="padding:12px">
-                    {% if device.is_really_online %}
-                    <span class="status-dot on"></span> <span class="text-green">Онлайн</span>
-                    {% else %}
-                    <span class="status-dot off"></span> <span class="text-sec">Офлайн</span>
-                    {% endif %}
-                </td>
-                <td style="padding:12px; font-size:0.9rem;">
-                    <div>{{ device.voltage }} В | {{ device.current }} А</div>
-                    <div>{{ device.power }} Вт | {{ device.energy }} кВт·ч</div>
-                    <div style="margin-top:4px;">
-                        {% if device.relay_status %}
-                        <span class="badge badge-success">Реле ВКЛ</span>
-                        {% else %}
-                        <span class="badge badge-secondary">Реле ВЫКЛ</span>
-                        {% endif %}
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;">
+    {% for device in devices %}
+    <div class="device-card-modern">
+        <div>
+            <div class="dcm-header">
+                <div class="dcm-title">
+                    <h3>{{ device.name|default:device.device_id }}</h3>
+                    <div class="dcm-meta">
+                        <span style="opacity:0.7">ID:</span> <strong style="color:#aaa">{{ device.device_id }}</strong> 
+                        <span style="opacity:0.3">|</span> {{ device.get_device_type_display }}
                     </div>
-                </td>
-                <td style="padding:12px">
-                    <div>{{ device.object_name|default:"—" }}</div>
-                    <div class="text-sec" style="font-size:0.85rem">{{ device.zone_name|default:"—" }}</div>
-                </td>
-                <td style="padding:12px; font-size:0.85rem;" class="text-sec">
-                    {{ device.last_seen|date:"d.m.Y H:i:s"|default:"Никогда" }}
-                </td>
-                <td style="padding:12px">
-                    <a href="{% url 'device_detail' device.id %}" class="btn btn-sm btn-outline">Подробнее</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="8" style="padding:24px; text-align:center;" class="text-sec">Устройств пока нет.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                    <div class="dcm-meta" style="margin-top: 6px; color:#666;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        {{ device.object_name|default:"Объект не указан" }} / {{ device.zone_name|default:"—" }}
+                    </div>
+                </div>
+                {% if device.is_really_online %}
+                <div class="dcm-status-badge online" title="Последний контакт: {{ device.last_seen|date:'d.m.Y H:i:s' }}">
+                    <span class="dcm-status-dot"></span> Онлайн
+                </div>
+                {% else %}
+                <div class="dcm-status-badge offline" title="Был в сети: {{ device.last_seen|date:'d.m.Y H:i:s'|default:'Никогда' }}">
+                    <span class="dcm-status-dot"></span> Офлайн
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="dcm-body">
+                <div class="dcm-stats-grid">
+                    <div class="dcm-stat-item">
+                        <div class="dcm-stat-val {% if device.power > 0 and device.is_really_online %}active{% endif %}">{{ device.power }}</div>
+                        <div class="dcm-stat-lbl">Мощность (Вт)</div>
+                    </div>
+                    <div class="dcm-stat-item">
+                        <div class="dcm-stat-val">{{ device.energy }}</div>
+                        <div class="dcm-stat-lbl">Энергия (кВт·ч)</div>
+                    </div>
+                    <div class="dcm-stat-item">
+                        <div class="dcm-stat-val">{{ device.voltage }}</div>
+                        <div class="dcm-stat-lbl">Напряжение (В)</div>
+                    </div>
+                    <div class="dcm-stat-item">
+                        <div class="dcm-stat-val">{{ device.current }}</div>
+                        <div class="dcm-stat-lbl">Ток (А)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dcm-footer">
+            <div class="dcm-relay">
+                <div class="relay-indicator {% if device.relay_status %}on{% else %}off{% endif %}"></div>
+                <span style="font-weight: 500; font-size: 0.8rem; color: {% if device.relay_status %}#00e676{% else %}#777{% endif %};">
+                    {% if device.relay_status %}РЕЛЕ В АКТИВНОМ РЕЖИМЕ{% else %}ОТКЛЮЧЕНО{% endif %}
+                </span>
+            </div>
+            <a href="{% url 'device_detail' device.id %}" class="btn btn-sm btn-outline" style="border-radius: 8px; padding: 8px 20px; font-weight:600; letter-spacing:0.3px;">Открыть</a>
+        </div>
+    </div>
+    {% empty %}
+    <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center; background: rgba(255,255,255,0.01); border-radius: 20px; border: 1px dashed rgba(255,255,255,0.1);">
+        <div style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;">🔌</div>
+        <h3 style="margin-bottom: 12px; font-size: 1.5rem; color:#fff;">Устройств пока нет</h3>
+        <p style="margin-bottom: 30px; color: #888; max-width: 400px; margin-left: auto; margin-right: auto;">Добавьте своё первое IoT-устройство, чтобы начать мониторинг показателей и управление питанием в реальном времени.</p>
+        <button class="btn btn-primary" style="padding: 12px 32px; font-size: 1.05rem;" onclick="document.getElementById('add-device-modal').style.display='flex'">Добавить устройство</button>
+    </div>
+    {% endfor %}
 </div>
 
 <!-- Modal Добавить устройство -->

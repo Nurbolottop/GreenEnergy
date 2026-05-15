@@ -16,7 +16,6 @@
             <a href="#" class="nav-item">🏢 {% trans "Объекты" %}</a>
             <a href="{% url 'devices' %}" class="nav-item {% if 'device' in request.resolver_match.url_name %}active{% endif %}">🔌 {% trans "Устройства" %}</a>
             <a href="{% url 'monitoring' %}" class="nav-item {% if request.resolver_match.url_name == 'monitoring' %}active{% endif %}">📈 {% trans "Мониторинг" %}</a>
-            <a href="{% url 'alerts' %}" class="nav-item {% if request.resolver_match.url_name == 'alerts' %}active{% endif %}">🔔 {% trans "Уведомления" %}</a>
             <a href="#" class="nav-item">⚙️ {% trans "Настройки" %}</a>
         </nav>
         <div class="sidebar-foot">
@@ -28,7 +27,7 @@
         <header class="topbar">
             <div class="topbar-left">
                 <button class="topbar-burger" id="sidebarToggle">☰</button>
-                <span class="text-sec" style="font-size:.9rem">{% trans "ОсОО Demo Organization" %}</span>
+                <span class="text-sec" style="font-size:.9rem">{{ request.user.profile.organization.name|default:"Моя Организация" }}</span>
             </div>
             <div class="topbar-right">
                 <div class="lang-sw">
