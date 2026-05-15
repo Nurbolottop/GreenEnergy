@@ -26,7 +26,7 @@ msgstr ""
 #: app/templates/platform/organization_detail.html:216
 #: app/templates/platform/settings.html:28
 msgid "Уведомления"
-msgstr ""
+msgstr "Билдирүүлөр"
 
 #: app/templates/alerts.html:9 app/templates/dashboard.html:24
 #: app/templates/platform/dashboard.html:32
@@ -179,26 +179,26 @@ msgstr ""
 
 #: app/templates/dashboard_base.html:15
 msgid "Главная"
-msgstr ""
+msgstr "Башкы бет"
 
 #: app/templates/dashboard_base.html:16 app/templates/devices.html:3
 #: app/templates/platform/base.html:18 app/templates/platform/settings.html:27
 #: app/templates/platform/settings.html:118
 msgid "Устройства"
-msgstr ""
+msgstr "Түзмөктөр"
 
 #: app/templates/dashboard_base.html:17 app/templates/monitoring.html:3
 msgid "Мониторинг"
-msgstr ""
+msgstr "Мониторинг"
 
 #: app/templates/dashboard_base.html:18 app/templates/platform/base.html:21
 #: app/templates/settings.html:3 app/templates/settings.html:6
 msgid "Настройки"
-msgstr ""
+msgstr "Жөндөөлөр"
 
 #: app/templates/dashboard_base.html:21 app/templates/platform/base.html:24
 msgid "Выйти"
-msgstr ""
+msgstr "Чыгуу"
 
 #: app/templates/device_detail.html:6
 #: app/templates/platform/organization_create.html:6
@@ -237,35 +237,35 @@ msgstr ""
 
 #: app/templates/devices.html:7
 msgid "Устройства организации"
-msgstr ""
+msgstr "Уюмдун түзмөктөрү"
 
 #: app/templates/devices.html:8
 msgid "Добавить устройство"
-msgstr ""
+msgstr "Түзмөк кошуу"
 
 #: app/templates/devices.html:14 app/templates/platform/dashboard.html:12
 msgid "Всего устройств"
-msgstr ""
+msgstr "Бардык түзмөктөр"
 
 #: app/templates/devices.html:18 app/templates/platform/dashboard.html:13
 msgid "Онлайн"
-msgstr ""
+msgstr "Онлайн"
 
 #: app/templates/devices.html:22 app/templates/platform/dashboard.html:14
 msgid "Офлайн"
-msgstr ""
+msgstr "Офлайн"
 
 #: app/templates/devices.html:26
 msgid "Суммарная мощность"
-msgstr ""
+msgstr "Жалпы кубаттуулук"
 
 #: app/templates/devices.html:30
 msgid "Суммарная энергия"
-msgstr ""
+msgstr "Жалпы энергия"
 
 #: app/templates/devices.html:34
 msgid "Реле включено"
-msgstr ""
+msgstr "Реле күйгүзүлдү"
 
 #: app/templates/include/footer.html:5
 msgid "Все права защищены."
@@ -274,18 +274,18 @@ msgstr ""
 #: app/templates/include/header.html:8 app/templates/include/header.html:35
 #: app/templates/include/homepage.html:55
 msgid "Возможности"
-msgstr ""
+msgstr "Мүмкүнчүлүктөр"
 
 #: app/templates/include/header.html:9 app/templates/include/header.html:36
 msgid "Как работает"
-msgstr ""
+msgstr "Кандай иштейт"
 
 #: app/templates/include/header.html:10 app/templates/include/header.html:37
 #: app/templates/include/homepage.html:178
 #: app/templates/platform/settings.html:25
 #: app/templates/platform/settings.html:99
 msgid "Тарифы"
-msgstr ""
+msgstr "Тарифтер"
 
 #: app/templates/include/header.html:20
 msgid "Сменить тему"
@@ -294,17 +294,17 @@ msgstr ""
 #: app/templates/include/header.html:21 app/templates/include/header.html:48
 #: app/templates/login.html:44
 msgid "Войти"
-msgstr ""
+msgstr "Кирүү"
 
 #: app/templates/include/header.html:22
 #: app/templates/platform/request_detail.html:3
 msgid "Заявка"
-msgstr ""
+msgstr "Билдирме"
 
 #: app/templates/include/header.html:49 app/templates/include/homepage.html:16
 #: app/templates/include/homepage.html:218
 msgid "Оставить заявку"
-msgstr ""
+msgstr "Билдирме калтыруу"
 
 #: app/templates/include/homepage.html:4
 msgid "Мониторинг электропотребления"
@@ -312,15 +312,15 @@ msgstr ""
 
 #: app/templates/include/homepage.html:13
 msgid "Умный контроль"
-msgstr ""
+msgstr "Акылдуу башкаруу"
 
 #: app/templates/include/homepage.html:13
 msgid "энергопотребления"
-msgstr ""
+msgstr "энергия керектөөнү"
 
 #: app/templates/include/homepage.html:13
 msgid "для бизнеса"
-msgstr ""
+msgstr "бизнес үчүн"
 
 #: app/templates/include/homepage.html:14
 msgid ""
@@ -330,7 +330,7 @@ msgstr ""
 
 #: app/templates/include/homepage.html:17
 msgid "Демо кабинет"
-msgstr ""
+msgstr "Демо кабинет"
 
 #: app/templates/include/homepage.html:24
 msgid "Dashboard Preview — 800×600"
@@ -338,27 +338,27 @@ msgstr ""
 
 #: app/templates/include/homepage.html:35
 msgid "мониторинг"
-msgstr ""
+msgstr "мониторинг"
 
 #: app/templates/include/homepage.html:38
 msgid "сек"
-msgstr ""
+msgstr "сек"
 
 #: app/templates/include/homepage.html:39
 msgid "обновление данных"
-msgstr ""
+msgstr "маалыматты жаңыртуу"
 
 #: app/templates/include/homepage.html:43
 msgid "языка интерфейса"
-msgstr ""
+msgstr "интерфейс тилдери"
 
 #: app/templates/include/homepage.html:47
 msgid "архитектура"
-msgstr ""
+msgstr "архитектура"
 
 #: app/templates/include/homepage.html:56
 msgid "Всё для управления энергией"
-msgstr ""
+msgstr "Энергияны башкаруу үчүн бардыгы"
 
 #: app/templates/include/homepage.html:57
 msgid ""
@@ -367,11 +367,11 @@ msgstr ""
 
 #: app/templates/include/homepage.html:62
 msgid "Мониторинг потребления"
-msgstr ""
+msgstr "Керектөө мониторинги"
 
 #: app/templates/include/homepage.html:63
 msgid "Данные в реальном времени с каждого подключённого устройства."
-msgstr ""
+msgstr "Ар бир туташтырылган түзмөктөн реалдуу убакыт маалыматы."
 
 #: app/templates/include/homepage.html:66
 #: app/templates/include/homepage.html:75
@@ -384,111 +384,111 @@ msgstr ""
 
 #: app/templates/include/homepage.html:71
 msgid "Управление устройствами"
-msgstr ""
+msgstr "Түзмөктөрдү башкаруу"
 
 #: app/templates/include/homepage.html:72
 msgid "Удалённое включение и отключение питания одним кликом."
-msgstr ""
+msgstr "Кубатты бир басуу менен аралыктан күйгүзүү жана өчүрүү."
 
 #: app/templates/include/homepage.html:80
 msgid "Объекты и зоны"
-msgstr ""
+msgstr "Объекттер жана аймактар"
 
 #: app/templates/include/homepage.html:81
 msgid "Структурируйте инфраструктуру по филиалам и кабинетам."
-msgstr ""
+msgstr "Инфраструктураны филиалдар жана кеңселер боюнча түзүңүз."
 
 #: app/templates/include/homepage.html:89
 msgid "Аналитика и отчёты"
-msgstr ""
+msgstr "Аналитика жана отчёттор"
 
 #: app/templates/include/homepage.html:90
 msgid "Графики и отчёты за любой период."
-msgstr ""
+msgstr "Каалаган мезгил үчүн графиктер жана отчёттор."
 
 #: app/templates/include/homepage.html:99
 msgid "Мгновенные алерты при превышении лимитов."
-msgstr ""
+msgstr "Лимиттер ашканда заматта эскертүүлөр."
 
 #: app/templates/include/homepage.html:107
 msgid "Ролевая система"
-msgstr ""
+msgstr "Ролдук система"
 
 #: app/templates/include/homepage.html:108
 msgid "Гибкое управление правами сотрудников."
-msgstr ""
+msgstr "Кызматкерлердин укуктарын ийкемдүү башкаруу."
 
 #: app/templates/include/homepage.html:120
 msgid "Процесс"
-msgstr ""
+msgstr "Процесс"
 
 #: app/templates/include/homepage.html:121
 msgid "Как это работает"
-msgstr ""
+msgstr "Бул кандай иштейт"
 
 #: app/templates/include/homepage.html:126
 msgid "Создание организации"
-msgstr ""
+msgstr "Уюм түзүү"
 
 #: app/templates/include/homepage.html:127
 msgid "Заключаем договор и настраиваем профиль компании."
-msgstr ""
+msgstr "Келишим түзөбүз жана компаниянын профилин жөндөйбүз."
 
 #: app/templates/include/homepage.html:131
 msgid "Подключение объектов"
-msgstr ""
+msgstr "Объекттерди туташтыруу"
 
 #: app/templates/include/homepage.html:132
 msgid "Добавляем объекты, зоны и IoT-устройства."
-msgstr ""
+msgstr "Объекттерди, аймактарды жана IoT-түзмөктөрүн кошобуз."
 
 #: app/templates/include/homepage.html:136
 msgid "Контроль 24/7"
-msgstr ""
+msgstr "Көзөмөл 24/7"
 
 #: app/templates/include/homepage.html:137
 msgid "Мониторинг, управление и аналитика в реальном времени."
-msgstr ""
+msgstr "Реалдуу убакытта мониторинг, башкаруу жана аналитика."
 
 #: app/templates/include/homepage.html:145
 msgid "Применение"
-msgstr ""
+msgstr "Колдонуу"
 
 #: app/templates/include/homepage.html:146
 msgid "Для любого бизнеса"
-msgstr ""
+msgstr "Ар кандай бизнес үчүн"
 
 #: app/templates/include/homepage.html:149
 msgid "Офисы"
-msgstr ""
+msgstr "Кеңселер"
 
 #: app/templates/include/homepage.html:150
 msgid "Магазины"
-msgstr ""
+msgstr "Дүкөндөр"
 
 #: app/templates/include/homepage.html:151
 msgid "Склады"
-msgstr ""
+msgstr "Кампалар"
 
 #: app/templates/include/homepage.html:152
 msgid "Кафе"
-msgstr ""
+msgstr "Кафелер"
 
 #: app/templates/include/homepage.html:153
 msgid "Университеты"
-msgstr ""
+msgstr "Университеттер"
 
 #: app/templates/include/homepage.html:154
 msgid "Гостиницы"
-msgstr ""
+msgstr "Мейманканалар"
 
 #: app/templates/include/homepage.html:155
 msgid "Арендные помещения"
-msgstr ""
+msgstr "Ижара жайлар"
 
 #: app/templates/include/homepage.html:156
 msgid "Производство"
-msgstr ""
+msgstr "Өндүрүш"
 
 #: app/templates/include/homepage.html:163
 msgid "Интерфейс"
@@ -534,11 +534,11 @@ msgstr ""
 
 #: app/templates/include/homepage.html:205
 msgid "Частые вопросы"
-msgstr ""
+msgstr "Көп берилүүчү суроолор"
 
 #: app/templates/include/homepage.html:207
 msgid "Как подключить организацию?"
-msgstr ""
+msgstr "Уюмду кантип туташтырса болот?"
 
 #: app/templates/include/homepage.html:207
 msgid ""
@@ -547,43 +547,43 @@ msgstr ""
 
 #: app/templates/include/homepage.html:208
 msgid "Можно ли подключить несколько объектов?"
-msgstr ""
+msgstr "Бир нече объектти туташтырса болобу?"
 
 #: app/templates/include/homepage.html:208
 msgid "Да. Иерархия: Организация → Объекты → Зоны → Устройства."
-msgstr ""
+msgstr "Ооба. Иерархия: Уюм → Объекттер → Аймактар → Түзмөктөр."
 
 #: app/templates/include/homepage.html:209
 msgid "Можно ли управлять питанием удалённо?"
-msgstr ""
+msgstr "Кубатты аралыктан башкарса болобу?"
 
 #: app/templates/include/homepage.html:209
 msgid "Да, через кабинет в один клик."
-msgstr ""
+msgstr "Ооба, кабинет аркылуу бир басуу менен."
 
 #: app/templates/include/homepage.html:210
 msgid "Есть ли история потребления?"
-msgstr ""
+msgstr "Керектөө тарыхы барбы?"
 
 #: app/templates/include/homepage.html:210
 msgid "Да, графики и отчёты за любой период."
-msgstr ""
+msgstr "Ооба, каалаган мезгил үчүн графиктер жана отчёттор."
 
 #: app/templates/include/homepage.html:211
 msgid "Поддерживается ли кыргызский язык?"
-msgstr ""
+msgstr "Кыргыз тили колдонулабы?"
 
 #: app/templates/include/homepage.html:211
 msgid "Да — RU, EN и KG."
-msgstr ""
+msgstr "Ооба — RU, EN жана KG."
 
 #: app/templates/include/homepage.html:217
 msgid "Контакты"
-msgstr ""
+msgstr "Байланыш"
 
 #: app/templates/include/homepage.html:222
 msgid "Свяжитесь с нами"
-msgstr ""
+msgstr "Биз менен байланышыңыз"
 
 #: app/templates/include/homepage.html:223
 msgid ""
@@ -601,12 +601,12 @@ msgstr ""
 #: app/templates/platform/request_detail.html:40
 #: app/templates/platform/requests.html:27
 msgid "Организация"
-msgstr ""
+msgstr "Уюм"
 
 #: app/templates/include/homepage.html:242
 #: app/templates/platform/settings.html:548 app/templates/settings.html:25
 msgid "Имя"
-msgstr ""
+msgstr "Аты"
 
 #: app/templates/include/homepage.html:243
 #: app/templates/platform/dashboard.html:37
@@ -616,7 +616,7 @@ msgstr ""
 #: app/templates/platform/organizations.html:27
 #: app/templates/platform/request_detail.html:51 app/templates/settings.html:51
 msgid "Телефон"
-msgstr ""
+msgstr "Телефон"
 
 #: app/templates/include/homepage.html:244
 #: app/templates/platform/organization_create.html:49
@@ -625,13 +625,13 @@ msgstr ""
 #: app/templates/platform/organization_detail.html:176
 #: app/templates/platform/request_detail.html:55 app/templates/settings.html:21
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: app/templates/include/homepage.html:245
 #: app/templates/platform/request_detail.html:61
 #: app/templates/platform/requests.html:30
 msgid "Комментарий"
-msgstr ""
+msgstr "Комментарий"
 
 #: app/templates/include/homepage.html:246
 msgid "Отправить"
@@ -679,7 +679,7 @@ msgstr ""
 
 #: app/templates/monitoring.html:10
 msgid "Аналитика и Мониторинг"
-msgstr ""
+msgstr "Аналитика жана Мониторинг"
 
 #: app/templates/monitoring.html:13
 msgid "Все объекты"
@@ -707,27 +707,27 @@ msgstr ""
 
 #: app/templates/monitoring.html:33
 msgid "Текущая нагрузка"
-msgstr ""
+msgstr "Учурдагы жүк"
 
 #: app/templates/monitoring.html:38
 msgid "Потреблено за 24ч"
-msgstr ""
+msgstr "24с сарпталган"
 
 #: app/templates/monitoring.html:43
 msgid "Пик нагрузки"
-msgstr ""
+msgstr "Эң жогорку жүк"
 
 #: app/templates/monitoring.html:48
 msgid "Сэкономлено CO₂"
-msgstr ""
+msgstr "CO₂ үнөмдөлдү"
 
 #: app/templates/monitoring.html:57
 msgid "Общее потребление энергии (кВт·ч)"
-msgstr ""
+msgstr "Жалпы энергия керектөө (кВт·с)"
 
 #: app/templates/monitoring.html:65
 msgid "Потребление по зонам"
-msgstr ""
+msgstr "Аймактар боюнча керектөө"
 
 #: app/templates/monitoring.html:73
 msgid "Детализация по зонам"

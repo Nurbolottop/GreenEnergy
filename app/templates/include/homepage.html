@@ -14,16 +14,12 @@
             <p class="hero-sub">{% blocktrans %}Отслеживайте расход электроэнергии, управляйте устройствами и получайте аналитику в реальном времени.{% endblocktrans %}</p>
             <div class="hero-actions">
                 <a href="#contact" class="btn btn-primary">{% trans "Оставить заявку" %}</a>
-                <a href="{% url 'dashboard' %}" class="btn btn-outline">{% trans "Демо кабинет" %}</a>
+                <a href="{% url 'dashboard' %}" class="btn btn-outline">{% trans "Кабинет" %}</a>
             </div>
         </div>
         <div class="hero-visual">
             <div class="hero-glow"></div>
-            <div class="img-placeholder hero-img">
-                <span class="icon">📊</span>
-                <span class="label">{% trans "Dashboard Preview — 800×600" %}</span>
-                <!-- <img src="{{ dashboard_preview.url }}" alt="Dashboard"> -->
-            </div>
+            <div style="font-size: 8rem; text-align: center; animation: pulse 3s infinite;">⚡</div>
         </div>
     </section>
 
@@ -61,55 +57,31 @@
                 <div class="feature-icon">⚡</div>
                 <h3>{% trans "Мониторинг потребления" %}</h3>
                 <p>{% trans "Данные в реальном времени с каждого подключённого устройства." %}</p>
-                <div class="img-placeholder" style="aspect-ratio:2/1">
-                    <span class="icon">📈</span>
-                    <span class="label">{% trans "Скриншот — 600×300" %}</span>
-                </div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon">🔌</div>
                 <h3>{% trans "Управление устройствами" %}</h3>
                 <p>{% trans "Удалённое включение и отключение питания одним кликом." %}</p>
-                <div class="img-placeholder" style="aspect-ratio:2/1">
-                    <span class="icon">🎛️</span>
-                    <span class="label">{% trans "Скриншот — 600×300" %}</span>
-                </div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon">🏢</div>
                 <h3>{% trans "Объекты и зоны" %}</h3>
                 <p>{% trans "Структурируйте инфраструктуру по филиалам и кабинетам." %}</p>
-                <div class="img-placeholder" style="aspect-ratio:2/1">
-                    <span class="icon">🗺️</span>
-                    <span class="label">{% trans "Скриншот — 600×300" %}</span>
-                </div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>{% trans "Аналитика и отчёты" %}</h3>
                 <p>{% trans "Графики и отчёты за любой период." %}</p>
-                <div class="img-placeholder" style="aspect-ratio:2/1">
-                    <span class="icon">📋</span>
-                    <span class="label">{% trans "Скриншот — 600×300" %}</span>
-                </div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon">🔔</div>
                 <h3>{% trans "Уведомления" %}</h3>
                 <p>{% trans "Мгновенные алерты при превышении лимитов." %}</p>
-                <div class="img-placeholder" style="aspect-ratio:2/1">
-                    <span class="icon">⚠️</span>
-                    <span class="label">{% trans "Скриншот — 600×300" %}</span>
-                </div>
             </div>
             <div class="card feature-card">
                 <div class="feature-icon">👥</div>
                 <h3>{% trans "Ролевая система" %}</h3>
                 <p>{% trans "Гибкое управление правами сотрудников." %}</p>
-                <div class="img-placeholder" style="aspect-ratio:2/1">
-                    <span class="icon">🔐</span>
-                    <span class="label">{% trans "Скриншот — 600×300" %}</span>
-                </div>
             </div>
         </div>
     </section>
@@ -145,56 +117,57 @@
             <div class="section-tag">{% trans "Применение" %}</div>
             <h2 class="section-title">{% trans "Для любого бизнеса" %}</h2>
         </div>
-        <div class="tag-cloud">
-            <span class="tag">🏢 {% trans "Офисы" %}</span>
-            <span class="tag">🏪 {% trans "Магазины" %}</span>
-            <span class="tag">📦 {% trans "Склады" %}</span>
-            <span class="tag">☕ {% trans "Кафе" %}</span>
-            <span class="tag">🎓 {% trans "Университеты" %}</span>
-            <span class="tag">🏨 {% trans "Гостиницы" %}</span>
-            <span class="tag">🏗️ {% trans "Арендные помещения" %}</span>
-            <span class="tag">🏭 {% trans "Производство" %}</span>
-        </div>
-    </section>
-
-    <!-- ===== DASHBOARD PREVIEW ===== -->
-    <section class="container section">
-        <div class="section-header">
-            <div class="section-tag">{% trans "Интерфейс" %}</div>
-            <h2 class="section-title">{% trans "Современный кабинет" %}</h2>
-            <p class="section-desc">{% trans "Удобный интерфейс для контроля всех процессов." %}</p>
-        </div>
-        <div class="card" style="padding:0;overflow:hidden">
-            <div class="img-placeholder" style="aspect-ratio:16/7;border:none;border-radius:0">
-                <span class="icon">🖥️</span>
-                <span class="label">{% trans "Полный скриншот кабинета — 1200×525" %}</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== PRICING ===== -->
-    <section id="pricing" class="container section">
-        <div class="section-header">
-            <div class="section-tag">{% trans "Тарифы" %}</div>
-            <h2 class="section-title">{% trans "Выберите план" %}</h2>
-        </div>
-        <div class="grid-3">
-            <div class="card pricing-card">
-                <h3>Start</h3>
-                <p class="pricing-price">{% trans "По запросу" %}</p>
-                <button class="btn btn-outline btn-block">{% trans "Узнать больше" %}</button>
-            </div>
-            <div class="card pricing-card featured">
-                <div class="pricing-badge">{% trans "ПОПУЛЯРНЫЙ" %}</div>
-                <h3 style="margin-top:12px">Business</h3>
-                <p class="pricing-price">{% trans "По запросу" %}</p>
-                <button class="btn btn-primary btn-block">{% trans "Узнать больше" %}</button>
-            </div>
-            <div class="card pricing-card">
-                <h3>Enterprise</h3>
-                <p class="pricing-price">{% trans "Индивидуально" %}</p>
-                <button class="btn btn-outline btn-block">{% trans "Связаться" %}</button>
-            </div>
+        <style>
+            .industry-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 20px;
+                margin-top: 40px;
+            }
+            .industry-card {
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                cursor: default;
+            }
+            .industry-card:hover {
+                transform: translateY(-4px);
+                border-color: var(--green);
+                box-shadow: 0 10px 30px rgba(0, 230, 118, 0.1);
+                background: var(--bg-card-alt);
+            }
+            .industry-icon {
+                font-size: 1.8rem;
+                background: rgba(0, 230, 118, 0.1);
+                width: 54px;
+                height: 54px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 14px;
+                flex-shrink: 0;
+            }
+            .industry-title {
+                font-size: 1.05rem;
+                font-weight: 600;
+                color: var(--text);
+                letter-spacing: -0.2px;
+            }
+        </style>
+        <div class="industry-grid">
+            <div class="industry-card"><div class="industry-icon">🏢</div><div class="industry-title">{% trans "Офисы" %}</div></div>
+            <div class="industry-card"><div class="industry-icon">🏪</div><div class="industry-title">{% trans "Магазины" %}</div></div>
+            <div class="industry-card"><div class="industry-icon">📦</div><div class="industry-title">{% trans "Склады" %}</div></div>
+            <div class="industry-card"><div class="industry-icon">☕</div><div class="industry-title">{% trans "Кафе" %}</div></div>
+            <div class="industry-card"><div class="industry-icon">🎓</div><div class="industry-title">{% trans "Университеты" %}</div></div>
+            <div class="industry-card"><div class="industry-icon">🏨</div><div class="industry-title">{% trans "Гостиницы" %}</div></div>
+            <div class="industry-card"><div class="industry-icon">🏗️</div><div class="industry-title">{% trans "Арендные помещения" %}</div></div>
+            <div class="industry-card"><div class="industry-icon">🏭</div><div class="industry-title">{% trans "Производство" %}</div></div>
         </div>
     </section>
 
@@ -218,32 +191,54 @@
             <h2 class="section-title">{% trans "Оставить заявку" %}</h2>
         </div>
         <div class="contact-grid">
-            <div class="contact-info">
-                <h3>{% trans "Свяжитесь с нами" %}</h3>
-                <p>{% trans "Оставьте контактные данные, и мы расскажем о возможностях платформы для вашего бизнеса." %}</p>
-                <div class="img-placeholder">
-                    <span class="icon">📞</span>
-                    <span class="label">{% trans "Фото офиса / команды — 600×450" %}</span>
+            <div class="contact-info" style="display:flex;flex-direction:column;justify-content:center;gap:30px">
+                <div>
+                    <h3 style="font-size:2rem;margin-bottom:16px;color:var(--text);">{% trans "Готовы начать?" %}</h3>
+                    <p style="font-size:1.1rem;color:var(--text-sec);line-height:1.6">{% trans "Оставьте контактные данные, и мы свяжемся с вами, чтобы обсудить внедрение Green Energy на ваших объектах." %}</p>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:20px;margin-top:20px;">
+                    <div style="display:flex;align-items:center;gap:16px">
+                        <div style="width:48px;height:48px;border-radius:12px;background:rgba(0,230,118,0.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem">📧</div>
+                        <div>
+                            <div style="font-size:0.85rem;color:var(--text-sec);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Email</div>
+                            <div style="font-weight:600;color:var(--text)">hello@green-energy.kg</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:16px">
+                        <div style="width:48px;height:48px;border-radius:12px;background:rgba(0,230,118,0.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem">📞</div>
+                        <div>
+                            <div style="font-size:0.85rem;color:var(--text-sec);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">{% trans "Телефон" %}</div>
+                            <div style="font-weight:600;color:var(--text)">+996 558 000 350</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <form class="card" method="post" action="{% url 'landing' %}#contact">
-                {% csrf_token %}
-                {% if messages %}
-                <div style="margin-bottom:20px">
-                    {% for message in messages %}
-                    <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;
-                        {% if message.tags == 'error' %}background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.2);
-                        {% else %}background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2);{% endif %}
-                    ">{{ message }}</div>
-                    {% endfor %}
+            <form class="card" method="post" action="{% url 'landing' %}#contact" style="padding:40px;border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,0.2);border:1px solid rgba(0,230,118,0.2);position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-50px;right:-50px;width:150px;height:150px;background:var(--green);filter:blur(80px);opacity:0.2;border-radius:50%;z-index:0;pointer-events:none;"></div>
+                <div style="position:relative;z-index:1;">
+                    {% csrf_token %}
+                    {% if messages %}
+                    <div style="margin-bottom:24px">
+                        {% for message in messages %}
+                        <div style="padding:16px;border-radius:12px;font-size:.95rem;font-weight:500;
+                            {% if message.tags == 'error' %}background:rgba(239,68,68,.1);color:#ef4444;border:1px solid rgba(239,68,68,.2);
+                            {% else %}background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.2);{% endif %}
+                        ">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+                        <div class="form-group" style="margin:0"><label style="font-size:0.9rem;font-weight:500">{% trans "Организация" %}</label><input type="text" name="org_name" class="form-control" style="background:var(--bg-card);border-color:var(--border)" required></div>
+                        <div class="form-group" style="margin:0"><label style="font-size:0.9rem;font-weight:500">{% trans "Имя" %}</label><input type="text" name="contact_name" class="form-control" style="background:var(--bg-card);border-color:var(--border)" required></div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+                        <div class="form-group" style="margin:0"><label style="font-size:0.9rem;font-weight:500">{% trans "Телефон" %}</label><input type="tel" name="phone" class="form-control" style="background:var(--bg-card);border-color:var(--border)" required></div>
+                        <div class="form-group" style="margin:0"><label style="font-size:0.9rem;font-weight:500">{% trans "Email" %}</label><input type="email" name="email" class="form-control" style="background:var(--bg-card);border-color:var(--border)" required></div>
+                    </div>
+                    <div class="form-group" style="margin-bottom:24px"><label style="font-size:0.9rem;font-weight:500">{% trans "Комментарий" %}</label><textarea name="comment" class="form-control" rows="3" style="background:var(--bg-card);border-color:var(--border);resize:none;"></textarea></div>
+                    <button type="submit" class="btn btn-primary btn-block" style="padding:16px;font-size:1.1rem;letter-spacing:0.5px;border-radius:12px;box-shadow:0 8px 20px rgba(0,230,118,0.3)">{% trans "Отправить заявку" %}</button>
                 </div>
-                {% endif %}
-                <div class="form-group"><label>{% trans "Организация" %}</label><input type="text" name="org_name" class="form-control" required></div>
-                <div class="form-group"><label>{% trans "Имя" %}</label><input type="text" name="contact_name" class="form-control" required></div>
-                <div class="form-group"><label>{% trans "Телефон" %}</label><input type="tel" name="phone" class="form-control" required></div>
-                <div class="form-group"><label>{% trans "Email" %}</label><input type="email" name="email" class="form-control" required></div>
-                <div class="form-group"><label>{% trans "Комментарий" %}</label><textarea name="comment" class="form-control" rows="3"></textarea></div>
-                <button type="submit" class="btn btn-primary btn-block">{% trans "Отправить" %}</button>
             </form>
         </div>
     </section>

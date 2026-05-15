@@ -7,15 +7,23 @@
         <div class="nav-center">
             <a href="#features">{% trans "Возможности" %}</a>
             <a href="#how-it-works">{% trans "Как работает" %}</a>
-            <a href="#pricing">{% trans "Тарифы" %}</a>
             <a href="#faq">FAQ</a>
         </div>
 
         <div class="nav-right">
-            <div class="lang-sw">
-                <button class="lang-btn {% if LANGUAGE_CODE == 'ru' or not LANGUAGE_CODE %}active{% endif %}" data-lang="ru">RU</button>
-                <button class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}" data-lang="en">EN</button>
-                <button class="lang-btn {% if LANGUAGE_CODE == 'ky' %}active{% endif %}" data-lang="ky">KG</button>
+            <form action="{% url 'set_language' %}" method="post" id="header-lang-form" style="display:none;">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.get_full_path|default:request.path }}">
+                <input name="language" type="hidden" id="header-lang-input" value="">
+            </form>
+            <style>
+                .language-btn.active { background: var(--green) !important; color: #fff !important; }
+                .language-btn:hover:not(.active) { color: var(--text) !important; }
+            </style>
+            <div class="lang-switcher" style="display:flex;gap:2px;background:var(--bg-input);border-radius:6px;padding:2px">
+                <button class="language-btn {% if LANGUAGE_CODE == 'ru' or not LANGUAGE_CODE %}active{% endif %}" onclick="document.getElementById('header-lang-input').value='ru'; document.getElementById('header-lang-form').submit();" style="background:transparent;border:none;color:var(--text-sec);padding:4px 8px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600;transition:var(--transition);font-family:var(--font);">RU</button>
+                <button class="language-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}" onclick="document.getElementById('header-lang-input').value='en'; document.getElementById('header-lang-form').submit();" style="background:transparent;border:none;color:var(--text-sec);padding:4px 8px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600;transition:var(--transition);font-family:var(--font);">EN</button>
+                <button class="language-btn {% if LANGUAGE_CODE == 'ky' %}active{% endif %}" onclick="document.getElementById('header-lang-input').value='ky'; document.getElementById('header-lang-form').submit();" style="background:transparent;border:none;color:var(--text-sec);padding:4px 8px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600;transition:var(--transition);font-family:var(--font);">KG</button>
             </div>
             <button class="theme-toggle" title="{% trans 'Сменить тему' %}">🌙</button>
             <a href="{% url 'login' %}" class="btn btn-outline btn-sm">{% trans "Войти" %}</a>
@@ -34,14 +42,13 @@
     <div class="mobile-drawer-panel">
         <a href="#features">{% trans "Возможности" %}</a>
         <a href="#how-it-works">{% trans "Как работает" %}</a>
-        <a href="#pricing">{% trans "Тарифы" %}</a>
         <a href="#faq">FAQ</a>
         <hr style="border-color:var(--border)">
         <div class="d-flex items-center gap-12">
-            <div class="lang-sw">
-                <button class="lang-btn {% if LANGUAGE_CODE == 'ru' or not LANGUAGE_CODE %}active{% endif %}" data-lang="ru">RU</button>
-                <button class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}" data-lang="en">EN</button>
-                <button class="lang-btn {% if LANGUAGE_CODE == 'ky' %}active{% endif %}" data-lang="ky">KG</button>
+            <div class="lang-switcher" style="display:flex;gap:2px;background:var(--bg-input);border-radius:6px;padding:2px">
+                <button class="language-btn {% if LANGUAGE_CODE == 'ru' or not LANGUAGE_CODE %}active{% endif %}" onclick="document.getElementById('header-lang-input').value='ru'; document.getElementById('header-lang-form').submit();" style="background:transparent;border:none;color:var(--text-sec);padding:4px 8px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600;transition:var(--transition);font-family:var(--font);">RU</button>
+                <button class="language-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}" onclick="document.getElementById('header-lang-input').value='en'; document.getElementById('header-lang-form').submit();" style="background:transparent;border:none;color:var(--text-sec);padding:4px 8px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600;transition:var(--transition);font-family:var(--font);">EN</button>
+                <button class="language-btn {% if LANGUAGE_CODE == 'ky' %}active{% endif %}" onclick="document.getElementById('header-lang-input').value='ky'; document.getElementById('header-lang-form').submit();" style="background:transparent;border:none;color:var(--text-sec);padding:4px 8px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600;transition:var(--transition);font-family:var(--font);">KG</button>
             </div>
             <button class="theme-toggle">🌙</button>
         </div>
