@@ -256,6 +256,14 @@ class Device(models.Model):
     def __str__(self):
         return f'{self.device_id} — {self.name}'
 
+    @property
+    def is_really_online(self):
+        from django.utils import timezone
+        from datetime import timedelta
+        if not self.last_seen:
+            return False
+        return timezone.now() - self.last_seen < timedelta(seconds=90)
+
 
 class EnergyReading(models.Model):
     """Historical reading from a Device."""

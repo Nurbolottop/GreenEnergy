@@ -4,75 +4,152 @@
 
 {% block dashboard_content %}
 <div class="d-flex justify-between items-center mb-24" style="flex-wrap:wrap;gap:12px">
-    <h1 class="page-title" style="margin:0">{% trans "Устройства" %}</h1>
-    <div class="tabs" style="margin:0">
-        <div class="tab active">{% trans "Все" %}</div>
-        <div class="tab">{% trans "Онлайн" %}</div>
-        <div class="tab">{% trans "Офлайн" %}</div>
-        <div class="tab">{% trans "Вкл" %}</div>
-        <div class="tab">{% trans "Выкл" %}</div>
+    <h1 class="page-title" style="margin:0">{% trans "Устройства организации" %}</h1>
+    <button class="btn btn-primary" onclick="document.getElementById('add-device-modal').style.display='flex'">+ {% trans "Добавить устройство" %}</button>
+</div>
+
+<!-- Сводка -->
+<div class="stat-grid mb-24">
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Всего устройств" %}</div>
+        <div class="stat-value">{{ stats.total_devices }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Онлайн" %}</div>
+        <div class="stat-value text-green">{{ stats.online_devices }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Офлайн" %}</div>
+        <div class="stat-value {% if stats.offline_devices > 0 %}text-warning{% endif %}">{{ stats.offline_devices }}</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Суммарная мощность" %}</div>
+        <div class="stat-value">{{ stats.total_power }} Вт</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Суммарная энергия" %}</div>
+        <div class="stat-value">{{ stats.total_energy }} кВт·ч</div>
+    </div>
+    <div class="card stat-card">
+        <div class="stat-label">{% trans "Реле включено" %}</div>
+        <div class="stat-value text-green">{{ stats.relays_on }}</div>
     </div>
 </div>
 
-<div class="grid-2">
-    <div class="card device-card">
-        <div class="device-header">
-            <div><h3>Кондиционер</h3><div class="device-meta">ID: DEV-1001 · {% trans "Главный офис" %} · {% trans "Каб." %} 101</div></div>
-            <span class="status"><span class="status-dot on" id="dot-c1"></span><span id="plabel-c1">{% trans "Вкл" %}</span></span>
-        </div>
-        <div class="img-placeholder" style="aspect-ratio:3/1;margin-bottom:16px"><span class="icon">📷</span><span class="label">{% trans "Фото устройства — 600×200" %}</span></div>
-        <div class="device-stats">
-            <div><div class="ds-val">1.2 кВт</div><div class="ds-label">{% trans "Мощность" %}</div></div>
-            <div><div class="ds-val">220В</div><div class="ds-label">{% trans "Напряжение" %}</div></div>
-            <div><div class="ds-val">5.4А</div><div class="ds-label">{% trans "Ток" %}</div></div>
-        </div>
-        <div class="device-footer">
-            <a href="{% url 'device_detail' 1001 %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a>
-            <div class="d-flex items-center gap-8">
-                <span class="text-sec" style="font-size:.85rem">{% trans "Питание" %}</span>
-                <label class="switch"><input type="checkbox" checked class="power-toggle" data-id="c1"><span class="slider"></span></label>
-            </div>
-        </div>
-    </div>
+<!-- Список устройств -->
+<div class="card" style="padding:0; overflow-x:auto;">
+    <table class="table" style="width:100%; text-align:left; border-collapse:collapse;">
+        <thead>
+            <tr style="border-bottom:1px solid #333;">
+                <th style="padding:12px">ID / Название</th>
+                <th style="padding:12px">Тип</th>
+                <th style="padding:12px">Статус</th>
+                <th style="padding:12px">Онлайн</th>
+                <th style="padding:12px">Показания</th>
+                <th style="padding:12px">Объект / Зона</th>
+                <th style="padding:12px">Последний контакт</th>
+                <th style="padding:12px">Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in devices %}
+            <tr style="border-bottom:1px solid #222;">
+                <td style="padding:12px">
+                    <div><strong>{{ device.device_id }}</strong></div>
+                    <div class="text-sec" style="font-size:0.85rem">{{ device.name }}</div>
+                </td>
+                <td style="padding:12px">{{ device.get_device_type_display }}</td>
+                <td style="padding:12px">
+                    <span class="badge {% if device.status == 'active' %}badge-success{% elif device.status == 'maintenance' %}badge-warning{% elif device.status == 'blocked' %}badge-danger{% else %}badge-info{% endif %}">{{ device.get_status_display }}</span>
+                </td>
+                <td style="padding:12px">
+                    {% if device.is_really_online %}
+                    <span class="status-dot on"></span> <span class="text-green">Онлайн</span>
+                    {% else %}
+                    <span class="status-dot off"></span> <span class="text-sec">Офлайн</span>
+                    {% endif %}
+                </td>
+                <td style="padding:12px; font-size:0.9rem;">
+                    <div>{{ device.voltage }} В | {{ device.current }} А</div>
+                    <div>{{ device.power }} Вт | {{ device.energy }} кВт·ч</div>
+                    <div style="margin-top:4px;">
+                        {% if device.relay_status %}
+                        <span class="badge badge-success">Реле ВКЛ</span>
+                        {% else %}
+                        <span class="badge badge-secondary">Реле ВЫКЛ</span>
+                        {% endif %}
+                    </div>
+                </td>
+                <td style="padding:12px">
+                    <div>{{ device.object_name|default:"—" }}</div>
+                    <div class="text-sec" style="font-size:0.85rem">{{ device.zone_name|default:"—" }}</div>
+                </td>
+                <td style="padding:12px; font-size:0.85rem;" class="text-sec">
+                    {{ device.last_seen|date:"d.m.Y H:i:s"|default:"Никогда" }}
+                </td>
+                <td style="padding:12px">
+                    <a href="{% url 'device_detail' device.id %}" class="btn btn-sm btn-outline">Подробнее</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" style="padding:24px; text-align:center;" class="text-sec">Устройств пока нет.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-    <div class="card device-card">
-        <div class="device-header">
-            <div><h3>{% trans "Серверная стойка" %}</h3><div class="device-meta">ID: DEV-1002 · {% trans "Главный офис" %} · {% trans "Серверная" %}</div></div>
-            <span class="status"><span class="status-dot on" id="dot-c2"></span><span id="plabel-c2">{% trans "Вкл" %}</span></span>
+<!-- Modal Добавить устройство -->
+<div id="add-device-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; align-items:center; justify-content:center;">
+    <div class="card" style="width:100%; max-width:500px; max-height:90vh; overflow-y:auto;">
+        <div class="d-flex justify-between items-center mb-16">
+            <h2 style="margin:0">Добавить устройство</h2>
+            <button class="btn btn-outline btn-sm" onclick="document.getElementById('add-device-modal').style.display='none'">✕</button>
         </div>
-        <div class="img-placeholder" style="aspect-ratio:3/1;margin-bottom:16px"><span class="icon">📷</span><span class="label">{% trans "Фото устройства — 600×200" %}</span></div>
-        <div class="device-stats">
-            <div><div class="ds-val">2.4 кВт</div><div class="ds-label">{% trans "Мощность" %}</div></div>
-            <div><div class="ds-val">225В</div><div class="ds-label">{% trans "Напряжение" %}</div></div>
-            <div><div class="ds-val">10.6А</div><div class="ds-label">{% trans "Ток" %}</div></div>
-        </div>
-        <div class="device-footer">
-            <a href="{% url 'device_detail' 1002 %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a>
-            <div class="d-flex items-center gap-8">
-                <span class="text-sec" style="font-size:.85rem">{% trans "Питание" %}</span>
-                <label class="switch"><input type="checkbox" checked class="power-toggle" data-id="c2"><span class="slider"></span></label>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group mb-16">
+                <label>Device ID *</label>
+                <input type="text" name="device_id" required class="form-control" placeholder="Например: GE-002">
             </div>
-        </div>
-    </div>
-
-    <div class="card device-card">
-        <div class="device-header">
-            <div><h3>{% trans "Освещение" %}</h3><div class="device-meta">ID: DEV-1003 · {% trans "Склад А" %} · {% trans "Сектор" %} 1</div></div>
-            <span class="status"><span class="status-dot off" id="dot-c3"></span><span id="plabel-c3">{% trans "Выкл" %}</span></span>
-        </div>
-        <div class="img-placeholder" style="aspect-ratio:3/1;margin-bottom:16px"><span class="icon">📷</span><span class="label">{% trans "Фото устройства — 600×200" %}</span></div>
-        <div class="device-stats">
-            <div><div class="ds-val">0 кВт</div><div class="ds-label">{% trans "Мощность" %}</div></div>
-            <div><div class="ds-val">—</div><div class="ds-label">{% trans "Напряжение" %}</div></div>
-            <div><div class="ds-val">—</div><div class="ds-label">{% trans "Ток" %}</div></div>
-        </div>
-        <div class="device-footer">
-            <a href="{% url 'device_detail' 1003 %}" class="btn btn-outline btn-sm">{% trans "Открыть" %}</a>
-            <div class="d-flex items-center gap-8">
-                <span class="text-sec" style="font-size:.85rem">{% trans "Питание" %}</span>
-                <label class="switch"><input type="checkbox" class="power-toggle" data-id="c3"><span class="slider"></span></label>
+            <div class="form-group mb-16">
+                <label>Название устройства</label>
+                <input type="text" name="name" class="form-control" placeholder="Например: Счётчик серверной">
             </div>
-        </div>
+            <div class="form-group mb-16">
+                <label>Тип устройства</label>
+                <select name="device_type" class="form-control">
+                    <option value="smart_socket">Умная розетка</option>
+                    <option value="energy_meter">Счётчик энергии</option>
+                    <option value="sensor">Датчик</option>
+                    <option value="relay_controller">Контроллер реле</option>
+                </select>
+            </div>
+            <div class="form-group mb-16">
+                <label>Объект</label>
+                <input type="text" name="object_name" class="form-control" placeholder="Например: Главный офис">
+            </div>
+            <div class="form-group mb-16">
+                <label>Зона / Точка</label>
+                <input type="text" name="zone_name" class="form-control" placeholder="Например: Серверная">
+            </div>
+            <div class="form-group mb-16">
+                <label>Лимит мощности (кВт)</label>
+                <input type="number" step="0.01" name="max_power_limit" value="2.5" class="form-control">
+            </div>
+            <div class="form-group mb-16 d-flex items-center gap-8">
+                <input type="checkbox" name="allow_remote_control" id="arc" checked>
+                <label for="arc" style="margin:0">Разрешить удалённое управление</label>
+            </div>
+            <div class="form-group mb-24">
+                <label>Описание</label>
+                <textarea name="description" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="d-flex justify-end">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}

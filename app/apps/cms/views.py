@@ -437,15 +437,109 @@ def dashboard_view(request):
 
 @organization_user_required
 def devices_view(request):
-    return render(request, 'devices.html')
+    organization = request.user.profile.organization
+    if request.method == 'POST':
+        # Add device logic
+        device_id = request.POST.get('device_id', '').strip()
+        name = request.POST.get('name', '').strip()
+        device_type = request.POST.get('device_type', '')
+        status = request.POST.get('status', 'active')
+        object_name = request.POST.get('object_name', '').strip()
+        zone_name = request.POST.get('zone_name', '').strip()
+        try:
+            max_power_limit = float(request.POST.get('max_power_limit', '2.5'))
+        except ValueError:
+            max_power_limit = 2.5
+        allow_remote_control = request.POST.get('allow_remote_control') == 'on'
+        description = request.POST.get('description', '').strip()
+
+        if Device.objects.filter(device_id=device_id).exists():
+            messages.error(request, f'Устройство с ID {device_id} уже существует.')
+        else:
+            Device.objects.create(
+                device_id=device_id,
+                name=name,
+                device_type=device_type,
+                status=status,
+                organization=organization,
+                object_name=object_name,
+                zone_name=zone_name,
+                max_power_limit=max_power_limit,
+                allow_remote_control=allow_remote_control,
+                description=description
+            )
+            messages.success(request, f'Устройство {device_id} добавлено.')
+        return redirect('devices')
+
+    devices = Device.objects.filter(organization=organization)
+    
+    total_devices = devices.count()
+    online_devices = sum(1 for d in devices if d.is_really_online)
+    offline_devices = total_devices - online_devices
+    total_power = sum(d.power for d in devices)
+    total_energy = sum(d.energy for d in devices)
+    relays_on = sum(1 for d in devices if d.relay_status)
+
+    context = {
+        'devices': devices,
+        'stats': {
+            'total_devices': total_devices,
+            'online_devices': online_devices,
+            'offline_devices': offline_devices,
+            'total_power': total_power,
+            'total_energy': total_energy,
+            'relays_on': relays_on,
+        }
+    }
+    return render(request, 'devices.html', context)
 
 
 @organization_user_required
-
 def device_detail_view(request, device_id):
     """Display details of a specific device for organization users."""
     device = get_object_or_404(Device, id=device_id)
-    return render(request, 'device_detail.html', {'device': device})
+    
+    # Check permissions
+    if device.organization != request.user.profile.organization and not _is_platform_admin(request.user):
+        from django.http import HttpResponseForbidden
+        return HttpResponseForbidden("Вы не можете просматривать чужое устройство.")
+        
+    if request.method == 'POST':
+        device.name = request.POST.get('name', device.name).strip()
+        device.device_type = request.POST.get('device_type', device.device_type)
+        device.status = request.POST.get('status', device.status)
+        device.object_name = request.POST.get('object_name', device.object_name).strip()
+        device.zone_name = request.POST.get('zone_name', device.zone_name).strip()
+        try:
+            device.max_power_limit = float(request.POST.get('max_power_limit', device.max_power_limit))
+        except ValueError:
+            pass
+        device.allow_remote_control = request.POST.get('allow_remote_control') == 'on'
+        device.description = request.POST.get('description', device.description).strip()
+        device.save()
+        messages.success(request, 'Настройки устройства обновлены.')
+        return redirect('device_detail', device_id=device.id)
+
+    readings = device.readings.order_by('-created_at')[:30]
+    return render(request, 'device_detail.html', {'device': device, 'readings': readings})
+
+@login_required
+def device_status_api(request, device_id):
+    """AJAX endpoint for getting current device status."""
+    device = get_object_or_404(Device, id=device_id)
+    if device.organization != request.user.profile.organization and not _is_platform_admin(request.user):
+        return JsonResponse({'error': 'Forbidden'}, status=403)
+    
+    return JsonResponse({
+        'device_id': device.device_id,
+        'voltage': device.voltage,
+        'current': device.current,
+        'power': device.power,
+        'energy': device.energy,
+        'relay_status': device.relay_status,
+        'is_online': device.is_really_online,
+        'last_seen': device.last_seen.isoformat() if device.last_seen else None
+    })
 
 @csrf_exempt
 def device_data_api(request):

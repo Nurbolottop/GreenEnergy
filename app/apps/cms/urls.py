@@ -15,6 +15,7 @@ urlpatterns = [
     path('platform/settings/tariff/save/', views.platform_tariff_save_view, name='platform_tariff_save'),
     path('platform/settings/tariff/<int:tariff_id>/delete/', views.platform_tariff_delete_view, name='platform_tariff_delete'),
     path('api/devices/data/', views.device_data_api, name='device_data_api'),
+    path('platform/api/devices/<int:device_id>/status/', views.device_status_api, name='device_status_api'),
 
     # Organization User
     path('dashboard/', views.dashboard_view, name='dashboard'),
