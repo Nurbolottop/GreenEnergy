@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+import json
+from django.http import JsonResponse
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 from functools import wraps
-from .models import Organization, UserProfile, Notification, ConnectionRequest, Tariff
+from .models import Organization, UserProfile, Notification, ConnectionRequest, Tariff, Device, EnergyReading
 
 
 # ============================================================
@@ -437,8 +441,47 @@ def devices_view(request):
 
 
 @organization_user_required
+
 def device_detail_view(request, device_id):
-    return render(request, 'device_detail.html')
+    """Display details of a specific device for organization users."""
+    device = get_object_or_404(Device, id=device_id)
+    return render(request, 'device_detail.html', {'device': device})
+
+@csrf_exempt
+def device_data_api(request):
+    """Endpoint for ESP32 to send telemetry data (POST JSON)."""
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Method not allowed'}, status=405)
+    try:
+        payload = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid JSON'}, status=400)
+    device_id = payload.get('device_id')
+    if not device_id:
+        return JsonResponse({'success': False, 'error': 'device_id missing'}, status=400)
+    try:
+        device = Device.objects.get(device_id=device_id)
+    except Device.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Device not found'}, status=404)
+    # Update device fields if present
+    for field in ['voltage', 'current', 'power', 'energy', 'relay_status']:
+        if field in payload:
+            setattr(device, field, payload[field])
+    device.is_online = True
+    device.last_seen = timezone.now()
+    device.save()
+    # Save reading history
+    EnergyReading.objects.create(
+        device=device,
+        voltage=payload.get('voltage'),
+        current=payload.get('current'),
+        power=payload.get('power'),
+        energy=payload.get('energy'),
+        relay_status=payload.get('relay_status', False),
+    )
+    return JsonResponse({'success': True, 'message': 'Data received', 'device_id': device_id})
+
+
 
 
 @organization_user_required

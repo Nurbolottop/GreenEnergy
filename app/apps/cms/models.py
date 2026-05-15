@@ -189,3 +189,92 @@ class ConnectionRequest(models.Model):
     def __str__(self):
         return f'{self.organization_name} — {self.contact_name}'
 
+# -----------------------------------------------------------------------------
+# IoT Device Models
+# -----------------------------------------------------------------------------
+
+class Device(models.Model):
+    """IoT device belonging to an organization."""
+
+    DEVICE_TYPE_CHOICES = (
+        ('smart_socket', 'Умная розетка'),
+        ('energy_meter', 'Счётчик энергии'),
+        ('sensor', 'Датчик'),
+        ('relay_controller', 'Контроллер реле'),
+    )
+
+    STATUS_CHOICES = (
+        ('free', 'Свободно'),
+        ('assigned', 'Назначено'),
+        ('active', 'Активно'),
+        ('inactive', 'Неактивно'),
+        ('blocked', 'Заблокировано'),
+        ('maintenance', 'На обслуживании'),
+    )
+
+    device_id = models.CharField('Device ID', max_length=100, unique=True)
+    name = models.CharField('Название устройства', max_length=255, blank=True, default='')
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='devices',
+        verbose_name='Организация',
+    )
+    device_type = models.CharField(
+        'Тип устройства', max_length=50,
+        choices=DEVICE_TYPE_CHOICES, blank=True, default='',
+    )
+    status = models.CharField(
+        'Статус', max_length=20,
+        choices=STATUS_CHOICES, default='active',
+    )
+    is_online = models.BooleanField('Онлайн', default=False)
+    relay_status = models.BooleanField('Реле включено', default=False)
+    allow_remote_control = models.BooleanField('Разрешено удалённое управление', default=True)
+
+    voltage = models.FloatField('Напряжение (V)', default=0)
+    current = models.FloatField('Ток (A)', default=0)
+    power = models.FloatField('Мощность (W)', default=0)
+    energy = models.FloatField('Энергия (kWh)', default=0)
+    max_power_limit = models.FloatField('Лимит мощности (kW)', default=2.5)
+
+    object_name = models.CharField('Объект', max_length=255, blank=True, default='')
+    zone_name = models.CharField('Зона / точка', max_length=255, blank=True, default='')
+    description = models.TextField('Описание', blank=True, default='')
+
+    last_seen = models.DateTimeField('Последний контакт', null=True, blank=True)
+    created_at = models.DateTimeField('Создано', auto_now_add=True)
+    updated_at = models.DateTimeField('Обновлено', auto_now=True)
+
+    class Meta:
+        verbose_name = 'Устройство'
+        verbose_name_plural = 'Устройства'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'{self.device_id} — {self.name}'
+
+
+class EnergyReading(models.Model):
+    """Historical reading from a Device."""
+
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE,
+        related_name='readings', verbose_name='Устройство',
+    )
+    voltage = models.FloatField('Напряжение (V)', default=0)
+    current = models.FloatField('Ток (A)', default=0)
+    power = models.FloatField('Мощность (W)', default=0)
+    energy = models.FloatField('Энергия (kWh)', default=0)
+    relay_status = models.BooleanField('Реле включено', default=False)
+    created_at = models.DateTimeField('Время измерения', auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Показание устройства'
+        verbose_name_plural = 'Показания устройств'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'{self.device.device_id} — {self.created_at}'

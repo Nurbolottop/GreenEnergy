@@ -13,7 +13,7 @@ services:
     networks:
       - portfolio_network_greenenergy
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -46,7 +46,7 @@ services:
       redis_greenenergy:
         condition: service_started
     ports:
-      - "127.0.0.1:8084:8082"
+      - "0.0.0.0:8084:8082"
     networks:
       - portfolio_network_greenenergy
 
@@ -57,7 +57,7 @@ services:
     container_name: telegram_bot_greenenergy
     command: python manage.py bot
     volumes:
-      - ../app:/app       # исправлено
+      - ../app:/app # исправлено
     env_file:
       - ../.env
     depends_on:
