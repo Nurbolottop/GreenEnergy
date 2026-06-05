@@ -3,39 +3,67 @@
 {% block title %}{% trans "Уведомления" %} — Green Energy{% endblock %}
 
 {% block dashboard_content %}
-<h1 class="page-title">{% trans "Уведомления" %}</h1>
+<div class="d-flex justify-between items-center mb-16" style="flex-wrap:wrap;gap:12px">
+    <h1 class="page-title" style="margin:0">{% trans "Уведомления" %}
+        {% if unread_count %}<span class="badge badge-danger" style="font-size:.75rem;vertical-align:middle;margin-left:6px">{{ unread_count }}</span>{% endif %}
+    </h1>
+    {% if unread_count %}
+    <form method="post" action="{% url 'alerts' %}" style="margin:0">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="read_all">
+        <button type="submit" class="btn btn-outline btn-sm">✓ {% trans "Прочитать все" %}</button>
+    </form>
+    {% endif %}
+</div>
+
+{% if messages %}
+<div class="mb-16">
+    {% for message in messages %}
+    <div style="padding:10px 14px;border-radius:8px;font-size:.85rem;background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2)">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
 
 <div class="tabs">
-    <div class="tab active">{% trans "Все" %}</div>
-    <div class="tab">{% trans "Непрочитанные" %} (2)</div>
-    <div class="tab">{% trans "Важные" %}</div>
-    <div class="tab">{% trans "Предупреждения" %}</div>
-    <div class="tab">{% trans "Инфо" %}</div>
+    <a href="?filter=all" class="tab {% if current_filter == 'all' %}active{% endif %}">{% trans "Все" %} ({{ total_count }})</a>
+    <a href="?filter=unread" class="tab {% if current_filter == 'unread' %}active{% endif %}">{% trans "Непрочитанные" %} ({{ unread_count }})</a>
+    <a href="?filter=danger" class="tab {% if current_filter == 'danger' %}active{% endif %}">{% trans "Важные" %}</a>
+    <a href="?filter=warning" class="tab {% if current_filter == 'warning' %}active{% endif %}">{% trans "Предупреждения" %}</a>
+    <a href="?filter=info" class="tab {% if current_filter == 'info' %}active{% endif %}">{% trans "Инфо" %}</a>
 </div>
 
-<div style="display:flex;flex-direction:column;gap:12px">
-    <div class="card alert-card level-danger unread">
-        <div class="alert-head"><h3>{% trans "Устройство офлайн" %}</h3><span class="alert-time">10 {% trans "мин назад" %}</span></div>
-        <p class="text-sec mb-8">{% trans "Устройство" %} <strong>Кондиционер (DEV-1001)</strong> {% trans "перестало отвечать." %}</p>
-        <div class="d-flex justify-between items-center"><span class="badge badge-danger">Danger</span><button class="btn btn-outline btn-sm">{% trans "Прочитано" %}</button></div>
+{% if notifications %}
+<div style="display:flex;flex-direction:column;gap:10px">
+    {% for notif in notifications %}
+    <div class="card alert-card level-{{ notif.level }}{% if not notif.is_read %} unread{% endif %}" style="margin:0;padding:14px 16px">
+        <div class="d-flex justify-between items-center" style="gap:12px">
+            <div style="flex:1;min-width:0">
+                <div class="d-flex items-center gap-8" style="margin-bottom:2px;flex-wrap:wrap">
+                    {% if notif.level == 'success' %}✅{% elif notif.level == 'danger' %}🔴{% elif notif.level == 'warning' %}⚠️{% else %}ℹ️{% endif %}
+                    <strong style="font-size:.9rem">{{ notif.title }}</strong>
+                    {% if not notif.is_read %}<span class="badge badge-green" style="font-size:.65rem">{% trans "Новое" %}</span>{% endif %}
+                </div>
+                <p class="text-sec" style="font-size:.82rem;margin:2px 0">{{ notif.message }}</p>
+                <span class="alert-time">{{ notif.time_display }}</span>
+            </div>
+            {% if not notif.is_read %}
+            <form method="post" action="{% url 'alerts' %}" style="margin:0">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="read">
+                <input type="hidden" name="notif_id" value="{{ notif.id }}">
+                <button type="submit" class="btn btn-outline btn-sm" style="white-space:nowrap">{% trans "Прочитано" %}</button>
+            </form>
+            {% else %}
+            <span class="text-sec" style="font-size:.85rem;white-space:nowrap" title="{% trans 'Прочитано' %}">✓</span>
+            {% endif %}
+        </div>
     </div>
-
-    <div class="card alert-card level-warning unread">
-        <div class="alert-head"><h3>{% trans "Превышен лимит" %}</h3><span class="alert-time">1 {% trans "час назад" %}</span></div>
-        <p class="text-sec mb-8">{% trans "Устройство" %} <strong>{% trans "Серверная стойка" %} (DEV-1002)</strong> — 2.4 кВт ({% trans "лимит" %} 2.0 кВт).</p>
-        <div class="d-flex justify-between items-center"><span class="badge badge-warning">Warning</span><button class="btn btn-outline btn-sm">{% trans "Прочитано" %}</button></div>
-    </div>
-
-    <div class="card alert-card level-info">
-        <div class="alert-head"><h3>{% trans "Питание выключено" %}</h3><span class="alert-time">{% trans "Вчера" %}, 18:00</span></div>
-        <p class="text-sec mb-8">{% trans "Освещение (Склад А) отключено пользователем Admin." %}</p>
-        <div class="d-flex justify-between items-center"><span class="badge badge-info">Info</span><span class="text-sec" style="font-size:.8rem">✓ {% trans "Прочитано" %}</span></div>
-    </div>
-
-    <div class="card alert-card level-success">
-        <div class="alert-head"><h3>{% trans "Синхронизация завершена" %}</h3><span class="alert-time">{% trans "Вчера" %}, 10:00</span></div>
-        <p class="text-sec mb-8">{% trans "Данные объекта Главный офис успешно получены." %}</p>
-        <div class="d-flex justify-between items-center"><span class="badge badge-green">Success</span><span class="text-sec" style="font-size:.8rem">✓ {% trans "Прочитано" %}</span></div>
-    </div>
+    {% endfor %}
 </div>
+{% else %}
+<div class="card text-center" style="padding:40px">
+    <div style="font-size:2rem;margin-bottom:8px">🔔</div>
+    <p class="text-sec">{% trans "Нет уведомлений" %}</p>
+</div>
+{% endif %}
 {% endblock %}

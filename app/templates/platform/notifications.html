@@ -21,37 +21,35 @@
 {% endif %}
 
 {% if notifications %}
-<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-direction:column;gap:10px">
     {% for notif in notifications %}
-    <div class="card alert-card level-{{ notif.level }}" style="margin:0;{% if not notif.is_read %}border-left:3px solid var(--green);{% endif %}">
-        <div class="d-flex justify-between items-center" style="gap:12px;flex-wrap:wrap">
-            <div style="flex:1">
-                <div class="d-flex items-center gap-8 mb-4">
-                    {% if notif.level == 'success' %}<span style="color:var(--green)">✅</span>
-                    {% elif notif.level == 'danger' %}<span style="color:var(--danger)">🔴</span>
-                    {% elif notif.level == 'warning' %}<span style="color:var(--warning)">⚠️</span>
-                    {% else %}<span style="color:var(--info)">ℹ️</span>{% endif %}
-                    <strong style="font-size:.95rem">{{ notif.title }}</strong>
-                    {% if not notif.is_read %}<span class="badge badge-green" style="font-size:.7rem">{% trans "Новое" %}</span>{% endif %}
+    <div class="card alert-card level-{{ notif.level }}{% if not notif.is_read %} unread{% endif %}" style="margin:0;padding:14px 16px">
+        <div class="d-flex justify-between items-center" style="gap:12px">
+            <div style="flex:1;min-width:0">
+                <div class="d-flex items-center gap-8" style="margin-bottom:2px;flex-wrap:wrap">
+                    {% if notif.level == 'success' %}✅{% elif notif.level == 'danger' %}🔴{% elif notif.level == 'warning' %}⚠️{% else %}ℹ️{% endif %}
+                    <strong style="font-size:.9rem">{{ notif.title }}</strong>
+                    {% if not notif.is_read %}<span class="badge badge-green" style="font-size:.65rem">{% trans "Новое" %}</span>{% endif %}
                 </div>
-                <p class="text-sec" style="font-size:.85rem;margin:4px 0">{{ notif.message }}</p>
-                <div class="d-flex gap-12 items-center" style="margin-top:6px">
-                    <span class="text-sec" style="font-size:.8rem">{{ notif.time_display }}</span>
-                    {% if notif.organization %}
-                    <span class="text-sec" style="font-size:.8rem">🏢 {{ notif.organization.name }}</span>
-                    {% endif %}
+                <p class="text-sec" style="font-size:.82rem;margin:2px 0">{{ notif.message }}</p>
+                <div class="d-flex gap-12 items-center" style="margin-top:2px">
+                    <span class="alert-time">{{ notif.time_display }}</span>
+                    {% if notif.organization %}<span class="alert-time">🏢 {{ notif.organization.name }}</span>{% endif %}
                 </div>
             </div>
             {% if not notif.is_read %}
             <a href="{% url 'platform_notification_read' notif.id %}" class="btn btn-outline btn-sm" style="white-space:nowrap">{% trans "Прочитано" %}</a>
+            {% else %}
+            <span class="text-sec" style="font-size:.85rem;white-space:nowrap" title="{% trans 'Прочитано' %}">✓</span>
             {% endif %}
         </div>
     </div>
     {% endfor %}
 </div>
 {% else %}
-<div class="card text-center" style="padding:48px">
-    <p class="text-sec" style="font-size:1.1rem">{% trans "Нет уведомлений" %}</p>
+<div class="card text-center" style="padding:40px">
+    <div style="font-size:2rem;margin-bottom:8px">🔔</div>
+    <p class="text-sec">{% trans "Нет уведомлений" %}</p>
 </div>
 {% endif %}
 {% endblock %}

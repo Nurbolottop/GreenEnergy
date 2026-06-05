@@ -1,0 +1,64 @@
+{% extends "platform/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Устройства" %} — Green Energy{% endblock %}
+
+{% block platform_content %}
+<h1 class="page-title">{% trans "Устройства" %} ({{ stats.total_devices }})</h1>
+
+<!-- Сводка -->
+<div class="stat-grid mb-24">
+    <div class="card stat-card"><div class="stat-label">{% trans "Всего устройств" %}</div><div class="stat-value">{{ stats.total_devices }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Подключено" %}</div><div class="stat-value green">{{ stats.connected }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "В сети сейчас" %}</div><div class="stat-value green">{{ stats.live }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Не подключено" %}</div><div class="stat-value" style="color:var(--danger)">{{ stats.disconnected }}</div></div>
+    <div class="card stat-card"><div class="stat-label">{% trans "Не назначено" %}</div><div class="stat-value" style="color:var(--warning)">{{ stats.unassigned }}</div></div>
+</div>
+
+<style>
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+.dot.on{background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+.dot.idle{background:var(--info)}
+.dot.off{background:var(--text-sec)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,208,132,.5)}70%{box-shadow:0 0 0 6px rgba(0,208,132,0)}100%{box-shadow:0 0 0 0 rgba(0,208,132,0)}}
+.live-tag{font-size:.72rem;color:var(--green);font-weight:600;margin-left:6px}
+</style>
+
+{% if devices %}
+<div class="card">
+    <div class="table-wrap">
+        <table>
+            <thead><tr>
+                <th>{% trans "Устройство" %}</th><th>{% trans "Device ID" %}</th><th>{% trans "Организация" %}</th>
+                <th>{% trans "Тип" %}</th><th>{% trans "Подключение" %}</th><th>{% trans "Мощность" %}</th>
+                <th>{% trans "Последний контакт" %}</th>
+            </tr></thead>
+            <tbody>
+            {% for device in devices %}
+                <tr>
+                    <td><strong>{{ device.name|default:device.device_id }}</strong></td>
+                    <td class="text-sec">{{ device.device_id }}</td>
+                    <td>{{ device.organization.name|default:"—" }}</td>
+                    <td class="text-sec">{{ device.get_device_type_display|default:"—" }}</td>
+                    <td style="white-space:nowrap">
+                        {% if device.is_online %}
+                        <span class="badge badge-green"><span class="dot {% if device.is_really_online %}on{% else %}idle{% endif %}"></span>{% trans "Подключено" %}</span>
+                        {% if device.is_really_online %}<span class="live-tag">● {% trans "в сети" %}</span>{% endif %}
+                        {% else %}
+                        <span class="badge badge-danger"><span class="dot off"></span>{% trans "Не подключено" %}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ device.power }} {% trans "Вт" %}</td>
+                    <td class="text-sec">{{ device.last_seen|date:"d.m.Y H:i"|default:"—" }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="card text-center" style="padding:48px">
+    <div style="font-size:2.5rem;margin-bottom:12px;opacity:.4">🔌</div>
+    <p class="text-sec" style="font-size:1.1rem">{% trans "Подключённых устройств пока нет" %}</p>
+</div>
+{% endif %}
+{% endblock %}

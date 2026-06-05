@@ -7,6 +7,7 @@ urlpatterns = [
     path('platform/organizations/', views.platform_organizations_view, name='platform_organizations'),
     path('platform/organizations/create/', views.platform_organization_create_view, name='platform_organization_create'),
     path('platform/organizations/<int:org_id>/', views.platform_organization_detail_view, name='platform_organization_detail'),
+    path('platform/devices/', views.platform_devices_view, name='platform_devices'),
     path('platform/notifications/', views.platform_notifications_view, name='platform_notifications'),
     path('platform/notifications/<int:notif_id>/read/', views.platform_notification_read_view, name='platform_notification_read'),
     path('platform/notifications/read-all/', views.platform_notifications_read_all_view, name='platform_notifications_read_all'),

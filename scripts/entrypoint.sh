@@ -21,6 +21,9 @@ python manage.py makemigrations --noinput
 echo "Применяем миграции..."
 python manage.py migrate --noinput
 
+echo "Компилируем переводы (i18n)..."
+python manage.py compilemessages || echo "compilemessages пропущен (gettext не найден)"
+
 echo "Собираем статические файлы..."
 python manage.py collectstatic --noinput
 

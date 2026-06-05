@@ -234,6 +234,28 @@ def platform_organization_detail_view(request, org_id):
 
 
 @platform_admin_required
+def platform_devices_view(request):
+    """Все устройства всех организаций — обзор для администратора платформы."""
+    devices = Device.objects.select_related('organization').all()
+    total = devices.count()
+    connected = devices.filter(is_online=True).count()      # подключённые (вышли на связь)
+    live = sum(1 for d in devices if d.is_really_online)     # активны прямо сейчас (< 90 c)
+    assigned = devices.exclude(organization=None).count()
+    context = {
+        'devices': devices,
+        'stats': {
+            'total_devices': total,
+            'connected': connected,
+            'disconnected': total - connected,
+            'live': live,
+            'assigned': assigned,
+            'unassigned': total - assigned,
+        },
+    }
+    return render(request, 'platform/devices.html', context)
+
+
+@platform_admin_required
 def platform_notifications_view(request):
     """Все уведомления платформы."""
     notifications = Notification.objects.all()[:50]
@@ -500,7 +522,7 @@ def device_detail_view(request, device_id):
     device = get_object_or_404(Device, id=device_id)
     
     # Check permissions
-    if device.organization != request.user.profile.organization and not _is_platform_admin(request.user):
+    if not _is_platform_admin(request.user) and device.organization != request.user.profile.organization:
         from django.http import HttpResponseForbidden
         return HttpResponseForbidden("Вы не можете просматривать чужое устройство.")
         
@@ -585,7 +607,35 @@ def monitoring_view(request):
 
 @organization_user_required
 def alerts_view(request):
-    return render(request, 'alerts.html')
+    """Уведомления организации (на основе БД)."""
+    organization = request.user.profile.organization
+    base_qs = Notification.objects.filter(organization=organization) if organization else Notification.objects.none()
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'read_all':
+            base_qs.filter(is_read=False).update(is_read=True)
+            messages.success(request, 'Все уведомления отмечены как прочитанные.')
+        elif action == 'read':
+            base_qs.filter(id=request.POST.get('notif_id')).update(is_read=True)
+        return redirect('alerts')
+
+    current_filter = request.GET.get('filter', 'all')
+    if current_filter == 'unread':
+        notifications = base_qs.filter(is_read=False)
+    elif current_filter in dict(Notification.LEVEL_CHOICES):
+        notifications = base_qs.filter(level=current_filter)
+    else:
+        current_filter = 'all'
+        notifications = base_qs
+
+    context = {
+        'notifications': notifications[:100],
+        'unread_count': base_qs.filter(is_read=False).count(),
+        'total_count': base_qs.count(),
+        'current_filter': current_filter,
+    }
+    return render(request, 'alerts.html', context)
 
 
 @organization_user_required

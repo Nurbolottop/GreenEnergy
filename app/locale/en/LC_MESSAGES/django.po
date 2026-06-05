@@ -8,1560 +8,1528 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-15 09:42+0600\n"
+"POT-Creation-Date: 2026-06-05 18:01+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: app/templates/alerts.html:3 app/templates/alerts.html:6
-#: app/templates/dashboard.html:12 app/templates/include/homepage.html:98
-#: app/templates/platform/base.html:19 app/templates/platform/dashboard.html:15
-#: app/templates/platform/dashboard.html:64
-#: app/templates/platform/notifications.html:3
-#: app/templates/platform/notifications.html:7
-#: app/templates/platform/organization_detail.html:216
-#: app/templates/platform/settings.html:28
+
+#: templates/alerts.html:3 templates/alerts.html:7 templates/dashboard.html:12
+#: templates/include/homepage.html:78 templates/platform/base.html:19
+#: templates/platform/dashboard.html:15 templates/platform/dashboard.html:64
+#: templates/platform/notifications.html:3
+#: templates/platform/notifications.html:7
+#: templates/platform/organization_detail.html:216
+#: templates/platform/settings.html:28
 msgid "Уведомления"
 msgstr "Notifications"
 
-#: app/templates/alerts.html:9 app/templates/dashboard.html:24
-#: app/templates/platform/dashboard.html:32
-#: app/templates/platform/dashboard.html:65
+#: templates/alerts.html:14 templates/platform/notifications.html:11
+msgid "Прочитать все"
+msgstr "Mark all as read"
+
+#: templates/alerts.html:28 templates/dashboard.html:24
+#: templates/platform/dashboard.html:32 templates/platform/dashboard.html:65
 msgid "Все"
-msgstr ""
+msgstr "All"
 
-#: app/templates/alerts.html:10
+#: templates/alerts.html:29
 msgid "Непрочитанные"
-msgstr ""
+msgstr "Unread"
 
-#: app/templates/alerts.html:11
+#: templates/alerts.html:30
 msgid "Важные"
-msgstr ""
+msgstr "Important"
 
-#: app/templates/alerts.html:12
+#: templates/alerts.html:31
 msgid "Предупреждения"
-msgstr ""
+msgstr "Warnings"
 
-#: app/templates/alerts.html:13
+#: templates/alerts.html:32
 msgid "Инфо"
-msgstr ""
+msgstr "Info"
 
-#: app/templates/alerts.html:18
-msgid "Устройство офлайн"
-msgstr ""
+#: templates/alerts.html:44 templates/platform/dashboard.html:75
+#: templates/platform/notifications.html:32
+msgid "Новое"
+msgstr "New"
 
-#: app/templates/alerts.html:18
-msgid "мин назад"
-msgstr ""
-
-#: app/templates/alerts.html:19 app/templates/alerts.html:25
-#: app/templates/dashboard.html:29
-msgid "Устройство"
-msgstr ""
-
-#: app/templates/alerts.html:19
-msgid "перестало отвечать."
-msgstr ""
-
-#: app/templates/alerts.html:20 app/templates/alerts.html:26
-#: app/templates/alerts.html:32 app/templates/alerts.html:38
-#: app/templates/platform/notifications.html:46
+#: templates/alerts.html:54 templates/alerts.html:57
+#: templates/platform/notifications.html:41
+#: templates/platform/notifications.html:43
 msgid "Прочитано"
-msgstr ""
+msgstr "Read"
 
-#: app/templates/alerts.html:24
-msgid "Превышен лимит"
-msgstr ""
+#: templates/alerts.html:66 templates/platform/dashboard.html:85
+#: templates/platform/notifications.html:52
+msgid "Нет уведомлений"
+msgstr "No notifications"
 
-#: app/templates/alerts.html:24
-msgid "час назад"
-msgstr ""
-
-#: app/templates/alerts.html:25
-msgid "Серверная стойка"
-msgstr ""
-
-#: app/templates/alerts.html:25
-msgid "лимит"
-msgstr ""
-
-#: app/templates/alerts.html:30
-msgid "Питание выключено"
-msgstr ""
-
-#: app/templates/alerts.html:30 app/templates/alerts.html:36
-msgid "Вчера"
-msgstr ""
-
-#: app/templates/alerts.html:31
-msgid "Освещение (Склад А) отключено пользователем Admin."
-msgstr ""
-
-#: app/templates/alerts.html:36
-msgid "Синхронизация завершена"
-msgstr ""
-
-#: app/templates/alerts.html:37
-msgid "Данные объекта Главный офис успешно получены."
-msgstr ""
-
-#: app/templates/dashboard.html:3
+#: templates/dashboard.html:3
 msgid "Дашборд"
-msgstr ""
-
-#: app/templates/dashboard.html:6
-msgid "Обзор"
-msgstr ""
-
-#: app/templates/dashboard.html:9
-msgid "Потребление сегодня"
-msgstr ""
-
-#: app/templates/dashboard.html:10
-msgid "Текущая мощность"
-msgstr ""
-
-#: app/templates/dashboard.html:11
-msgid "Устройств онлайн"
-msgstr ""
-
-#: app/templates/dashboard.html:13
-msgid "Расход за месяц"
-msgstr ""
-
-#: app/templates/dashboard.html:17
-msgid "Потребление за 24 часа"
-msgstr ""
-
-#: app/templates/dashboard.html:23
-msgid "Активные устройства"
-msgstr ""
-
-#: app/templates/dashboard.html:29 app/templates/monitoring.html:78
-msgid "Объект"
-msgstr ""
-
-#: app/templates/dashboard.html:29 app/templates/monitoring.html:79
-msgid "Зона"
-msgstr ""
-
-#: app/templates/dashboard.html:30 app/templates/platform/dashboard.html:38
-#: app/templates/platform/organization_detail.html:109
-#: app/templates/platform/organization_detail.html:176
-#: app/templates/platform/organizations.html:28
-#: app/templates/platform/requests.html:31
-#: app/templates/platform/settings.html:119
-#: app/templates/platform/settings.html:189
-#: app/templates/platform/settings.html:412
-#: app/templates/platform/settings.html:550
-msgid "Статус"
-msgstr ""
-
-#: app/templates/dashboard.html:30 app/templates/device_detail.html:57
-#: app/templates/device_detail.html:89
-msgid "Мощность"
-msgstr ""
-
-#: app/templates/dashboard.html:30
-msgid "Питание"
-msgstr ""
-
-#: app/templates/dashboard.html:38 app/templates/dashboard.html:45
-#: app/templates/platform/dashboard.html:52
-#: app/templates/platform/organizations.html:46
-#: app/templates/platform/requests.html:54
-msgid "Открыть"
-msgstr ""
-
-#: app/templates/dashboard_base.html:15
-msgid "Главная"
 msgstr "Dashboard"
 
-#: app/templates/dashboard_base.html:16 app/templates/devices.html:3
-#: app/templates/platform/base.html:18 app/templates/platform/settings.html:27
-#: app/templates/platform/settings.html:118
+#: templates/dashboard.html:6
+msgid "Обзор"
+msgstr "Overview"
+
+#: templates/dashboard.html:9
+msgid "Потребление сегодня"
+msgstr "Consumption today"
+
+#: templates/dashboard.html:10
+msgid "Текущая мощность"
+msgstr "Current power"
+
+#: templates/dashboard.html:11
+msgid "Устройств онлайн"
+msgstr "Devices online"
+
+#: templates/dashboard.html:13
+msgid "Расход за месяц"
+msgstr "Monthly usage"
+
+#: templates/dashboard.html:17
+msgid "Потребление за 24 часа"
+msgstr "Consumption over 24 hours"
+
+#: templates/dashboard.html:23
+msgid "Активные устройства"
+msgstr "Active devices"
+
+#: templates/dashboard.html:29 templates/platform/devices.html:31
+msgid "Устройство"
+msgstr "Device"
+
+#: templates/dashboard.html:29 templates/monitoring.html:78
+msgid "Объект"
+msgstr "Facility"
+
+#: templates/dashboard.html:29 templates/monitoring.html:79
+msgid "Зона"
+msgstr "Zone"
+
+#: templates/dashboard.html:30 templates/platform/dashboard.html:38
+#: templates/platform/organization_detail.html:109
+#: templates/platform/organization_detail.html:176
+#: templates/platform/organizations.html:28
+#: templates/platform/requests.html:31 templates/platform/settings.html:119
+#: templates/platform/settings.html:189 templates/platform/settings.html:412
+#: templates/platform/settings.html:550
+msgid "Статус"
+msgstr "Status"
+
+#: templates/dashboard.html:30 templates/device_detail.html:57
+#: templates/device_detail.html:89 templates/platform/devices.html:32
+msgid "Мощность"
+msgstr "Power"
+
+#: templates/dashboard.html:30
+msgid "Питание"
+msgstr "Power"
+
+#: templates/dashboard.html:38 templates/dashboard.html:45
+#: templates/platform/dashboard.html:52
+#: templates/platform/organizations.html:46
+#: templates/platform/requests.html:54
+msgid "Открыть"
+msgstr "Open"
+
+#: templates/dashboard_base.html:15
+msgid "Главная"
+msgstr "Home"
+
+#: templates/dashboard_base.html:16 templates/devices.html:3
+#: templates/platform/base.html:18 templates/platform/devices.html:3
+#: templates/platform/devices.html:6 templates/platform/settings.html:27
+#: templates/platform/settings.html:118
 msgid "Устройства"
 msgstr "Devices"
 
-#: app/templates/dashboard_base.html:17 app/templates/monitoring.html:3
+#: templates/dashboard_base.html:17 templates/monitoring.html:3
 msgid "Мониторинг"
 msgstr "Monitoring"
 
-#: app/templates/dashboard_base.html:18 app/templates/platform/base.html:21
-#: app/templates/settings.html:3 app/templates/settings.html:6
+#: templates/dashboard_base.html:18 templates/platform/base.html:21
+#: templates/settings.html:3 templates/settings.html:6
 msgid "Настройки"
 msgstr "Settings"
 
-#: app/templates/dashboard_base.html:21 app/templates/platform/base.html:24
+#: templates/dashboard_base.html:21 templates/platform/base.html:24
 msgid "Выйти"
 msgstr "Logout"
 
-#: app/templates/device_detail.html:6
-#: app/templates/platform/organization_create.html:6
-#: app/templates/platform/organization_detail.html:6
-#: app/templates/platform/request_detail.html:6
+#: templates/device_detail.html:6
+#: templates/platform/organization_create.html:6
+#: templates/platform/organization_detail.html:6
+#: templates/platform/request_detail.html:6
 msgid "Назад к списку"
-msgstr ""
+msgstr "Back to list"
 
-#: app/templates/device_detail.html:61 app/templates/device_detail.html:90
+#: templates/device_detail.html:61 templates/device_detail.html:90
 msgid "Энергия"
-msgstr ""
+msgstr "Energy"
 
-#: app/templates/device_detail.html:65 app/templates/device_detail.html:87
+#: templates/device_detail.html:65 templates/device_detail.html:87
 msgid "Напряжение"
-msgstr ""
+msgstr "Voltage"
 
-#: app/templates/device_detail.html:69 app/templates/device_detail.html:88
+#: templates/device_detail.html:69 templates/device_detail.html:88
 msgid "Ток"
-msgstr ""
+msgstr "Current"
 
-#: app/templates/device_detail.html:73
+#: templates/device_detail.html:73
 msgid "Лимит мощности"
-msgstr ""
+msgstr "Power limit"
 
-#: app/templates/device_detail.html:81
+#: templates/device_detail.html:81
 msgid "История показаний (последние 30)"
-msgstr ""
+msgstr "Readings history (last 30)"
 
-#: app/templates/device_detail.html:86
+#: templates/device_detail.html:86
 msgid "Время"
-msgstr ""
+msgstr "Time"
 
-#: app/templates/device_detail.html:91
+#: templates/device_detail.html:91
 msgid "Реле"
-msgstr ""
+msgstr "Relay"
 
-#: app/templates/devices.html:7
+#: templates/devices.html:7
 msgid "Устройства организации"
 msgstr "Organization Devices"
 
-#: app/templates/devices.html:8
+#: templates/devices.html:8
 msgid "Добавить устройство"
 msgstr "Add Device"
 
-#: app/templates/devices.html:14 app/templates/platform/dashboard.html:12
+#: templates/devices.html:14 templates/platform/dashboard.html:12
+#: templates/platform/devices.html:10
 msgid "Всего устройств"
 msgstr "Total Devices"
 
-#: app/templates/devices.html:18 app/templates/platform/dashboard.html:13
+#: templates/devices.html:18 templates/platform/dashboard.html:13
 msgid "Онлайн"
 msgstr "Online"
 
-#: app/templates/devices.html:22 app/templates/platform/dashboard.html:14
+#: templates/devices.html:22 templates/platform/dashboard.html:14
 msgid "Офлайн"
 msgstr "Offline"
 
-#: app/templates/devices.html:26
+#: templates/devices.html:26
 msgid "Суммарная мощность"
 msgstr "Total Power"
 
-#: app/templates/devices.html:30
+#: templates/devices.html:30
 msgid "Суммарная энергия"
 msgstr "Total Energy"
 
-#: app/templates/devices.html:34
+#: templates/devices.html:34
 msgid "Реле включено"
 msgstr "Relay ON"
 
-#: app/templates/include/footer.html:5
+#: templates/include/footer.html:5
 msgid "Все права защищены."
-msgstr ""
+msgstr "All rights reserved."
 
-#: app/templates/include/header.html:8 app/templates/include/header.html:35
-#: app/templates/include/homepage.html:55
+#: templates/include/header.html:8 templates/include/header.html:43
+#: templates/include/homepage.html:51
 msgid "Возможности"
 msgstr "Features"
 
-#: app/templates/include/header.html:9 app/templates/include/header.html:36
+#: templates/include/header.html:9 templates/include/header.html:44
 msgid "Как работает"
 msgstr "How it works"
 
-#: app/templates/include/header.html:10 app/templates/include/header.html:37
-#: app/templates/include/homepage.html:178
-#: app/templates/platform/settings.html:25
-#: app/templates/platform/settings.html:99
-msgid "Тарифы"
-msgstr "Pricing"
-
-#: app/templates/include/header.html:20
+#: templates/include/header.html:28
 msgid "Сменить тему"
-msgstr ""
+msgstr "Switch theme"
 
-#: app/templates/include/header.html:21 app/templates/include/header.html:48
-#: app/templates/login.html:44
+#: templates/include/header.html:29 templates/include/header.html:55
+#: templates/login.html:44
 msgid "Войти"
 msgstr "Login"
 
-#: app/templates/include/header.html:22
-#: app/templates/platform/request_detail.html:3
+#: templates/include/header.html:30 templates/platform/request_detail.html:3
 msgid "Заявка"
 msgstr "Request"
 
-#: app/templates/include/header.html:49 app/templates/include/homepage.html:16
-#: app/templates/include/homepage.html:218
+#: templates/include/header.html:56 templates/include/homepage.html:16
+#: templates/include/homepage.html:191
 msgid "Оставить заявку"
 msgstr "Leave a request"
 
-#: app/templates/include/homepage.html:4
+#: templates/include/homepage.html:4
 msgid "Мониторинг электропотребления"
-msgstr ""
+msgstr "Electricity consumption monitoring"
 
-#: app/templates/include/homepage.html:13
+#: templates/include/homepage.html:13
 msgid "Умный контроль"
 msgstr "Smart control"
 
-#: app/templates/include/homepage.html:13
+#: templates/include/homepage.html:13
 msgid "энергопотребления"
 msgstr "of energy consumption"
 
-#: app/templates/include/homepage.html:13
+#: templates/include/homepage.html:13
 msgid "для бизнеса"
 msgstr "for business"
 
-#: app/templates/include/homepage.html:14
+#: templates/include/homepage.html:14
 msgid ""
 "Отслеживайте расход электроэнергии, управляйте устройствами и получайте "
 "аналитику в реальном времени."
 msgstr ""
+"Track electricity usage, control devices, and get real-time analytics."
 
-#: app/templates/include/homepage.html:17
-msgid "Демо кабинет"
-msgstr "Demo Dashboard"
+#: templates/include/homepage.html:17
+msgid "Кабинет"
+msgstr "Dashboard"
 
-#: app/templates/include/homepage.html:24
-msgid "Dashboard Preview — 800×600"
-msgstr ""
-
-#: app/templates/include/homepage.html:35
+#: templates/include/homepage.html:31
 msgid "мониторинг"
 msgstr "monitoring"
 
-#: app/templates/include/homepage.html:38
+#: templates/include/homepage.html:34
 msgid "сек"
 msgstr "sec"
 
-#: app/templates/include/homepage.html:39
+#: templates/include/homepage.html:35
 msgid "обновление данных"
 msgstr "data update"
 
-#: app/templates/include/homepage.html:43
+#: templates/include/homepage.html:39
 msgid "языка интерфейса"
 msgstr "interface languages"
 
-#: app/templates/include/homepage.html:47
+#: templates/include/homepage.html:43
 msgid "архитектура"
 msgstr "architecture"
 
-#: app/templates/include/homepage.html:56
+#: templates/include/homepage.html:52
 msgid "Всё для управления энергией"
 msgstr "Everything for energy management"
 
-#: app/templates/include/homepage.html:57
+#: templates/include/homepage.html:53
 msgid ""
 "Платформа объединяет мониторинг, управление и аналитику в одном интерфейсе."
 msgstr ""
+"The platform combines monitoring, control, and analytics in a single "
+"interface."
 
-#: app/templates/include/homepage.html:62
+#: templates/include/homepage.html:58
 msgid "Мониторинг потребления"
 msgstr "Consumption monitoring"
 
-#: app/templates/include/homepage.html:63
+#: templates/include/homepage.html:59
 msgid "Данные в реальном времени с каждого подключённого устройства."
 msgstr "Real-time data from every connected device."
 
-#: app/templates/include/homepage.html:66
-#: app/templates/include/homepage.html:75
-#: app/templates/include/homepage.html:84
-#: app/templates/include/homepage.html:93
-#: app/templates/include/homepage.html:102
-#: app/templates/include/homepage.html:111
-msgid "Скриншот — 600×300"
-msgstr ""
-
-#: app/templates/include/homepage.html:71
+#: templates/include/homepage.html:63
 msgid "Управление устройствами"
 msgstr "Device management"
 
-#: app/templates/include/homepage.html:72
+#: templates/include/homepage.html:64
 msgid "Удалённое включение и отключение питания одним кликом."
 msgstr "Remote power toggling with a single click."
 
-#: app/templates/include/homepage.html:80
+#: templates/include/homepage.html:68
 msgid "Объекты и зоны"
 msgstr "Facilities and zones"
 
-#: app/templates/include/homepage.html:81
+#: templates/include/homepage.html:69
 msgid "Структурируйте инфраструктуру по филиалам и кабинетам."
 msgstr "Structure your infrastructure by branches and offices."
 
-#: app/templates/include/homepage.html:89
+#: templates/include/homepage.html:73
 msgid "Аналитика и отчёты"
 msgstr "Analytics and reports"
 
-#: app/templates/include/homepage.html:90
+#: templates/include/homepage.html:74
 msgid "Графики и отчёты за любой период."
 msgstr "Charts and reports for any period."
 
-#: app/templates/include/homepage.html:99
+#: templates/include/homepage.html:79
 msgid "Мгновенные алерты при превышении лимитов."
 msgstr "Instant alerts upon exceeding limits."
 
-#: app/templates/include/homepage.html:107
+#: templates/include/homepage.html:83
 msgid "Ролевая система"
 msgstr "Role-based access"
 
-#: app/templates/include/homepage.html:108
+#: templates/include/homepage.html:84
 msgid "Гибкое управление правами сотрудников."
 msgstr "Flexible employee permissions management."
 
-#: app/templates/include/homepage.html:120
+#: templates/include/homepage.html:92
 msgid "Процесс"
 msgstr "Process"
 
-#: app/templates/include/homepage.html:121
+#: templates/include/homepage.html:93
 msgid "Как это работает"
 msgstr "How it works"
 
-#: app/templates/include/homepage.html:126
+#: templates/include/homepage.html:98
 msgid "Создание организации"
 msgstr "Create organization"
 
-#: app/templates/include/homepage.html:127
+#: templates/include/homepage.html:99
 msgid "Заключаем договор и настраиваем профиль компании."
 msgstr "We sign a contract and set up the company profile."
 
-#: app/templates/include/homepage.html:131
+#: templates/include/homepage.html:103
 msgid "Подключение объектов"
 msgstr "Connect facilities"
 
-#: app/templates/include/homepage.html:132
+#: templates/include/homepage.html:104
 msgid "Добавляем объекты, зоны и IoT-устройства."
 msgstr "Add facilities, zones, and IoT devices."
 
-#: app/templates/include/homepage.html:136
+#: templates/include/homepage.html:108
 msgid "Контроль 24/7"
 msgstr "24/7 Control"
 
-#: app/templates/include/homepage.html:137
+#: templates/include/homepage.html:109
 msgid "Мониторинг, управление и аналитика в реальном времени."
 msgstr "Real-time monitoring, control, and analytics."
 
-#: app/templates/include/homepage.html:145
+#: templates/include/homepage.html:117
 msgid "Применение"
 msgstr "Industries"
 
-#: app/templates/include/homepage.html:146
+#: templates/include/homepage.html:118
 msgid "Для любого бизнеса"
 msgstr "For any business"
 
-#: app/templates/include/homepage.html:149
+#: templates/include/homepage.html:163
 msgid "Офисы"
 msgstr "Offices"
 
-#: app/templates/include/homepage.html:150
+#: templates/include/homepage.html:164
 msgid "Магазины"
 msgstr "Stores"
 
-#: app/templates/include/homepage.html:151
+#: templates/include/homepage.html:165
 msgid "Склады"
 msgstr "Warehouses"
 
-#: app/templates/include/homepage.html:152
+#: templates/include/homepage.html:166
 msgid "Кафе"
 msgstr "Cafes"
 
-#: app/templates/include/homepage.html:153
+#: templates/include/homepage.html:167
 msgid "Университеты"
 msgstr "Universities"
 
-#: app/templates/include/homepage.html:154
+#: templates/include/homepage.html:168
 msgid "Гостиницы"
 msgstr "Hotels"
 
-#: app/templates/include/homepage.html:155
+#: templates/include/homepage.html:169
 msgid "Арендные помещения"
 msgstr "Rental spaces"
 
-#: app/templates/include/homepage.html:156
+#: templates/include/homepage.html:170
 msgid "Производство"
 msgstr "Manufacturing"
 
-#: app/templates/include/homepage.html:163
-msgid "Интерфейс"
-msgstr ""
-
-#: app/templates/include/homepage.html:164
-msgid "Современный кабинет"
-msgstr ""
-
-#: app/templates/include/homepage.html:165
-msgid "Удобный интерфейс для контроля всех процессов."
-msgstr ""
-
-#: app/templates/include/homepage.html:170
-msgid "Полный скриншот кабинета — 1200×525"
-msgstr ""
-
-#: app/templates/include/homepage.html:179
-msgid "Выберите план"
-msgstr ""
-
-#: app/templates/include/homepage.html:184
-#: app/templates/include/homepage.html:190
-msgid "По запросу"
-msgstr ""
-
-#: app/templates/include/homepage.html:185
-#: app/templates/include/homepage.html:191
-msgid "Узнать больше"
-msgstr ""
-
-#: app/templates/include/homepage.html:188
-msgid "ПОПУЛЯРНЫЙ"
-msgstr ""
-
-#: app/templates/include/homepage.html:195
-msgid "Индивидуально"
-msgstr ""
-
-#: app/templates/include/homepage.html:196
-msgid "Связаться"
-msgstr ""
-
-#: app/templates/include/homepage.html:205
+#: templates/include/homepage.html:178
 msgid "Частые вопросы"
 msgstr "Frequently Asked Questions"
 
-#: app/templates/include/homepage.html:207
+#: templates/include/homepage.html:180
 msgid "Как подключить организацию?"
 msgstr "How to connect an organization?"
 
-#: app/templates/include/homepage.html:207
+#: templates/include/homepage.html:180
 msgid ""
 "Оставьте заявку — менеджер свяжется для заключения договора и настройки."
 msgstr ""
+"Leave a request — a manager will contact you to sign a contract and set "
+"things up."
 
-#: app/templates/include/homepage.html:208
+#: templates/include/homepage.html:181
 msgid "Можно ли подключить несколько объектов?"
 msgstr "Can I connect multiple facilities?"
 
-#: app/templates/include/homepage.html:208
+#: templates/include/homepage.html:181
 msgid "Да. Иерархия: Организация → Объекты → Зоны → Устройства."
 msgstr "Yes. Hierarchy: Organization → Facilities → Zones → Devices."
 
-#: app/templates/include/homepage.html:209
+#: templates/include/homepage.html:182
 msgid "Можно ли управлять питанием удалённо?"
 msgstr "Can I manage power remotely?"
 
-#: app/templates/include/homepage.html:209
+#: templates/include/homepage.html:182
 msgid "Да, через кабинет в один клик."
 msgstr "Yes, via the dashboard in one click."
 
-#: app/templates/include/homepage.html:210
+#: templates/include/homepage.html:183
 msgid "Есть ли история потребления?"
 msgstr "Is there a consumption history?"
 
-#: app/templates/include/homepage.html:210
+#: templates/include/homepage.html:183
 msgid "Да, графики и отчёты за любой период."
 msgstr "Yes, charts and reports for any period."
 
-#: app/templates/include/homepage.html:211
+#: templates/include/homepage.html:184
 msgid "Поддерживается ли кыргызский язык?"
 msgstr "Is the Kyrgyz language supported?"
 
-#: app/templates/include/homepage.html:211
+#: templates/include/homepage.html:184
 msgid "Да — RU, EN и KG."
 msgstr "Yes — RU, EN and KG."
 
-#: app/templates/include/homepage.html:217
+#: templates/include/homepage.html:190
 msgid "Контакты"
 msgstr "Contact"
 
-#: app/templates/include/homepage.html:222
-msgid "Свяжитесь с нами"
-msgstr "Contact us"
+#: templates/include/homepage.html:196
+msgid "Готовы начать?"
+msgstr "Ready to start?"
 
-#: app/templates/include/homepage.html:223
+#: templates/include/homepage.html:197
 msgid ""
-"Оставьте контактные данные, и мы расскажем о возможностях платформы для "
-"вашего бизнеса."
+"Оставьте контактные данные, и мы свяжемся с вами, чтобы обсудить внедрение "
+"Green Energy на ваших объектах."
 msgstr ""
+"Leave your contact details and we'll get in touch to discuss deploying Green"
+" Energy at your facilities."
 
-#: app/templates/include/homepage.html:226
-msgid "Фото офиса / команды — 600×450"
-msgstr ""
-
-#: app/templates/include/homepage.html:241
-#: app/templates/platform/dashboard.html:37
-#: app/templates/platform/organizations.html:27
-#: app/templates/platform/request_detail.html:40
-#: app/templates/platform/requests.html:27
-msgid "Организация"
-msgstr "Organization"
-
-#: app/templates/include/homepage.html:242
-#: app/templates/platform/settings.html:548 app/templates/settings.html:25
-msgid "Имя"
-msgstr "Name"
-
-#: app/templates/include/homepage.html:243
-#: app/templates/platform/dashboard.html:37
-#: app/templates/platform/organization_create.html:42
-#: app/templates/platform/organization_detail.html:77
-#: app/templates/platform/organization_detail.html:135
-#: app/templates/platform/organizations.html:27
-#: app/templates/platform/request_detail.html:51 app/templates/settings.html:51
+#: templates/include/homepage.html:210 templates/include/homepage.html:236
+#: templates/platform/dashboard.html:37
+#: templates/platform/organization_create.html:42
+#: templates/platform/organization_detail.html:77
+#: templates/platform/organization_detail.html:135
+#: templates/platform/organizations.html:27
+#: templates/platform/request_detail.html:51 templates/settings.html:51
 msgid "Телефон"
 msgstr "Phone"
 
-#: app/templates/include/homepage.html:244
-#: app/templates/platform/organization_create.html:49
-#: app/templates/platform/organization_detail.html:84
-#: app/templates/platform/organization_detail.html:139
-#: app/templates/platform/organization_detail.html:176
-#: app/templates/platform/request_detail.html:55 app/templates/settings.html:21
+#: templates/include/homepage.html:232 templates/platform/dashboard.html:37
+#: templates/platform/devices.html:31 templates/platform/organizations.html:27
+#: templates/platform/request_detail.html:40
+#: templates/platform/requests.html:27
+msgid "Организация"
+msgstr "Organization"
+
+#: templates/include/homepage.html:233 templates/platform/settings.html:548
+#: templates/settings.html:25
+msgid "Имя"
+msgstr "Name"
+
+#: templates/include/homepage.html:237
+#: templates/platform/organization_create.html:49
+#: templates/platform/organization_detail.html:84
+#: templates/platform/organization_detail.html:139
+#: templates/platform/organization_detail.html:176
+#: templates/platform/request_detail.html:55 templates/settings.html:21
 msgid "Email"
 msgstr "Email"
 
-#: app/templates/include/homepage.html:245
-#: app/templates/platform/request_detail.html:61
-#: app/templates/platform/requests.html:30
+#: templates/include/homepage.html:239
+#: templates/platform/request_detail.html:61
+#: templates/platform/requests.html:30
 msgid "Комментарий"
 msgstr "Comment"
 
-#: app/templates/include/homepage.html:246
-msgid "Отправить"
-msgstr ""
+#: templates/include/homepage.html:240
+msgid "Отправить заявку"
+msgstr "Submit request"
 
-#: app/templates/login.html:3
+#: templates/login.html:3
 msgid "Вход"
-msgstr ""
+msgstr "Sign in"
 
-#: app/templates/login.html:10
+#: templates/login.html:10
 msgid "Вход в систему Green Energy"
-msgstr ""
+msgstr "Sign in to Green Energy"
 
-#: app/templates/login.html:11
+#: templates/login.html:11
 msgid ""
 "Используйте username и password, выданные после подключения организации."
 msgstr ""
+"Use the username and password issued after your organization was connected."
 
-#: app/templates/login.html:31
-#: app/templates/platform/organization_create.html:84
-#: app/templates/platform/organization_detail.html:176
-#: app/templates/platform/settings.html:547
+#: templates/login.html:31 templates/platform/organization_create.html:84
+#: templates/platform/organization_detail.html:176
+#: templates/platform/settings.html:547
 msgid "Username"
-msgstr ""
+msgstr "Username"
 
-#: app/templates/login.html:33
+#: templates/login.html:33
 msgid "Введите username"
-msgstr ""
+msgstr "Enter username"
 
-#: app/templates/login.html:37
+#: templates/login.html:37
 msgid "Пароль"
-msgstr ""
+msgstr "Password"
 
-#: app/templates/login.html:39
+#: templates/login.html:39
 msgid "Введите пароль"
-msgstr ""
+msgstr "Enter password"
 
-#: app/templates/login.html:42
+#: templates/login.html:42
 msgid "Запомнить меня"
-msgstr ""
+msgstr "Remember me"
 
-#: app/templates/login.html:48
+#: templates/login.html:48
 msgid "На главную"
-msgstr ""
+msgstr "To home"
 
-#: app/templates/monitoring.html:10
+#: templates/monitoring.html:10
 msgid "Аналитика и Мониторинг"
 msgstr "Analytics & Monitoring"
 
-#: app/templates/monitoring.html:13
+#: templates/monitoring.html:13
 msgid "Все объекты"
-msgstr ""
+msgstr "All facilities"
 
-#: app/templates/monitoring.html:14
+#: templates/monitoring.html:14
 msgid "Главный офис"
-msgstr ""
+msgstr "Head office"
 
-#: app/templates/monitoring.html:15
+#: templates/monitoring.html:15
 msgid "Склад А"
-msgstr ""
+msgstr "Warehouse A"
 
-#: app/templates/monitoring.html:18
+#: templates/monitoring.html:18
 msgid "Все устройства"
-msgstr ""
+msgstr "All devices"
 
-#: app/templates/monitoring.html:19
+#: templates/monitoring.html:19
 msgid "Кондиционеры"
-msgstr ""
+msgstr "Air conditioners"
 
-#: app/templates/monitoring.html:20
+#: templates/monitoring.html:20
 msgid "Освещение"
-msgstr ""
+msgstr "Lighting"
 
-#: app/templates/monitoring.html:33
+#: templates/monitoring.html:33
 msgid "Текущая нагрузка"
 msgstr "Current Load"
 
-#: app/templates/monitoring.html:38
+#: templates/monitoring.html:38
 msgid "Потреблено за 24ч"
 msgstr "Consumed 24h"
 
-#: app/templates/monitoring.html:43
+#: templates/monitoring.html:43
 msgid "Пик нагрузки"
 msgstr "Peak Load"
 
-#: app/templates/monitoring.html:48
+#: templates/monitoring.html:48
 msgid "Сэкономлено CO₂"
 msgstr "CO₂ Saved"
 
-#: app/templates/monitoring.html:57
+#: templates/monitoring.html:57
 msgid "Общее потребление энергии (кВт·ч)"
 msgstr "Total Energy Consumption (kWh)"
 
-#: app/templates/monitoring.html:65
+#: templates/monitoring.html:65
 msgid "Потребление по зонам"
 msgstr "Consumption by Zone"
 
-#: app/templates/monitoring.html:73
+#: templates/monitoring.html:73
 msgid "Детализация по зонам"
-msgstr ""
+msgstr "Breakdown by zone"
 
-#: app/templates/monitoring.html:80
+#: templates/monitoring.html:80
 msgid "Устройств"
-msgstr ""
+msgstr "Devices"
 
-#: app/templates/monitoring.html:81
+#: templates/monitoring.html:81
 msgid "Потребление (24ч)"
-msgstr ""
+msgstr "Consumption (24h)"
 
-#: app/templates/monitoring.html:82
+#: templates/monitoring.html:82
 msgid "Доля"
-msgstr ""
+msgstr "Share"
 
-#: app/templates/monitoring.html:83
+#: templates/monitoring.html:83
 msgid "Пик"
-msgstr ""
+msgstr "Peak"
 
-#: app/templates/platform/base.html:14
+#: templates/platform/base.html:14
 msgid "Администратор"
-msgstr ""
+msgstr "Administrator"
 
-#: app/templates/platform/base.html:16
+#: templates/platform/base.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
-#: app/templates/platform/base.html:17 app/templates/platform/dashboard.html:31
-#: app/templates/platform/organizations.html:3
-#: app/templates/platform/organizations.html:7
+#: templates/platform/base.html:17 templates/platform/dashboard.html:31
+#: templates/platform/organizations.html:3
+#: templates/platform/organizations.html:7
 msgid "Организации"
-msgstr ""
+msgstr "Organizations"
 
-#: app/templates/platform/base.html:20 app/templates/platform/dashboard.html:16
-#: app/templates/platform/settings.html:30
+#: templates/platform/base.html:20 templates/platform/dashboard.html:16
+#: templates/platform/settings.html:30
 msgid "Заявки"
-msgstr ""
+msgstr "Requests"
 
-#: app/templates/platform/base.html:32
+#: templates/platform/base.html:32
 msgid "Platform Admin"
-msgstr ""
+msgstr "Platform Admin"
 
-#: app/templates/platform/dashboard.html:3
-#: app/templates/platform/dashboard.html:6
+#: templates/platform/dashboard.html:3 templates/platform/dashboard.html:6
 msgid "Platform Dashboard"
-msgstr ""
+msgstr "Platform Dashboard"
 
-#: app/templates/platform/dashboard.html:10
+#: templates/platform/dashboard.html:10
 msgid "Всего организаций"
-msgstr ""
+msgstr "Total organizations"
 
-#: app/templates/platform/dashboard.html:11
-#: app/templates/platform/settings.html:105
+#: templates/platform/dashboard.html:11 templates/platform/settings.html:105
 msgid "Активных"
-msgstr ""
+msgstr "Active"
 
-#: app/templates/platform/dashboard.html:17
+#: templates/platform/dashboard.html:17
 msgid "Общее потребление"
-msgstr ""
+msgstr "Total consumption"
 
-#: app/templates/platform/dashboard.html:22
-#: app/templates/platform/organization_create.html:3
-#: app/templates/platform/organizations.html:8
+#: templates/platform/dashboard.html:22
+#: templates/platform/organization_create.html:3
+#: templates/platform/organizations.html:8
 msgid "Добавить организацию"
-msgstr ""
+msgstr "Add organization"
 
-#: app/templates/platform/dashboard.html:23
+#: templates/platform/dashboard.html:23
 msgid "Все организации"
-msgstr ""
+msgstr "All organizations"
 
-#: app/templates/platform/dashboard.html:24
+#: templates/platform/dashboard.html:24
 msgid "Все уведомления"
-msgstr ""
+msgstr "All notifications"
 
-#: app/templates/platform/dashboard.html:37
-#: app/templates/platform/organizations.html:27
-#: app/templates/platform/requests.html:28
+#: templates/platform/dashboard.html:37
+#: templates/platform/organizations.html:27
+#: templates/platform/requests.html:28
 msgid "Контакт"
-msgstr ""
+msgstr "Contact"
 
-#: app/templates/platform/dashboard.html:38
-#: app/templates/platform/organization_detail.html:161
-#: app/templates/platform/organizations.html:29
+#: templates/platform/dashboard.html:38
+#: templates/platform/organization_detail.html:161
+#: templates/platform/organizations.html:29
 msgid "Пользователей"
-msgstr ""
+msgstr "Users"
 
-#: app/templates/platform/dashboard.html:38
-#: app/templates/platform/organizations.html:29
-#: app/templates/platform/requests.html:26
-#: app/templates/platform/settings.html:407
+#: templates/platform/dashboard.html:38
+#: templates/platform/organizations.html:29
+#: templates/platform/requests.html:26 templates/platform/settings.html:407
 msgid "Дата"
-msgstr ""
+msgstr "Date"
 
-#: app/templates/platform/dashboard.html:47
-#: app/templates/platform/organization_detail.html:111
-#: app/templates/platform/organizations.html:39
-#: app/templates/platform/settings.html:85
+#: templates/platform/dashboard.html:47
+#: templates/platform/organization_detail.html:111
+#: templates/platform/organizations.html:39
+#: templates/platform/settings.html:85
 msgid "Активна"
-msgstr ""
+msgstr "Active"
 
-#: app/templates/platform/dashboard.html:48
-#: app/templates/platform/organization_detail.html:112
-#: app/templates/platform/organizations.html:42
+#: templates/platform/dashboard.html:48
+#: templates/platform/organization_detail.html:112
+#: templates/platform/organizations.html:42
 msgid "Неактивна"
-msgstr ""
+msgstr "Inactive"
 
-#: app/templates/platform/dashboard.html:75
-#: app/templates/platform/notifications.html:35
-msgid "Новое"
-msgstr ""
+#: templates/platform/devices.html:11 templates/platform/devices.html:44
+msgid "Подключено"
+msgstr "Connected"
 
-#: app/templates/platform/dashboard.html:85
-#: app/templates/platform/notifications.html:54
-msgid "Нет уведомлений"
-msgstr ""
+#: templates/platform/devices.html:12
+msgid "В сети сейчас"
+msgstr "Online now"
 
-#: app/templates/platform/notifications.html:11
-msgid "Прочитать все"
-msgstr ""
+#: templates/platform/devices.html:13 templates/platform/devices.html:47
+msgid "Не подключено"
+msgstr "Not connected"
 
-#: app/templates/platform/organization_create.html:8
+#: templates/platform/devices.html:14
+msgid "Не назначено"
+msgstr "Unassigned"
+
+#: templates/platform/devices.html:31
+msgid "Device ID"
+msgstr "Device ID"
+
+#: templates/platform/devices.html:32
+msgid "Тип"
+msgstr "Type"
+
+#: templates/platform/devices.html:32
+msgid "Подключение"
+msgstr "Connection"
+
+#: templates/platform/devices.html:33
+msgid "Последний контакт"
+msgstr "Last contact"
+
+#: templates/platform/devices.html:45
+msgid "в сети"
+msgstr "online"
+
+#: templates/platform/devices.html:50
+msgid "Вт"
+msgstr "W"
+
+#: templates/platform/devices.html:61
+msgid "Подключённых устройств пока нет"
+msgstr "No connected devices yet"
+
+#: templates/platform/organization_create.html:8
 msgid "Новая организация"
-msgstr ""
+msgstr "New organization"
 
-#: app/templates/platform/organization_create.html:28
-#: app/templates/platform/organization_detail.html:63
-#: app/templates/settings.html:38
+#: templates/platform/organization_create.html:28
+#: templates/platform/organization_detail.html:63 templates/settings.html:38
 msgid "Данные организации"
-msgstr ""
+msgstr "Organization details"
 
-#: app/templates/platform/organization_create.html:32
+#: templates/platform/organization_create.html:32
 msgid "Название организации"
-msgstr ""
+msgstr "Organization name"
 
-#: app/templates/platform/organization_create.html:33
+#: templates/platform/organization_create.html:33
 msgid "ОсОО Green Tech"
-msgstr ""
+msgstr "Green Tech LLC"
 
-#: app/templates/platform/organization_create.html:38
-#: app/templates/platform/organization_detail.html:73
-#: app/templates/platform/organization_detail.html:131
-#: app/templates/platform/request_detail.html:44 app/templates/settings.html:47
+#: templates/platform/organization_create.html:38
+#: templates/platform/organization_detail.html:73
+#: templates/platform/organization_detail.html:131
+#: templates/platform/request_detail.html:44 templates/settings.html:47
 msgid "Контактное лицо"
-msgstr ""
+msgstr "Contact person"
 
-#: app/templates/platform/organization_create.html:39
+#: templates/platform/organization_create.html:39
 msgid "Азамат Исмаилов"
-msgstr ""
+msgstr "Azamat Ismailov"
 
-#: app/templates/platform/organization_create.html:53
-#: app/templates/platform/organization_detail.html:88
+#: templates/platform/organization_create.html:53
+#: templates/platform/organization_detail.html:88
 msgid "Номер договора"
-msgstr ""
+msgstr "Contract number"
 
-#: app/templates/platform/organization_create.html:59
-#: app/templates/platform/organization_detail.html:94
-#: app/templates/platform/organization_detail.html:143
-#: app/templates/settings.html:55
+#: templates/platform/organization_create.html:59
+#: templates/platform/organization_detail.html:94
+#: templates/platform/organization_detail.html:143 templates/settings.html:55
 msgid "Адрес"
-msgstr ""
+msgstr "Address"
 
-#: app/templates/platform/organization_create.html:60
+#: templates/platform/organization_create.html:60
 msgid "г. Бишкек, ул. Киевская 120"
-msgstr ""
+msgstr "Bishkek, Kievskaya St. 120"
 
-#: app/templates/platform/organization_create.html:64
-#: app/templates/platform/organization_detail.html:99
+#: templates/platform/organization_create.html:64
+#: templates/platform/organization_detail.html:99
 msgid "Тарифный план"
-msgstr ""
+msgstr "Pricing plan"
 
-#: app/templates/platform/organization_create.html:66
-#: app/templates/platform/organization_detail.html:101
-#: app/templates/platform/organization_detail.html:156
+#: templates/platform/organization_create.html:66
+#: templates/platform/organization_detail.html:101
+#: templates/platform/organization_detail.html:156
 msgid "Без тарифа"
-msgstr ""
+msgstr "No plan"
 
-#: app/templates/platform/organization_create.html:79
+#: templates/platform/organization_create.html:79
 msgid "Аккаунт для входа"
-msgstr ""
+msgstr "Login account"
 
-#: app/templates/platform/organization_create.html:88
+#: templates/platform/organization_create.html:88
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
-#: app/templates/platform/organization_create.html:94
+#: templates/platform/organization_create.html:94
 msgid ""
 "Будет создан: Organization + User + UserProfile (role=organization_admin)."
 msgstr ""
+"Will create: Organization + User + UserProfile (role=organization_admin)."
 
-#: app/templates/platform/organization_create.html:97
+#: templates/platform/organization_create.html:97
 msgid "Создать организацию"
-msgstr ""
+msgstr "Create organization"
 
-#: app/templates/platform/organization_detail.html:32
+#: templates/platform/organization_detail.html:32
 msgid "Создана:"
-msgstr ""
+msgstr "Created:"
 
-#: app/templates/platform/organization_detail.html:33
+#: templates/platform/organization_detail.html:33
 msgid "Обновлена:"
-msgstr ""
+msgstr "Updated:"
 
-#: app/templates/platform/organization_detail.html:38
+#: templates/platform/organization_detail.html:38
 msgid "Изменить"
-msgstr ""
+msgstr "Edit"
 
-#: app/templates/platform/organization_detail.html:40
-#: app/templates/platform/organization_detail.html:120
-#: app/templates/platform/settings.html:213
+#: templates/platform/organization_detail.html:40
+#: templates/platform/organization_detail.html:120
+#: templates/platform/settings.html:213
 msgid "Отмена"
-msgstr ""
+msgstr "Cancel"
 
-#: app/templates/platform/organization_detail.html:46
+#: templates/platform/organization_detail.html:46
 msgid "Отключить"
-msgstr ""
+msgstr "Disable"
 
-#: app/templates/platform/organization_detail.html:48
+#: templates/platform/organization_detail.html:48
 msgid "Активировать"
-msgstr ""
+msgstr "Activate"
 
-#: app/templates/platform/organization_detail.html:67
+#: templates/platform/organization_detail.html:67
 msgid "Название"
-msgstr ""
+msgstr "Name"
 
-#: app/templates/platform/organization_detail.html:113
-#: app/templates/platform/organizations.html:41
+#: templates/platform/organization_detail.html:113
+#: templates/platform/organizations.html:41
 msgid "Ожидает"
-msgstr ""
+msgstr "Pending"
 
-#: app/templates/platform/organization_detail.html:114
-#: app/templates/platform/organizations.html:40
+#: templates/platform/organization_detail.html:114
+#: templates/platform/organizations.html:40
 msgid "Заблокирована"
-msgstr ""
+msgstr "Blocked"
 
-#: app/templates/platform/organization_detail.html:119
+#: templates/platform/organization_detail.html:119
 msgid "Сохранить изменения"
-msgstr ""
+msgstr "Save changes"
 
-#: app/templates/platform/organization_detail.html:147
-#: app/templates/platform/organizations.html:28
+#: templates/platform/organization_detail.html:147
+#: templates/platform/organizations.html:28
 msgid "Договор"
-msgstr ""
+msgstr "Contract"
 
-#: app/templates/platform/organization_detail.html:151
-#: app/templates/platform/settings.html:114
+#: templates/platform/organization_detail.html:151
+#: templates/platform/settings.html:114
 msgid "Тариф"
-msgstr ""
+msgstr "Plan"
 
-#: app/templates/platform/organization_detail.html:171
+#: templates/platform/organization_detail.html:171
 msgid "Пользователи организации"
-msgstr ""
+msgstr "Organization users"
 
-#: app/templates/platform/organization_detail.html:176
-#: app/templates/platform/settings.html:409
-#: app/templates/platform/settings.html:549
+#: templates/platform/organization_detail.html:176
+#: templates/platform/settings.html:409 templates/platform/settings.html:549
 msgid "Роль"
-msgstr ""
+msgstr "Role"
 
-#: app/templates/platform/organization_detail.html:184
-#: app/templates/platform/settings.html:131
-#: app/templates/platform/settings.html:561
+#: templates/platform/organization_detail.html:184
+#: templates/platform/settings.html:131 templates/platform/settings.html:561
 msgid "Активен"
-msgstr ""
+msgstr "Active"
 
-#: app/templates/platform/organization_detail.html:193
+#: templates/platform/organization_detail.html:193
 msgid "Нет пользователей"
-msgstr ""
+msgstr "No users"
 
-#: app/templates/platform/organization_detail.html:200
+#: templates/platform/organization_detail.html:200
 msgid "Сброс пароля"
-msgstr ""
+msgstr "Password reset"
 
-#: app/templates/platform/organization_detail.html:205
+#: templates/platform/organization_detail.html:205
 msgid "Новый пароль для"
-msgstr ""
+msgstr "New password for"
 
-#: app/templates/platform/organization_detail.html:206
+#: templates/platform/organization_detail.html:206
 msgid "Введите новый пароль"
-msgstr ""
+msgstr "Enter new password"
 
-#: app/templates/platform/organization_detail.html:208
+#: templates/platform/organization_detail.html:208
 msgid "Сбросить"
-msgstr ""
+msgstr "Reset"
 
-#: app/templates/platform/organizations.html:55
+#: templates/platform/organizations.html:55
 msgid "Пока нет организаций"
-msgstr ""
+msgstr "No organizations yet"
 
-#: app/templates/platform/organizations.html:56
+#: templates/platform/organizations.html:56
 msgid "Добавить первую"
-msgstr ""
+msgstr "Add the first one"
 
-#: app/templates/platform/request_detail.html:21
+#: templates/platform/request_detail.html:21
 msgid "Заявка от"
-msgstr ""
+msgstr "Request from"
 
-#: app/templates/platform/request_detail.html:23
-#: app/templates/platform/requests.html:48
+#: templates/platform/request_detail.html:23
+#: templates/platform/requests.html:48
 msgid "Новая"
-msgstr ""
+msgstr "New"
 
-#: app/templates/platform/request_detail.html:24
-#: app/templates/platform/requests.html:49
+#: templates/platform/request_detail.html:24
+#: templates/platform/requests.html:49
 msgid "В обработке"
-msgstr ""
+msgstr "In progress"
 
-#: app/templates/platform/request_detail.html:25
-#: app/templates/platform/requests.html:50
+#: templates/platform/request_detail.html:25
+#: templates/platform/requests.html:50
 msgid "Обработана"
-msgstr ""
+msgstr "Processed"
 
-#: app/templates/platform/request_detail.html:26
-#: app/templates/platform/requests.html:51
+#: templates/platform/request_detail.html:26
+#: templates/platform/requests.html:51
 msgid "Отклонена"
-msgstr ""
+msgstr "Rejected"
 
-#: app/templates/platform/request_detail.html:27
+#: templates/platform/request_detail.html:27
 msgid "Отправлена"
-msgstr ""
+msgstr "Sent"
 
-#: app/templates/platform/request_detail.html:35
+#: templates/platform/request_detail.html:35
 msgid "Детали заявки"
-msgstr ""
+msgstr "Request details"
 
-#: app/templates/platform/request_detail.html:62
+#: templates/platform/request_detail.html:62
 msgid "Без комментария"
-msgstr ""
+msgstr "No comment"
 
-#: app/templates/platform/request_detail.html:69
+#: templates/platform/request_detail.html:69
 msgid "Действия"
-msgstr ""
+msgstr "Actions"
 
-#: app/templates/platform/request_detail.html:76
+#: templates/platform/request_detail.html:76
 msgid "Изменить статус"
-msgstr ""
+msgstr "Change status"
 
-#: app/templates/platform/request_detail.html:84
+#: templates/platform/request_detail.html:84
 msgid "Сохранить статус"
-msgstr ""
+msgstr "Save status"
 
-#: app/templates/platform/requests.html:3
-#: app/templates/platform/requests.html:7
+#: templates/platform/requests.html:3 templates/platform/requests.html:7
 msgid "Заявки на подключение"
-msgstr ""
+msgstr "Connection requests"
 
-#: app/templates/platform/requests.html:29
+#: templates/platform/requests.html:29
 msgid "Телефон / Email"
-msgstr ""
+msgstr "Phone / Email"
 
-#: app/templates/platform/requests.html:32
+#: templates/platform/requests.html:32
 msgid "Действие"
-msgstr ""
+msgstr "Action"
 
-#: app/templates/platform/requests.html:64
+#: templates/platform/requests.html:64
 msgid "Пока нет заявок на подключение"
-msgstr ""
+msgstr "No connection requests yet"
 
-#: app/templates/platform/settings.html:3
-#: app/templates/platform/settings.html:7
+#: templates/platform/settings.html:3 templates/platform/settings.html:7
 msgid "Настройки платформы"
-msgstr ""
+msgstr "Platform settings"
 
-#: app/templates/platform/settings.html:8
+#: templates/platform/settings.html:8
 msgid ""
 "Управление глобальными параметрами Green Energy, тарифами, уведомлениями, "
 "устройствами и безопасностью."
 msgstr ""
+"Manage Green Energy global parameters, pricing, notifications, devices, and "
+"security."
 
-#: app/templates/platform/settings.html:24
+#: templates/platform/settings.html:24
 msgid "Общие"
-msgstr ""
+msgstr "General"
 
-#: app/templates/platform/settings.html:29
+#: templates/platform/settings.html:25 templates/platform/settings.html:99
+msgid "Тарифы"
+msgstr "Pricing"
+
+#: templates/platform/settings.html:29
 msgid "Безопасность"
-msgstr ""
+msgstr "Security"
 
-#: app/templates/platform/settings.html:31
+#: templates/platform/settings.html:31
 msgid "API / IoT"
-msgstr ""
+msgstr "API / IoT"
 
-#: app/templates/platform/settings.html:32
-#: app/templates/platform/settings.html:539
+#: templates/platform/settings.html:32 templates/platform/settings.html:539
 msgid "Администраторы"
-msgstr ""
+msgstr "Administrators"
 
-#: app/templates/platform/settings.html:39
+#: templates/platform/settings.html:39
 msgid "Общие настройки"
-msgstr ""
+msgstr "General settings"
 
-#: app/templates/platform/settings.html:43
+#: templates/platform/settings.html:43
 msgid "Название платформы"
-msgstr ""
+msgstr "Platform name"
 
-#: app/templates/platform/settings.html:47
+#: templates/platform/settings.html:47
 msgid "Описание платформы"
-msgstr ""
+msgstr "Platform description"
 
-#: app/templates/platform/settings.html:52
+#: templates/platform/settings.html:52
 msgid "Email поддержки"
-msgstr ""
+msgstr "Support email"
 
-#: app/templates/platform/settings.html:56
+#: templates/platform/settings.html:56
 msgid "Телефон поддержки"
-msgstr ""
+msgstr "Support phone"
 
-#: app/templates/platform/settings.html:62
+#: templates/platform/settings.html:62
 msgid "Основной язык"
-msgstr ""
+msgstr "Primary language"
 
-#: app/templates/platform/settings.html:70
+#: templates/platform/settings.html:70
 msgid "Валюта по умолчанию"
-msgstr ""
+msgstr "Default currency"
 
-#: app/templates/platform/settings.html:79
+#: templates/platform/settings.html:79
 msgid "Часовой пояс"
-msgstr ""
+msgstr "Time zone"
 
-#: app/templates/platform/settings.html:83
+#: templates/platform/settings.html:83
 msgid "Статус платформы"
-msgstr ""
+msgstr "Platform status"
 
-#: app/templates/platform/settings.html:86
+#: templates/platform/settings.html:86
 msgid "Тех. работы"
-msgstr ""
+msgstr "Maintenance"
 
-#: app/templates/platform/settings.html:91
+#: templates/platform/settings.html:91
 msgid "Сохранить общие настройки"
-msgstr ""
+msgstr "Save general settings"
 
-#: app/templates/platform/settings.html:100
-#: app/templates/platform/settings.html:159
-#: app/templates/platform/settings.html:232
+#: templates/platform/settings.html:100 templates/platform/settings.html:159
+#: templates/platform/settings.html:232
 msgid "Добавить тариф"
-msgstr ""
+msgstr "Add plan"
 
-#: app/templates/platform/settings.html:104
+#: templates/platform/settings.html:104
 msgid "Всего тарифов"
-msgstr ""
+msgstr "Total plans"
 
-#: app/templates/platform/settings.html:106
+#: templates/platform/settings.html:106
 msgid "Организаций"
-msgstr ""
+msgstr "Organizations"
 
-#: app/templates/platform/settings.html:107
+#: templates/platform/settings.html:107
 msgid "Инд. договоры"
-msgstr ""
+msgstr "Individual contracts"
 
-#: app/templates/platform/settings.html:115
-#: app/templates/platform/settings.html:171
+#: templates/platform/settings.html:115 templates/platform/settings.html:171
 msgid "Цена"
-msgstr ""
+msgstr "Price"
 
-#: app/templates/platform/settings.html:116
+#: templates/platform/settings.html:116
 msgid "Период"
-msgstr ""
+msgstr "Period"
 
-#: app/templates/platform/settings.html:117
+#: templates/platform/settings.html:117
 msgid "Объекты"
-msgstr ""
+msgstr "Facilities"
 
-#: app/templates/platform/settings.html:132
-#: app/templates/platform/settings.html:562
+#: templates/platform/settings.html:132 templates/platform/settings.html:562
 msgid "Отключен"
-msgstr ""
+msgstr "Disabled"
 
-#: app/templates/platform/settings.html:146
+#: templates/platform/settings.html:146
 msgid "Нет добавленных тарифов"
-msgstr ""
+msgstr "No plans added"
 
-#: app/templates/platform/settings.html:166
+#: templates/platform/settings.html:166
 msgid "Название тарифа"
-msgstr ""
+msgstr "Plan name"
 
-#: app/templates/platform/settings.html:175
+#: templates/platform/settings.html:175
 msgid "Валюта"
-msgstr ""
+msgstr "Currency"
 
-#: app/templates/platform/settings.html:185
+#: templates/platform/settings.html:185
 msgid "Период оплаты"
-msgstr ""
+msgstr "Billing period"
 
-#: app/templates/platform/settings.html:198
+#: templates/platform/settings.html:198
 msgid "Лимит объектов"
-msgstr ""
+msgstr "Facility limit"
 
-#: app/templates/platform/settings.html:202
+#: templates/platform/settings.html:202
 msgid "Лимит устройств"
-msgstr ""
+msgstr "Device limit"
 
-#: app/templates/platform/settings.html:209
+#: templates/platform/settings.html:209
 msgid "Популярный (выделен плашкой)"
-msgstr ""
+msgstr "Popular (highlighted)"
 
-#: app/templates/platform/settings.html:214
+#: templates/platform/settings.html:214
 msgid "Сохранить"
-msgstr ""
+msgstr "Save"
 
-#: app/templates/platform/settings.html:232
+#: templates/platform/settings.html:232
 msgid "Редактировать тариф"
-msgstr ""
+msgstr "Edit plan"
 
-#: app/templates/platform/settings.html:242
+#: templates/platform/settings.html:242
 msgid "Настройки устройств"
-msgstr ""
+msgstr "Device settings"
 
-#: app/templates/platform/settings.html:247
+#: templates/platform/settings.html:247
 msgid "Префикс Device ID"
-msgstr ""
+msgstr "Device ID prefix"
 
-#: app/templates/platform/settings.html:251
+#: templates/platform/settings.html:251
 msgid "Интервал отправки данных (сек)"
-msgstr ""
+msgstr "Data send interval (sec)"
 
-#: app/templates/platform/settings.html:257
+#: templates/platform/settings.html:257
 msgid "Время до warning-статуса (сек)"
-msgstr ""
+msgstr "Time to warning status (sec)"
 
-#: app/templates/platform/settings.html:261
+#: templates/platform/settings.html:261
 msgid "Время до offline-статуса (мин)"
-msgstr ""
+msgstr "Time to offline status (min)"
 
-#: app/templates/platform/settings.html:266
+#: templates/platform/settings.html:266
 msgid "Стандартный лимит мощности (кВт)"
-msgstr ""
+msgstr "Default power limit (kW)"
 
-#: app/templates/platform/settings.html:274
+#: templates/platform/settings.html:274
 msgid "Удалённое отключение"
-msgstr ""
+msgstr "Remote shutdown"
 
-#: app/templates/platform/settings.html:275
+#: templates/platform/settings.html:275
 msgid "Разрешить администраторам организаций отключать питание"
-msgstr ""
+msgstr "Allow organization admins to turn off power"
 
-#: app/templates/platform/settings.html:281
+#: templates/platform/settings.html:281
 msgid "Управление реле"
-msgstr ""
+msgstr "Relay control"
 
-#: app/templates/platform/settings.html:282
+#: templates/platform/settings.html:282
 msgid "Разрешить отправку команд на реле устройств"
-msgstr ""
+msgstr "Allow sending commands to device relays"
 
-#: app/templates/platform/settings.html:288
+#: templates/platform/settings.html:288
 msgid "Сохранять историю"
-msgstr ""
+msgstr "Keep history"
 
-#: app/templates/platform/settings.html:289
+#: templates/platform/settings.html:289
 msgid "Хранить детализированную историю показаний в БД"
-msgstr ""
+msgstr "Store detailed readings history in the database"
 
-#: app/templates/platform/settings.html:295
+#: templates/platform/settings.html:295
 msgid "Период хранения истории по умолчанию (дней)"
-msgstr ""
+msgstr "Default history retention (days)"
 
-#: app/templates/platform/settings.html:300
+#: templates/platform/settings.html:300
 msgid "Сохранить настройки устройств"
-msgstr ""
+msgstr "Save device settings"
 
-#: app/templates/platform/settings.html:307
+#: templates/platform/settings.html:307
 msgid "Настройки уведомлений"
-msgstr ""
+msgstr "Notification settings"
 
-#: app/templates/platform/settings.html:310
+#: templates/platform/settings.html:310
 msgid "События платформы"
-msgstr ""
+msgstr "Platform events"
 
-#: app/templates/platform/settings.html:314
+#: templates/platform/settings.html:314
 msgid "Устройство ушло offline"
-msgstr ""
+msgstr "Device went offline"
 
-#: app/templates/platform/settings.html:315
+#: templates/platform/settings.html:315
 msgid "Устройство снова online"
-msgstr ""
+msgstr "Device back online"
 
-#: app/templates/platform/settings.html:316
+#: templates/platform/settings.html:316
 msgid "Превышен лимит мощности"
-msgstr ""
+msgstr "Power limit exceeded"
 
-#: app/templates/platform/settings.html:317
+#: templates/platform/settings.html:317
 msgid "Новая заявка на подключение"
-msgstr ""
+msgstr "New connection request"
 
-#: app/templates/platform/settings.html:318
+#: templates/platform/settings.html:318
 msgid "Организация добавила устройство"
-msgstr ""
+msgstr "Organization added a device"
 
-#: app/templates/platform/settings.html:321
+#: templates/platform/settings.html:321
 msgid "Организация изменила настройки"
-msgstr ""
+msgstr "Organization changed settings"
 
-#: app/templates/platform/settings.html:322
+#: templates/platform/settings.html:322
 msgid "Ошибка датчика"
-msgstr ""
+msgstr "Sensor error"
 
-#: app/templates/platform/settings.html:323
+#: templates/platform/settings.html:323
 msgid "Подозрительная активность"
-msgstr ""
+msgstr "Suspicious activity"
 
-#: app/templates/platform/settings.html:324
+#: templates/platform/settings.html:324
 msgid "Низкое качество сигнала"
-msgstr ""
+msgstr "Low signal quality"
 
-#: app/templates/platform/settings.html:325
+#: templates/platform/settings.html:325
 msgid "Устройство не отправляет данные"
-msgstr ""
+msgstr "Device not sending data"
 
-#: app/templates/platform/settings.html:330
+#: templates/platform/settings.html:330
 msgid "Каналы доставки"
-msgstr ""
+msgstr "Delivery channels"
 
-#: app/templates/platform/settings.html:333
+#: templates/platform/settings.html:333
 msgid "Email для системных уведомлений"
-msgstr ""
+msgstr "Email for system notifications"
 
-#: app/templates/platform/settings.html:338
+#: templates/platform/settings.html:338
 msgid "Telegram Bot Token"
-msgstr ""
+msgstr "Telegram Bot Token"
 
-#: app/templates/platform/settings.html:342
+#: templates/platform/settings.html:342
 msgid "Telegram Chat ID"
-msgstr ""
+msgstr "Telegram Chat ID"
 
-#: app/templates/platform/settings.html:347
+#: templates/platform/settings.html:347
 msgid "Webhook URL"
-msgstr ""
+msgstr "Webhook URL"
 
-#: app/templates/platform/settings.html:352
+#: templates/platform/settings.html:352
 msgid "Сохранить настройки уведомлений"
-msgstr ""
+msgstr "Save notification settings"
 
-#: app/templates/platform/settings.html:359
+#: templates/platform/settings.html:359
 msgid "Настройки безопасности"
-msgstr ""
+msgstr "Security settings"
 
-#: app/templates/platform/settings.html:364
+#: templates/platform/settings.html:364
 msgid "Время сессии (мин)"
-msgstr ""
+msgstr "Session time (min)"
 
-#: app/templates/platform/settings.html:368
+#: templates/platform/settings.html:368
 msgid "Попытки входа"
-msgstr ""
+msgstr "Login attempts"
 
-#: app/templates/platform/settings.html:372
+#: templates/platform/settings.html:372
 msgid "Блокировка (мин)"
-msgstr ""
+msgstr "Lockout (min)"
 
-#: app/templates/platform/settings.html:378
+#: templates/platform/settings.html:378
 msgid "Вход только активным пользователям"
-msgstr ""
+msgstr "Login for active users only"
 
-#: app/templates/platform/settings.html:381
+#: templates/platform/settings.html:381
 msgid "Требовать сложный пароль"
-msgstr ""
+msgstr "Require strong password"
 
-#: app/templates/platform/settings.html:385
+#: templates/platform/settings.html:385
 msgid "Двухфакторная аутентификация (2FA)"
-msgstr ""
+msgstr "Two-factor authentication (2FA)"
 
-#: app/templates/platform/settings.html:386
+#: templates/platform/settings.html:386
 msgid "Будет доступно в следующих версиях"
-msgstr ""
+msgstr "Coming in future versions"
 
-#: app/templates/platform/settings.html:392
+#: templates/platform/settings.html:392
 msgid "Ограничение по IP"
-msgstr ""
+msgstr "IP restriction"
 
-#: app/templates/platform/settings.html:393
+#: templates/platform/settings.html:393
 msgid "Введите разрешённые IP, каждый с новой строки"
-msgstr ""
+msgstr "Enter allowed IPs, one per line"
 
-#: app/templates/platform/settings.html:397
+#: templates/platform/settings.html:397
 msgid "Сохранить настройки безопасности"
-msgstr ""
+msgstr "Save security settings"
 
-#: app/templates/platform/settings.html:398
+#: templates/platform/settings.html:398
 msgid "Очистить журнал входов"
-msgstr ""
+msgstr "Clear login log"
 
-#: app/templates/platform/settings.html:402
+#: templates/platform/settings.html:402
 msgid "Журнал входов"
-msgstr ""
+msgstr "Login log"
 
-#: app/templates/platform/settings.html:408
+#: templates/platform/settings.html:408
 msgid "Пользователь"
-msgstr ""
+msgstr "User"
 
-#: app/templates/platform/settings.html:410
+#: templates/platform/settings.html:410
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
-#: app/templates/platform/settings.html:411
+#: templates/platform/settings.html:411
 msgid "Устройство/Браузер"
-msgstr ""
+msgstr "Device/Browser"
 
-#: app/templates/platform/settings.html:436
+#: templates/platform/settings.html:436
 msgid "Настройки заявок"
-msgstr ""
+msgstr "Request settings"
 
-#: app/templates/platform/settings.html:441
+#: templates/platform/settings.html:441
 msgid "Форма на лендинге"
-msgstr ""
+msgstr "Landing form"
 
-#: app/templates/platform/settings.html:442
+#: templates/platform/settings.html:442
 msgid "Принимать новые заявки с главной страницы"
-msgstr ""
+msgstr "Accept new requests from the homepage"
 
-#: app/templates/platform/settings.html:448
+#: templates/platform/settings.html:448
 msgid "Email получателя заявок"
-msgstr ""
+msgstr "Request recipient email"
 
-#: app/templates/platform/settings.html:453
+#: templates/platform/settings.html:453
 msgid "Отправлять заявки в Telegram"
-msgstr ""
+msgstr "Send requests to Telegram"
 
-#: app/templates/platform/settings.html:456
+#: templates/platform/settings.html:456
 msgid "Telegram Chat ID для заявок"
-msgstr ""
+msgstr "Telegram Chat ID for requests"
 
-#: app/templates/platform/settings.html:461
+#: templates/platform/settings.html:461
 msgid "Автоответ клиенту"
-msgstr ""
+msgstr "Auto-reply to client"
 
-#: app/templates/platform/settings.html:463
+#: templates/platform/settings.html:463
 msgid "Статусы заявок: new, in_progress, contacted, closed, rejected"
-msgstr ""
+msgstr "Request statuses: new, in_progress, contacted, closed, rejected"
 
-#: app/templates/platform/settings.html:467
+#: templates/platform/settings.html:467
 msgid "Сохранить настройки заявок"
-msgstr ""
+msgstr "Save request settings"
 
-#: app/templates/platform/settings.html:474
+#: templates/platform/settings.html:474
 msgid "Настройки API / IoT"
-msgstr ""
+msgstr "API / IoT settings"
 
-#: app/templates/platform/settings.html:479
+#: templates/platform/settings.html:479
 msgid "API endpoint для устройств"
-msgstr ""
+msgstr "API endpoint for devices"
 
-#: app/templates/platform/settings.html:483
+#: templates/platform/settings.html:483
 msgid "Endpoint получения команд"
-msgstr ""
+msgstr "Command retrieval endpoint"
 
-#: app/templates/platform/settings.html:489
+#: templates/platform/settings.html:489
 msgid "Глобальный API Token"
-msgstr ""
+msgstr "Global API Token"
 
-#: app/templates/platform/settings.html:492
+#: templates/platform/settings.html:492
 msgid "Новый"
-msgstr ""
+msgstr "New"
 
-#: app/templates/platform/settings.html:499
+#: templates/platform/settings.html:499
 msgid "MQTT Broker"
-msgstr ""
+msgstr "MQTT Broker"
 
-#: app/templates/platform/settings.html:505
+#: templates/platform/settings.html:505
 msgid "MQTT Host"
-msgstr ""
+msgstr "MQTT Host"
 
-#: app/templates/platform/settings.html:509
+#: templates/platform/settings.html:509
 msgid "MQTT Port"
-msgstr ""
+msgstr "MQTT Port"
 
-#: app/templates/platform/settings.html:513
+#: templates/platform/settings.html:513
 msgid "MQTT Username"
-msgstr ""
+msgstr "MQTT Username"
 
-#: app/templates/platform/settings.html:517
+#: templates/platform/settings.html:517
 msgid "MQTT Password"
-msgstr ""
+msgstr "MQTT Password"
 
-#: app/templates/platform/settings.html:523
+#: templates/platform/settings.html:523
 msgid "WebSocket realtime"
-msgstr ""
+msgstr "WebSocket realtime"
 
-#: app/templates/platform/settings.html:527
+#: templates/platform/settings.html:527
 msgid "Последняя проверка API:"
-msgstr ""
+msgstr "Last API check:"
 
-#: app/templates/platform/settings.html:530
+#: templates/platform/settings.html:530
 msgid "Сохранить API настройки"
-msgstr ""
+msgstr "Save API settings"
 
-#: app/templates/platform/settings.html:531
+#: templates/platform/settings.html:531
 msgid "Проверить соединение"
-msgstr ""
+msgstr "Test connection"
 
-#: app/templates/platform/settings.html:540
+#: templates/platform/settings.html:540
 msgid "Добавить администратора"
-msgstr ""
+msgstr "Add administrator"
 
-#: app/templates/platform/settings.html:551
+#: templates/platform/settings.html:551
 msgid "Последний вход"
-msgstr ""
+msgstr "Last login"
 
-#: app/templates/settings.html:11
+#: templates/settings.html:11
 msgid "Профиль пользователя"
-msgstr ""
+msgstr "User profile"
 
-#: app/templates/settings.html:16
+#: templates/settings.html:16
 msgid "Имя пользователя (Логин)"
-msgstr ""
+msgstr "Username (Login)"
 
-#: app/templates/settings.html:29
+#: templates/settings.html:29
 msgid "Фамилия"
-msgstr ""
+msgstr "Last name"
 
-#: app/templates/settings.html:32
+#: templates/settings.html:32
 msgid "Сохранить профиль"
-msgstr ""
+msgstr "Save profile"
 
-#: app/templates/settings.html:43
+#: templates/settings.html:43
 msgid "Название компании"
-msgstr ""
+msgstr "Company name"
 
-#: app/templates/settings.html:58
+#: templates/settings.html:58
 msgid "Сохранить организацию"
-msgstr ""
+msgstr "Save organization"
 
-#: app/templates/settings.html:64
+#: templates/settings.html:64
 msgid "Изменение пароля"
-msgstr ""
+msgstr "Change password"
 
-#: app/templates/settings.html:69
+#: templates/settings.html:69
 msgid "Текущий пароль"
-msgstr ""
+msgstr "Current password"
 
-#: app/templates/settings.html:73
+#: templates/settings.html:73
 msgid "Новый пароль"
-msgstr ""
+msgstr "New password"
 
-#: app/templates/settings.html:77
+#: templates/settings.html:77
 msgid "Подтвердите пароль"
-msgstr ""
+msgstr "Confirm password"
 
-#: app/templates/settings.html:80
+#: templates/settings.html:80
 msgid "Изменить пароль"
-msgstr ""
+msgstr "Change password"
+
+#: templates/verify_human.html:3
+#| msgid "Подключение"
+msgid "Подтверждение"
+msgstr "Verification"
+
+#: templates/verify_human.html:10
+#| msgid "Настройки безопасности"
+msgid "Проверка безопасности"
+msgstr "Security check"
+
+#: templates/verify_human.html:11
+msgid "Шаг 2 из 2. Подтвердите, что вы не робот."
+msgstr "Step 2 of 2. Confirm you are not a robot."
+
+#: templates/verify_human.html:35
+msgid "Я не робот"
+msgstr "I'm not a robot"
+
+#: templates/verify_human.html:44
+#| msgid "Подтвердите пароль"
+msgid "Подтвердите, что вы человек"
+msgstr "Confirm you are human"
+
+#: templates/verify_human.html:46
+#| msgid "Введите пароль"
+msgid "Введите ответ"
+msgstr "Enter the answer"
+
+#: templates/verify_human.html:49
+#| msgid "Подтвердите пароль"
+msgid "Подтвердить и войти"
+msgstr "Confirm and sign in"
+
+#: templates/verify_human.html:53
+#| msgid "Назад к списку"
+msgid "Назад ко входу"
+msgstr "Back to login"
+
+#~ msgid "Свяжитесь с нами"
+#~ msgstr "Contact us"

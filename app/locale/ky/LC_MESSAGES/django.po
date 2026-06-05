@@ -8,1560 +8,1526 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-15 09:42+0600\n"
+"POT-Creation-Date: 2026-06-05 18:01+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ky\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-#: app/templates/alerts.html:3 app/templates/alerts.html:6
-#: app/templates/dashboard.html:12 app/templates/include/homepage.html:98
-#: app/templates/platform/base.html:19 app/templates/platform/dashboard.html:15
-#: app/templates/platform/dashboard.html:64
-#: app/templates/platform/notifications.html:3
-#: app/templates/platform/notifications.html:7
-#: app/templates/platform/organization_detail.html:216
-#: app/templates/platform/settings.html:28
+
+#: templates/alerts.html:3 templates/alerts.html:7 templates/dashboard.html:12
+#: templates/include/homepage.html:78 templates/platform/base.html:19
+#: templates/platform/dashboard.html:15 templates/platform/dashboard.html:64
+#: templates/platform/notifications.html:3
+#: templates/platform/notifications.html:7
+#: templates/platform/organization_detail.html:216
+#: templates/platform/settings.html:28
 msgid "Уведомления"
 msgstr "Билдирүүлөр"
 
-#: app/templates/alerts.html:9 app/templates/dashboard.html:24
-#: app/templates/platform/dashboard.html:32
-#: app/templates/platform/dashboard.html:65
+#: templates/alerts.html:14 templates/platform/notifications.html:11
+msgid "Прочитать все"
+msgstr "Баарын окулду деп белгилөө"
+
+#: templates/alerts.html:28 templates/dashboard.html:24
+#: templates/platform/dashboard.html:32 templates/platform/dashboard.html:65
 msgid "Все"
-msgstr ""
+msgstr "Баары"
 
-#: app/templates/alerts.html:10
+#: templates/alerts.html:29
 msgid "Непрочитанные"
-msgstr ""
+msgstr "Окулбагандар"
 
-#: app/templates/alerts.html:11
+#: templates/alerts.html:30
 msgid "Важные"
-msgstr ""
+msgstr "Маанилүү"
 
-#: app/templates/alerts.html:12
+#: templates/alerts.html:31
 msgid "Предупреждения"
-msgstr ""
+msgstr "Эскертүүлөр"
 
-#: app/templates/alerts.html:13
+#: templates/alerts.html:32
 msgid "Инфо"
-msgstr ""
+msgstr "Маалымат"
 
-#: app/templates/alerts.html:18
-msgid "Устройство офлайн"
-msgstr ""
+#: templates/alerts.html:44 templates/platform/dashboard.html:75
+#: templates/platform/notifications.html:32
+msgid "Новое"
+msgstr "Жаңы"
 
-#: app/templates/alerts.html:18
-msgid "мин назад"
-msgstr ""
-
-#: app/templates/alerts.html:19 app/templates/alerts.html:25
-#: app/templates/dashboard.html:29
-msgid "Устройство"
-msgstr ""
-
-#: app/templates/alerts.html:19
-msgid "перестало отвечать."
-msgstr ""
-
-#: app/templates/alerts.html:20 app/templates/alerts.html:26
-#: app/templates/alerts.html:32 app/templates/alerts.html:38
-#: app/templates/platform/notifications.html:46
+#: templates/alerts.html:54 templates/alerts.html:57
+#: templates/platform/notifications.html:41
+#: templates/platform/notifications.html:43
 msgid "Прочитано"
-msgstr ""
+msgstr "Окулду"
 
-#: app/templates/alerts.html:24
-msgid "Превышен лимит"
-msgstr ""
+#: templates/alerts.html:66 templates/platform/dashboard.html:85
+#: templates/platform/notifications.html:52
+msgid "Нет уведомлений"
+msgstr "Билдирүүлөр жок"
 
-#: app/templates/alerts.html:24
-msgid "час назад"
-msgstr ""
-
-#: app/templates/alerts.html:25
-msgid "Серверная стойка"
-msgstr ""
-
-#: app/templates/alerts.html:25
-msgid "лимит"
-msgstr ""
-
-#: app/templates/alerts.html:30
-msgid "Питание выключено"
-msgstr ""
-
-#: app/templates/alerts.html:30 app/templates/alerts.html:36
-msgid "Вчера"
-msgstr ""
-
-#: app/templates/alerts.html:31
-msgid "Освещение (Склад А) отключено пользователем Admin."
-msgstr ""
-
-#: app/templates/alerts.html:36
-msgid "Синхронизация завершена"
-msgstr ""
-
-#: app/templates/alerts.html:37
-msgid "Данные объекта Главный офис успешно получены."
-msgstr ""
-
-#: app/templates/dashboard.html:3
+#: templates/dashboard.html:3
 msgid "Дашборд"
-msgstr ""
+msgstr "Башкаруу панели"
 
-#: app/templates/dashboard.html:6
+#: templates/dashboard.html:6
 msgid "Обзор"
-msgstr ""
+msgstr "Жалпы көрүнүш"
 
-#: app/templates/dashboard.html:9
+#: templates/dashboard.html:9
 msgid "Потребление сегодня"
-msgstr ""
+msgstr "Бүгүнкү керектөө"
 
-#: app/templates/dashboard.html:10
+#: templates/dashboard.html:10
 msgid "Текущая мощность"
-msgstr ""
+msgstr "Учурдагы кубаттуулук"
 
-#: app/templates/dashboard.html:11
+#: templates/dashboard.html:11
 msgid "Устройств онлайн"
-msgstr ""
+msgstr "Онлайн түзмөктөр"
 
-#: app/templates/dashboard.html:13
+#: templates/dashboard.html:13
 msgid "Расход за месяц"
-msgstr ""
+msgstr "Айлык чыгым"
 
-#: app/templates/dashboard.html:17
+#: templates/dashboard.html:17
 msgid "Потребление за 24 часа"
-msgstr ""
+msgstr "24 сааттык керектөө"
 
-#: app/templates/dashboard.html:23
+#: templates/dashboard.html:23
 msgid "Активные устройства"
-msgstr ""
+msgstr "Активдүү түзмөктөр"
 
-#: app/templates/dashboard.html:29 app/templates/monitoring.html:78
+#: templates/dashboard.html:29 templates/platform/devices.html:31
+msgid "Устройство"
+msgstr "Түзмөк"
+
+#: templates/dashboard.html:29 templates/monitoring.html:78
 msgid "Объект"
-msgstr ""
+msgstr "Объект"
 
-#: app/templates/dashboard.html:29 app/templates/monitoring.html:79
+#: templates/dashboard.html:29 templates/monitoring.html:79
 msgid "Зона"
-msgstr ""
+msgstr "Зона"
 
-#: app/templates/dashboard.html:30 app/templates/platform/dashboard.html:38
-#: app/templates/platform/organization_detail.html:109
-#: app/templates/platform/organization_detail.html:176
-#: app/templates/platform/organizations.html:28
-#: app/templates/platform/requests.html:31
-#: app/templates/platform/settings.html:119
-#: app/templates/platform/settings.html:189
-#: app/templates/platform/settings.html:412
-#: app/templates/platform/settings.html:550
+#: templates/dashboard.html:30 templates/platform/dashboard.html:38
+#: templates/platform/organization_detail.html:109
+#: templates/platform/organization_detail.html:176
+#: templates/platform/organizations.html:28
+#: templates/platform/requests.html:31 templates/platform/settings.html:119
+#: templates/platform/settings.html:189 templates/platform/settings.html:412
+#: templates/platform/settings.html:550
 msgid "Статус"
-msgstr ""
+msgstr "Статус"
 
-#: app/templates/dashboard.html:30 app/templates/device_detail.html:57
-#: app/templates/device_detail.html:89
+#: templates/dashboard.html:30 templates/device_detail.html:57
+#: templates/device_detail.html:89 templates/platform/devices.html:32
 msgid "Мощность"
-msgstr ""
+msgstr "Кубаттуулук"
 
-#: app/templates/dashboard.html:30
+#: templates/dashboard.html:30
 msgid "Питание"
-msgstr ""
+msgstr "Азыктандыруу"
 
-#: app/templates/dashboard.html:38 app/templates/dashboard.html:45
-#: app/templates/platform/dashboard.html:52
-#: app/templates/platform/organizations.html:46
-#: app/templates/platform/requests.html:54
+#: templates/dashboard.html:38 templates/dashboard.html:45
+#: templates/platform/dashboard.html:52
+#: templates/platform/organizations.html:46
+#: templates/platform/requests.html:54
 msgid "Открыть"
-msgstr ""
+msgstr "Ачуу"
 
-#: app/templates/dashboard_base.html:15
+#: templates/dashboard_base.html:15
 msgid "Главная"
-msgstr "Башкы бет"
+msgstr "Башкы"
 
-#: app/templates/dashboard_base.html:16 app/templates/devices.html:3
-#: app/templates/platform/base.html:18 app/templates/platform/settings.html:27
-#: app/templates/platform/settings.html:118
+#: templates/dashboard_base.html:16 templates/devices.html:3
+#: templates/platform/base.html:18 templates/platform/devices.html:3
+#: templates/platform/devices.html:6 templates/platform/settings.html:27
+#: templates/platform/settings.html:118
 msgid "Устройства"
 msgstr "Түзмөктөр"
 
-#: app/templates/dashboard_base.html:17 app/templates/monitoring.html:3
+#: templates/dashboard_base.html:17 templates/monitoring.html:3
 msgid "Мониторинг"
 msgstr "Мониторинг"
 
-#: app/templates/dashboard_base.html:18 app/templates/platform/base.html:21
-#: app/templates/settings.html:3 app/templates/settings.html:6
+#: templates/dashboard_base.html:18 templates/platform/base.html:21
+#: templates/settings.html:3 templates/settings.html:6
 msgid "Настройки"
 msgstr "Жөндөөлөр"
 
-#: app/templates/dashboard_base.html:21 app/templates/platform/base.html:24
+#: templates/dashboard_base.html:21 templates/platform/base.html:24
 msgid "Выйти"
 msgstr "Чыгуу"
 
-#: app/templates/device_detail.html:6
-#: app/templates/platform/organization_create.html:6
-#: app/templates/platform/organization_detail.html:6
-#: app/templates/platform/request_detail.html:6
+#: templates/device_detail.html:6
+#: templates/platform/organization_create.html:6
+#: templates/platform/organization_detail.html:6
+#: templates/platform/request_detail.html:6
 msgid "Назад к списку"
-msgstr ""
+msgstr "Тизмеге кайтуу"
 
-#: app/templates/device_detail.html:61 app/templates/device_detail.html:90
+#: templates/device_detail.html:61 templates/device_detail.html:90
 msgid "Энергия"
-msgstr ""
+msgstr "Энергия"
 
-#: app/templates/device_detail.html:65 app/templates/device_detail.html:87
+#: templates/device_detail.html:65 templates/device_detail.html:87
 msgid "Напряжение"
-msgstr ""
+msgstr "Чыңалуу"
 
-#: app/templates/device_detail.html:69 app/templates/device_detail.html:88
+#: templates/device_detail.html:69 templates/device_detail.html:88
 msgid "Ток"
-msgstr ""
+msgstr "Ток"
 
-#: app/templates/device_detail.html:73
+#: templates/device_detail.html:73
 msgid "Лимит мощности"
-msgstr ""
+msgstr "Кубаттуулук чеги"
 
-#: app/templates/device_detail.html:81
+#: templates/device_detail.html:81
 msgid "История показаний (последние 30)"
-msgstr ""
+msgstr "Көрсөткүчтөр тарыхы (акыркы 30)"
 
-#: app/templates/device_detail.html:86
+#: templates/device_detail.html:86
 msgid "Время"
-msgstr ""
+msgstr "Убакыт"
 
-#: app/templates/device_detail.html:91
+#: templates/device_detail.html:91
 msgid "Реле"
-msgstr ""
+msgstr "Реле"
 
-#: app/templates/devices.html:7
+#: templates/devices.html:7
 msgid "Устройства организации"
 msgstr "Уюмдун түзмөктөрү"
 
-#: app/templates/devices.html:8
+#: templates/devices.html:8
 msgid "Добавить устройство"
 msgstr "Түзмөк кошуу"
 
-#: app/templates/devices.html:14 app/templates/platform/dashboard.html:12
+#: templates/devices.html:14 templates/platform/dashboard.html:12
+#: templates/platform/devices.html:10
 msgid "Всего устройств"
 msgstr "Бардык түзмөктөр"
 
-#: app/templates/devices.html:18 app/templates/platform/dashboard.html:13
+#: templates/devices.html:18 templates/platform/dashboard.html:13
 msgid "Онлайн"
 msgstr "Онлайн"
 
-#: app/templates/devices.html:22 app/templates/platform/dashboard.html:14
+#: templates/devices.html:22 templates/platform/dashboard.html:14
 msgid "Офлайн"
 msgstr "Офлайн"
 
-#: app/templates/devices.html:26
+#: templates/devices.html:26
 msgid "Суммарная мощность"
 msgstr "Жалпы кубаттуулук"
 
-#: app/templates/devices.html:30
+#: templates/devices.html:30
 msgid "Суммарная энергия"
 msgstr "Жалпы энергия"
 
-#: app/templates/devices.html:34
+#: templates/devices.html:34
 msgid "Реле включено"
-msgstr "Реле күйгүзүлдү"
+msgstr "Реле күйгүзүлгөн"
 
-#: app/templates/include/footer.html:5
+#: templates/include/footer.html:5
 msgid "Все права защищены."
-msgstr ""
+msgstr "Бардык укуктар корголгон."
 
-#: app/templates/include/header.html:8 app/templates/include/header.html:35
-#: app/templates/include/homepage.html:55
+#: templates/include/header.html:8 templates/include/header.html:43
+#: templates/include/homepage.html:51
 msgid "Возможности"
 msgstr "Мүмкүнчүлүктөр"
 
-#: app/templates/include/header.html:9 app/templates/include/header.html:36
+#: templates/include/header.html:9 templates/include/header.html:44
 msgid "Как работает"
-msgstr "Кандай иштейт"
+msgstr "Кантип иштейт"
 
-#: app/templates/include/header.html:10 app/templates/include/header.html:37
-#: app/templates/include/homepage.html:178
-#: app/templates/platform/settings.html:25
-#: app/templates/platform/settings.html:99
-msgid "Тарифы"
-msgstr "Тарифтер"
-
-#: app/templates/include/header.html:20
+#: templates/include/header.html:28
 msgid "Сменить тему"
-msgstr ""
+msgstr "Теманы алмаштыруу"
 
-#: app/templates/include/header.html:21 app/templates/include/header.html:48
-#: app/templates/login.html:44
+#: templates/include/header.html:29 templates/include/header.html:55
+#: templates/login.html:44
 msgid "Войти"
 msgstr "Кирүү"
 
-#: app/templates/include/header.html:22
-#: app/templates/platform/request_detail.html:3
+#: templates/include/header.html:30 templates/platform/request_detail.html:3
 msgid "Заявка"
-msgstr "Билдирме"
+msgstr "Өтүнмө"
 
-#: app/templates/include/header.html:49 app/templates/include/homepage.html:16
-#: app/templates/include/homepage.html:218
+#: templates/include/header.html:56 templates/include/homepage.html:16
+#: templates/include/homepage.html:191
 msgid "Оставить заявку"
-msgstr "Билдирме калтыруу"
+msgstr "Өтүнмө калтыруу"
 
-#: app/templates/include/homepage.html:4
+#: templates/include/homepage.html:4
 msgid "Мониторинг электропотребления"
-msgstr ""
+msgstr "Электр керектөөнү мониторингдөө"
 
-#: app/templates/include/homepage.html:13
+#: templates/include/homepage.html:13
 msgid "Умный контроль"
-msgstr "Акылдуу башкаруу"
+msgstr "Акылдуу көзөмөл"
 
-#: app/templates/include/homepage.html:13
+#: templates/include/homepage.html:13
 msgid "энергопотребления"
-msgstr "энергия керектөөнү"
+msgstr "энергия керектөөнүн"
 
-#: app/templates/include/homepage.html:13
+#: templates/include/homepage.html:13
 msgid "для бизнеса"
 msgstr "бизнес үчүн"
 
-#: app/templates/include/homepage.html:14
+#: templates/include/homepage.html:14
 msgid ""
 "Отслеживайте расход электроэнергии, управляйте устройствами и получайте "
 "аналитику в реальном времени."
 msgstr ""
+"Электр энергиясынын чыгымын көзөмөлдөп, түзмөктөрдү башкарып, реалдуу "
+"убакытта аналитика алыңыз."
 
-#: app/templates/include/homepage.html:17
-msgid "Демо кабинет"
-msgstr "Демо кабинет"
+#: templates/include/homepage.html:17
+msgid "Кабинет"
+msgstr "Кабинет"
 
-#: app/templates/include/homepage.html:24
-msgid "Dashboard Preview — 800×600"
-msgstr ""
-
-#: app/templates/include/homepage.html:35
+#: templates/include/homepage.html:31
 msgid "мониторинг"
 msgstr "мониторинг"
 
-#: app/templates/include/homepage.html:38
+#: templates/include/homepage.html:34
 msgid "сек"
 msgstr "сек"
 
-#: app/templates/include/homepage.html:39
+#: templates/include/homepage.html:35
 msgid "обновление данных"
-msgstr "маалыматты жаңыртуу"
+msgstr "маалыматтын жаңылануусу"
 
-#: app/templates/include/homepage.html:43
+#: templates/include/homepage.html:39
 msgid "языка интерфейса"
-msgstr "интерфейс тилдери"
+msgstr "интерфейс тили"
 
-#: app/templates/include/homepage.html:47
+#: templates/include/homepage.html:43
 msgid "архитектура"
 msgstr "архитектура"
 
-#: app/templates/include/homepage.html:56
+#: templates/include/homepage.html:52
 msgid "Всё для управления энергией"
-msgstr "Энергияны башкаруу үчүн бардыгы"
+msgstr "Энергияны башкаруу үчүн баары"
 
-#: app/templates/include/homepage.html:57
+#: templates/include/homepage.html:53
 msgid ""
 "Платформа объединяет мониторинг, управление и аналитику в одном интерфейсе."
 msgstr ""
+"Платформа мониторингди, башкарууну жана аналитиканы бир интерфейсте "
+"бириктирет."
 
-#: app/templates/include/homepage.html:62
+#: templates/include/homepage.html:58
 msgid "Мониторинг потребления"
 msgstr "Керектөө мониторинги"
 
-#: app/templates/include/homepage.html:63
+#: templates/include/homepage.html:59
 msgid "Данные в реальном времени с каждого подключённого устройства."
-msgstr "Ар бир туташтырылган түзмөктөн реалдуу убакыт маалыматы."
+msgstr "Ар бир туташкан түзмөктөн реалдуу убакыттагы маалымат."
 
-#: app/templates/include/homepage.html:66
-#: app/templates/include/homepage.html:75
-#: app/templates/include/homepage.html:84
-#: app/templates/include/homepage.html:93
-#: app/templates/include/homepage.html:102
-#: app/templates/include/homepage.html:111
-msgid "Скриншот — 600×300"
-msgstr ""
-
-#: app/templates/include/homepage.html:71
+#: templates/include/homepage.html:63
 msgid "Управление устройствами"
 msgstr "Түзмөктөрдү башкаруу"
 
-#: app/templates/include/homepage.html:72
+#: templates/include/homepage.html:64
 msgid "Удалённое включение и отключение питания одним кликом."
-msgstr "Кубатты бир басуу менен аралыктан күйгүзүү жана өчүрүү."
+msgstr "Аралыктан бир чыкылдатуу менен азыктандырууну күйгүзүү жана өчүрүү."
 
-#: app/templates/include/homepage.html:80
+#: templates/include/homepage.html:68
 msgid "Объекты и зоны"
-msgstr "Объекттер жана аймактар"
+msgstr "Объекттер жана зоналар"
 
-#: app/templates/include/homepage.html:81
+#: templates/include/homepage.html:69
 msgid "Структурируйте инфраструктуру по филиалам и кабинетам."
-msgstr "Инфраструктураны филиалдар жана кеңселер боюнча түзүңүз."
+msgstr "Инфраструктураны филиалдар жана кабинеттер боюнча структуралаңыз."
 
-#: app/templates/include/homepage.html:89
+#: templates/include/homepage.html:73
 msgid "Аналитика и отчёты"
 msgstr "Аналитика жана отчёттор"
 
-#: app/templates/include/homepage.html:90
+#: templates/include/homepage.html:74
 msgid "Графики и отчёты за любой период."
 msgstr "Каалаган мезгил үчүн графиктер жана отчёттор."
 
-#: app/templates/include/homepage.html:99
+#: templates/include/homepage.html:79
 msgid "Мгновенные алерты при превышении лимитов."
-msgstr "Лимиттер ашканда заматта эскертүүлөр."
+msgstr "Чектен ашканда заматта эскертүүлөр."
 
-#: app/templates/include/homepage.html:107
+#: templates/include/homepage.html:83
 msgid "Ролевая система"
 msgstr "Ролдук система"
 
-#: app/templates/include/homepage.html:108
+#: templates/include/homepage.html:84
 msgid "Гибкое управление правами сотрудников."
 msgstr "Кызматкерлердин укуктарын ийкемдүү башкаруу."
 
-#: app/templates/include/homepage.html:120
+#: templates/include/homepage.html:92
 msgid "Процесс"
 msgstr "Процесс"
 
-#: app/templates/include/homepage.html:121
+#: templates/include/homepage.html:93
 msgid "Как это работает"
-msgstr "Бул кандай иштейт"
+msgstr "Бул кантип иштейт"
 
-#: app/templates/include/homepage.html:126
+#: templates/include/homepage.html:98
 msgid "Создание организации"
 msgstr "Уюм түзүү"
 
-#: app/templates/include/homepage.html:127
+#: templates/include/homepage.html:99
 msgid "Заключаем договор и настраиваем профиль компании."
-msgstr "Келишим түзөбүз жана компаниянын профилин жөндөйбүз."
+msgstr "Келишим түзүп, компаниянын профилин жөндөйбүз."
 
-#: app/templates/include/homepage.html:131
+#: templates/include/homepage.html:103
 msgid "Подключение объектов"
 msgstr "Объекттерди туташтыруу"
 
-#: app/templates/include/homepage.html:132
+#: templates/include/homepage.html:104
 msgid "Добавляем объекты, зоны и IoT-устройства."
-msgstr "Объекттерди, аймактарды жана IoT-түзмөктөрүн кошобуз."
+msgstr "Объекттерди, зоналарды жана IoT-түзмөктөрдү кошобуз."
 
-#: app/templates/include/homepage.html:136
+#: templates/include/homepage.html:108
 msgid "Контроль 24/7"
-msgstr "Көзөмөл 24/7"
+msgstr "24/7 көзөмөл"
 
-#: app/templates/include/homepage.html:137
+#: templates/include/homepage.html:109
 msgid "Мониторинг, управление и аналитика в реальном времени."
 msgstr "Реалдуу убакытта мониторинг, башкаруу жана аналитика."
 
-#: app/templates/include/homepage.html:145
+#: templates/include/homepage.html:117
 msgid "Применение"
-msgstr "Колдонуу"
+msgstr "Колдонулушу"
 
-#: app/templates/include/homepage.html:146
+#: templates/include/homepage.html:118
 msgid "Для любого бизнеса"
-msgstr "Ар кандай бизнес үчүн"
+msgstr "Каалаган бизнес үчүн"
 
-#: app/templates/include/homepage.html:149
+#: templates/include/homepage.html:163
 msgid "Офисы"
-msgstr "Кеңселер"
+msgstr "Офистер"
 
-#: app/templates/include/homepage.html:150
+#: templates/include/homepage.html:164
 msgid "Магазины"
 msgstr "Дүкөндөр"
 
-#: app/templates/include/homepage.html:151
+#: templates/include/homepage.html:165
 msgid "Склады"
 msgstr "Кампалар"
 
-#: app/templates/include/homepage.html:152
+#: templates/include/homepage.html:166
 msgid "Кафе"
 msgstr "Кафелер"
 
-#: app/templates/include/homepage.html:153
+#: templates/include/homepage.html:167
 msgid "Университеты"
 msgstr "Университеттер"
 
-#: app/templates/include/homepage.html:154
+#: templates/include/homepage.html:168
 msgid "Гостиницы"
 msgstr "Мейманканалар"
 
-#: app/templates/include/homepage.html:155
+#: templates/include/homepage.html:169
 msgid "Арендные помещения"
 msgstr "Ижара жайлар"
 
-#: app/templates/include/homepage.html:156
+#: templates/include/homepage.html:170
 msgid "Производство"
 msgstr "Өндүрүш"
 
-#: app/templates/include/homepage.html:163
-msgid "Интерфейс"
-msgstr ""
-
-#: app/templates/include/homepage.html:164
-msgid "Современный кабинет"
-msgstr ""
-
-#: app/templates/include/homepage.html:165
-msgid "Удобный интерфейс для контроля всех процессов."
-msgstr ""
-
-#: app/templates/include/homepage.html:170
-msgid "Полный скриншот кабинета — 1200×525"
-msgstr ""
-
-#: app/templates/include/homepage.html:179
-msgid "Выберите план"
-msgstr ""
-
-#: app/templates/include/homepage.html:184
-#: app/templates/include/homepage.html:190
-msgid "По запросу"
-msgstr ""
-
-#: app/templates/include/homepage.html:185
-#: app/templates/include/homepage.html:191
-msgid "Узнать больше"
-msgstr ""
-
-#: app/templates/include/homepage.html:188
-msgid "ПОПУЛЯРНЫЙ"
-msgstr ""
-
-#: app/templates/include/homepage.html:195
-msgid "Индивидуально"
-msgstr ""
-
-#: app/templates/include/homepage.html:196
-msgid "Связаться"
-msgstr ""
-
-#: app/templates/include/homepage.html:205
+#: templates/include/homepage.html:178
 msgid "Частые вопросы"
 msgstr "Көп берилүүчү суроолор"
 
-#: app/templates/include/homepage.html:207
+#: templates/include/homepage.html:180
 msgid "Как подключить организацию?"
 msgstr "Уюмду кантип туташтырса болот?"
 
-#: app/templates/include/homepage.html:207
+#: templates/include/homepage.html:180
 msgid ""
 "Оставьте заявку — менеджер свяжется для заключения договора и настройки."
-msgstr ""
+msgstr "Өтүнмө калтырыңыз — менеджер келишим түзүп, жөндөө үчүн байланышат."
 
-#: app/templates/include/homepage.html:208
+#: templates/include/homepage.html:181
 msgid "Можно ли подключить несколько объектов?"
 msgstr "Бир нече объектти туташтырса болобу?"
 
-#: app/templates/include/homepage.html:208
+#: templates/include/homepage.html:181
 msgid "Да. Иерархия: Организация → Объекты → Зоны → Устройства."
-msgstr "Ооба. Иерархия: Уюм → Объекттер → Аймактар → Түзмөктөр."
+msgstr "Ооба. Иерархия: Уюм → Объекттер → Зоналар → Түзмөктөр."
 
-#: app/templates/include/homepage.html:209
+#: templates/include/homepage.html:182
 msgid "Можно ли управлять питанием удалённо?"
-msgstr "Кубатты аралыктан башкарса болобу?"
+msgstr "Азыктандырууну аралыктан башкарса болобу?"
 
-#: app/templates/include/homepage.html:209
+#: templates/include/homepage.html:182
 msgid "Да, через кабинет в один клик."
-msgstr "Ооба, кабинет аркылуу бир басуу менен."
+msgstr "Ооба, кабинет аркылуу бир чыкылдатууда."
 
-#: app/templates/include/homepage.html:210
+#: templates/include/homepage.html:183
 msgid "Есть ли история потребления?"
 msgstr "Керектөө тарыхы барбы?"
 
-#: app/templates/include/homepage.html:210
+#: templates/include/homepage.html:183
 msgid "Да, графики и отчёты за любой период."
 msgstr "Ооба, каалаган мезгил үчүн графиктер жана отчёттор."
 
-#: app/templates/include/homepage.html:211
+#: templates/include/homepage.html:184
 msgid "Поддерживается ли кыргызский язык?"
-msgstr "Кыргыз тили колдонулабы?"
+msgstr "Кыргыз тили колдоого алынабы?"
 
-#: app/templates/include/homepage.html:211
+#: templates/include/homepage.html:184
 msgid "Да — RU, EN и KG."
 msgstr "Ооба — RU, EN жана KG."
 
-#: app/templates/include/homepage.html:217
+#: templates/include/homepage.html:190
 msgid "Контакты"
 msgstr "Байланыш"
 
-#: app/templates/include/homepage.html:222
-msgid "Свяжитесь с нами"
-msgstr "Биз менен байланышыңыз"
+#: templates/include/homepage.html:196
+msgid "Готовы начать?"
+msgstr "Баштоого даярсызбы?"
 
-#: app/templates/include/homepage.html:223
+#: templates/include/homepage.html:197
 msgid ""
-"Оставьте контактные данные, и мы расскажем о возможностях платформы для "
-"вашего бизнеса."
+"Оставьте контактные данные, и мы свяжемся с вами, чтобы обсудить внедрение "
+"Green Energy на ваших объектах."
 msgstr ""
+"Байланыш маалыматыңызды калтырыңыз, биз Green Energy'ни объекттериңизде "
+"киргизүүнү талкуулоо үчүн байланышабыз."
 
-#: app/templates/include/homepage.html:226
-msgid "Фото офиса / команды — 600×450"
-msgstr ""
-
-#: app/templates/include/homepage.html:241
-#: app/templates/platform/dashboard.html:37
-#: app/templates/platform/organizations.html:27
-#: app/templates/platform/request_detail.html:40
-#: app/templates/platform/requests.html:27
-msgid "Организация"
-msgstr "Уюм"
-
-#: app/templates/include/homepage.html:242
-#: app/templates/platform/settings.html:548 app/templates/settings.html:25
-msgid "Имя"
-msgstr "Аты"
-
-#: app/templates/include/homepage.html:243
-#: app/templates/platform/dashboard.html:37
-#: app/templates/platform/organization_create.html:42
-#: app/templates/platform/organization_detail.html:77
-#: app/templates/platform/organization_detail.html:135
-#: app/templates/platform/organizations.html:27
-#: app/templates/platform/request_detail.html:51 app/templates/settings.html:51
+#: templates/include/homepage.html:210 templates/include/homepage.html:236
+#: templates/platform/dashboard.html:37
+#: templates/platform/organization_create.html:42
+#: templates/platform/organization_detail.html:77
+#: templates/platform/organization_detail.html:135
+#: templates/platform/organizations.html:27
+#: templates/platform/request_detail.html:51 templates/settings.html:51
 msgid "Телефон"
 msgstr "Телефон"
 
-#: app/templates/include/homepage.html:244
-#: app/templates/platform/organization_create.html:49
-#: app/templates/platform/organization_detail.html:84
-#: app/templates/platform/organization_detail.html:139
-#: app/templates/platform/organization_detail.html:176
-#: app/templates/platform/request_detail.html:55 app/templates/settings.html:21
+#: templates/include/homepage.html:232 templates/platform/dashboard.html:37
+#: templates/platform/devices.html:31 templates/platform/organizations.html:27
+#: templates/platform/request_detail.html:40
+#: templates/platform/requests.html:27
+msgid "Организация"
+msgstr "Уюм"
+
+#: templates/include/homepage.html:233 templates/platform/settings.html:548
+#: templates/settings.html:25
+msgid "Имя"
+msgstr "Аты"
+
+#: templates/include/homepage.html:237
+#: templates/platform/organization_create.html:49
+#: templates/platform/organization_detail.html:84
+#: templates/platform/organization_detail.html:139
+#: templates/platform/organization_detail.html:176
+#: templates/platform/request_detail.html:55 templates/settings.html:21
 msgid "Email"
 msgstr "Email"
 
-#: app/templates/include/homepage.html:245
-#: app/templates/platform/request_detail.html:61
-#: app/templates/platform/requests.html:30
+#: templates/include/homepage.html:239
+#: templates/platform/request_detail.html:61
+#: templates/platform/requests.html:30
 msgid "Комментарий"
 msgstr "Комментарий"
 
-#: app/templates/include/homepage.html:246
-msgid "Отправить"
-msgstr ""
+#: templates/include/homepage.html:240
+msgid "Отправить заявку"
+msgstr "Өтүнмө жөнөтүү"
 
-#: app/templates/login.html:3
+#: templates/login.html:3
 msgid "Вход"
-msgstr ""
+msgstr "Кирүү"
 
-#: app/templates/login.html:10
+#: templates/login.html:10
 msgid "Вход в систему Green Energy"
-msgstr ""
+msgstr "Green Energy системасына кирүү"
 
-#: app/templates/login.html:11
+#: templates/login.html:11
 msgid ""
 "Используйте username и password, выданные после подключения организации."
 msgstr ""
+"Уюмуңуз туташтырылгандан кийин берилген username жана password колдонуңуз."
 
-#: app/templates/login.html:31
-#: app/templates/platform/organization_create.html:84
-#: app/templates/platform/organization_detail.html:176
-#: app/templates/platform/settings.html:547
+#: templates/login.html:31 templates/platform/organization_create.html:84
+#: templates/platform/organization_detail.html:176
+#: templates/platform/settings.html:547
 msgid "Username"
-msgstr ""
+msgstr "Username"
 
-#: app/templates/login.html:33
+#: templates/login.html:33
 msgid "Введите username"
-msgstr ""
+msgstr "Username киргизиңиз"
 
-#: app/templates/login.html:37
+#: templates/login.html:37
 msgid "Пароль"
-msgstr ""
+msgstr "Сырсөз"
 
-#: app/templates/login.html:39
+#: templates/login.html:39
 msgid "Введите пароль"
-msgstr ""
+msgstr "Сырсөздү киргизиңиз"
 
-#: app/templates/login.html:42
+#: templates/login.html:42
 msgid "Запомнить меня"
-msgstr ""
+msgstr "Мени эстеп кал"
 
-#: app/templates/login.html:48
+#: templates/login.html:48
 msgid "На главную"
-msgstr ""
+msgstr "Башкы бетке"
 
-#: app/templates/monitoring.html:10
+#: templates/monitoring.html:10
 msgid "Аналитика и Мониторинг"
 msgstr "Аналитика жана Мониторинг"
 
-#: app/templates/monitoring.html:13
+#: templates/monitoring.html:13
 msgid "Все объекты"
-msgstr ""
+msgstr "Бардык объекттер"
 
-#: app/templates/monitoring.html:14
+#: templates/monitoring.html:14
 msgid "Главный офис"
-msgstr ""
+msgstr "Башкы офис"
 
-#: app/templates/monitoring.html:15
+#: templates/monitoring.html:15
 msgid "Склад А"
-msgstr ""
+msgstr "Кампа А"
 
-#: app/templates/monitoring.html:18
+#: templates/monitoring.html:18
 msgid "Все устройства"
-msgstr ""
+msgstr "Бардык түзмөктөр"
 
-#: app/templates/monitoring.html:19
+#: templates/monitoring.html:19
 msgid "Кондиционеры"
-msgstr ""
+msgstr "Кондиционерлер"
 
-#: app/templates/monitoring.html:20
+#: templates/monitoring.html:20
 msgid "Освещение"
-msgstr ""
+msgstr "Жарыктандыруу"
 
-#: app/templates/monitoring.html:33
+#: templates/monitoring.html:33
 msgid "Текущая нагрузка"
-msgstr "Учурдагы жүк"
+msgstr "Учурдагы жүктөм"
 
-#: app/templates/monitoring.html:38
+#: templates/monitoring.html:38
 msgid "Потреблено за 24ч"
-msgstr "24с сарпталган"
+msgstr "24 саатта керектелди"
 
-#: app/templates/monitoring.html:43
+#: templates/monitoring.html:43
 msgid "Пик нагрузки"
-msgstr "Эң жогорку жүк"
+msgstr "Жүктөмдүн чокусу"
 
-#: app/templates/monitoring.html:48
+#: templates/monitoring.html:48
 msgid "Сэкономлено CO₂"
 msgstr "CO₂ үнөмдөлдү"
 
-#: app/templates/monitoring.html:57
+#: templates/monitoring.html:57
 msgid "Общее потребление энергии (кВт·ч)"
 msgstr "Жалпы энергия керектөө (кВт·с)"
 
-#: app/templates/monitoring.html:65
+#: templates/monitoring.html:65
 msgid "Потребление по зонам"
-msgstr "Аймактар боюнча керектөө"
+msgstr "Зоналар боюнча керектөө"
 
-#: app/templates/monitoring.html:73
+#: templates/monitoring.html:73
 msgid "Детализация по зонам"
-msgstr ""
+msgstr "Зоналар боюнча чечмелөө"
 
-#: app/templates/monitoring.html:80
+#: templates/monitoring.html:80
 msgid "Устройств"
-msgstr ""
+msgstr "Түзмөктөр"
 
-#: app/templates/monitoring.html:81
+#: templates/monitoring.html:81
 msgid "Потребление (24ч)"
-msgstr ""
+msgstr "Керектөө (24с)"
 
-#: app/templates/monitoring.html:82
+#: templates/monitoring.html:82
 msgid "Доля"
-msgstr ""
+msgstr "Үлүш"
 
-#: app/templates/monitoring.html:83
+#: templates/monitoring.html:83
 msgid "Пик"
-msgstr ""
+msgstr "Чоку"
 
-#: app/templates/platform/base.html:14
+#: templates/platform/base.html:14
 msgid "Администратор"
-msgstr ""
+msgstr "Администратор"
 
-#: app/templates/platform/base.html:16
+#: templates/platform/base.html:16
 msgid "Dashboard"
-msgstr ""
+msgstr "Башкаруу панели"
 
-#: app/templates/platform/base.html:17 app/templates/platform/dashboard.html:31
-#: app/templates/platform/organizations.html:3
-#: app/templates/platform/organizations.html:7
+#: templates/platform/base.html:17 templates/platform/dashboard.html:31
+#: templates/platform/organizations.html:3
+#: templates/platform/organizations.html:7
 msgid "Организации"
-msgstr ""
+msgstr "Уюмдар"
 
-#: app/templates/platform/base.html:20 app/templates/platform/dashboard.html:16
-#: app/templates/platform/settings.html:30
+#: templates/platform/base.html:20 templates/platform/dashboard.html:16
+#: templates/platform/settings.html:30
 msgid "Заявки"
-msgstr ""
+msgstr "Өтүнмөлөр"
 
-#: app/templates/platform/base.html:32
+#: templates/platform/base.html:32
 msgid "Platform Admin"
-msgstr ""
+msgstr "Платформа админи"
 
-#: app/templates/platform/dashboard.html:3
-#: app/templates/platform/dashboard.html:6
+#: templates/platform/dashboard.html:3 templates/platform/dashboard.html:6
 msgid "Platform Dashboard"
-msgstr ""
+msgstr "Платформа панели"
 
-#: app/templates/platform/dashboard.html:10
+#: templates/platform/dashboard.html:10
 msgid "Всего организаций"
-msgstr ""
+msgstr "Бардык уюмдар"
 
-#: app/templates/platform/dashboard.html:11
-#: app/templates/platform/settings.html:105
+#: templates/platform/dashboard.html:11 templates/platform/settings.html:105
 msgid "Активных"
-msgstr ""
+msgstr "Активдүү"
 
-#: app/templates/platform/dashboard.html:17
+#: templates/platform/dashboard.html:17
 msgid "Общее потребление"
-msgstr ""
+msgstr "Жалпы керектөө"
 
-#: app/templates/platform/dashboard.html:22
-#: app/templates/platform/organization_create.html:3
-#: app/templates/platform/organizations.html:8
+#: templates/platform/dashboard.html:22
+#: templates/platform/organization_create.html:3
+#: templates/platform/organizations.html:8
 msgid "Добавить организацию"
-msgstr ""
+msgstr "Уюм кошуу"
 
-#: app/templates/platform/dashboard.html:23
+#: templates/platform/dashboard.html:23
 msgid "Все организации"
-msgstr ""
+msgstr "Бардык уюмдар"
 
-#: app/templates/platform/dashboard.html:24
+#: templates/platform/dashboard.html:24
 msgid "Все уведомления"
-msgstr ""
+msgstr "Бардык билдирүүлөр"
 
-#: app/templates/platform/dashboard.html:37
-#: app/templates/platform/organizations.html:27
-#: app/templates/platform/requests.html:28
+#: templates/platform/dashboard.html:37
+#: templates/platform/organizations.html:27
+#: templates/platform/requests.html:28
 msgid "Контакт"
-msgstr ""
+msgstr "Байланыш"
 
-#: app/templates/platform/dashboard.html:38
-#: app/templates/platform/organization_detail.html:161
-#: app/templates/platform/organizations.html:29
+#: templates/platform/dashboard.html:38
+#: templates/platform/organization_detail.html:161
+#: templates/platform/organizations.html:29
 msgid "Пользователей"
-msgstr ""
+msgstr "Колдонуучулар"
 
-#: app/templates/platform/dashboard.html:38
-#: app/templates/platform/organizations.html:29
-#: app/templates/platform/requests.html:26
-#: app/templates/platform/settings.html:407
+#: templates/platform/dashboard.html:38
+#: templates/platform/organizations.html:29
+#: templates/platform/requests.html:26 templates/platform/settings.html:407
 msgid "Дата"
-msgstr ""
+msgstr "Күнү"
 
-#: app/templates/platform/dashboard.html:47
-#: app/templates/platform/organization_detail.html:111
-#: app/templates/platform/organizations.html:39
-#: app/templates/platform/settings.html:85
+#: templates/platform/dashboard.html:47
+#: templates/platform/organization_detail.html:111
+#: templates/platform/organizations.html:39
+#: templates/platform/settings.html:85
 msgid "Активна"
-msgstr ""
+msgstr "Активдүү"
 
-#: app/templates/platform/dashboard.html:48
-#: app/templates/platform/organization_detail.html:112
-#: app/templates/platform/organizations.html:42
+#: templates/platform/dashboard.html:48
+#: templates/platform/organization_detail.html:112
+#: templates/platform/organizations.html:42
 msgid "Неактивна"
-msgstr ""
+msgstr "Активдүү эмес"
 
-#: app/templates/platform/dashboard.html:75
-#: app/templates/platform/notifications.html:35
-msgid "Новое"
-msgstr ""
+#: templates/platform/devices.html:11 templates/platform/devices.html:44
+msgid "Подключено"
+msgstr "Туташкан"
 
-#: app/templates/platform/dashboard.html:85
-#: app/templates/platform/notifications.html:54
-msgid "Нет уведомлений"
-msgstr ""
+#: templates/platform/devices.html:12
+msgid "В сети сейчас"
+msgstr "Азыр онлайн"
 
-#: app/templates/platform/notifications.html:11
-msgid "Прочитать все"
-msgstr ""
+#: templates/platform/devices.html:13 templates/platform/devices.html:47
+msgid "Не подключено"
+msgstr "Туташкан эмес"
 
-#: app/templates/platform/organization_create.html:8
+#: templates/platform/devices.html:14
+msgid "Не назначено"
+msgstr "Дайындалган эмес"
+
+#: templates/platform/devices.html:31
+msgid "Device ID"
+msgstr "Device ID"
+
+#: templates/platform/devices.html:32
+msgid "Тип"
+msgstr "Түрү"
+
+#: templates/platform/devices.html:32
+msgid "Подключение"
+msgstr "Туташуу"
+
+#: templates/platform/devices.html:33
+msgid "Последний контакт"
+msgstr "Акыркы байланыш"
+
+#: templates/platform/devices.html:45
+msgid "в сети"
+msgstr "онлайн"
+
+#: templates/platform/devices.html:50
+msgid "Вт"
+msgstr "Вт"
+
+#: templates/platform/devices.html:61
+msgid "Подключённых устройств пока нет"
+msgstr "Азырынча туташкан түзмөктөр жок"
+
+#: templates/platform/organization_create.html:8
 msgid "Новая организация"
-msgstr ""
+msgstr "Жаңы уюм"
 
-#: app/templates/platform/organization_create.html:28
-#: app/templates/platform/organization_detail.html:63
-#: app/templates/settings.html:38
+#: templates/platform/organization_create.html:28
+#: templates/platform/organization_detail.html:63 templates/settings.html:38
 msgid "Данные организации"
-msgstr ""
+msgstr "Уюмдун маалыматы"
 
-#: app/templates/platform/organization_create.html:32
+#: templates/platform/organization_create.html:32
 msgid "Название организации"
-msgstr ""
+msgstr "Уюмдун аталышы"
 
-#: app/templates/platform/organization_create.html:33
+#: templates/platform/organization_create.html:33
 msgid "ОсОО Green Tech"
-msgstr ""
+msgstr "Green Tech ЖЧК"
 
-#: app/templates/platform/organization_create.html:38
-#: app/templates/platform/organization_detail.html:73
-#: app/templates/platform/organization_detail.html:131
-#: app/templates/platform/request_detail.html:44 app/templates/settings.html:47
+#: templates/platform/organization_create.html:38
+#: templates/platform/organization_detail.html:73
+#: templates/platform/organization_detail.html:131
+#: templates/platform/request_detail.html:44 templates/settings.html:47
 msgid "Контактное лицо"
-msgstr ""
+msgstr "Байланыш адамы"
 
-#: app/templates/platform/organization_create.html:39
+#: templates/platform/organization_create.html:39
 msgid "Азамат Исмаилов"
-msgstr ""
+msgstr "Азамат Исмаилов"
 
-#: app/templates/platform/organization_create.html:53
-#: app/templates/platform/organization_detail.html:88
+#: templates/platform/organization_create.html:53
+#: templates/platform/organization_detail.html:88
 msgid "Номер договора"
-msgstr ""
+msgstr "Келишим номери"
 
-#: app/templates/platform/organization_create.html:59
-#: app/templates/platform/organization_detail.html:94
-#: app/templates/platform/organization_detail.html:143
-#: app/templates/settings.html:55
+#: templates/platform/organization_create.html:59
+#: templates/platform/organization_detail.html:94
+#: templates/platform/organization_detail.html:143 templates/settings.html:55
 msgid "Адрес"
-msgstr ""
+msgstr "Дарек"
 
-#: app/templates/platform/organization_create.html:60
+#: templates/platform/organization_create.html:60
 msgid "г. Бишкек, ул. Киевская 120"
-msgstr ""
+msgstr "Бишкек ш., Киев көч. 120"
 
-#: app/templates/platform/organization_create.html:64
-#: app/templates/platform/organization_detail.html:99
+#: templates/platform/organization_create.html:64
+#: templates/platform/organization_detail.html:99
 msgid "Тарифный план"
-msgstr ""
+msgstr "Тариф планы"
 
-#: app/templates/platform/organization_create.html:66
-#: app/templates/platform/organization_detail.html:101
-#: app/templates/platform/organization_detail.html:156
+#: templates/platform/organization_create.html:66
+#: templates/platform/organization_detail.html:101
+#: templates/platform/organization_detail.html:156
 msgid "Без тарифа"
-msgstr ""
+msgstr "Тарифсиз"
 
-#: app/templates/platform/organization_create.html:79
+#: templates/platform/organization_create.html:79
 msgid "Аккаунт для входа"
-msgstr ""
+msgstr "Кирүү аккаунту"
 
-#: app/templates/platform/organization_create.html:88
+#: templates/platform/organization_create.html:88
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
-#: app/templates/platform/organization_create.html:94
+#: templates/platform/organization_create.html:94
 msgid ""
 "Будет создан: Organization + User + UserProfile (role=organization_admin)."
-msgstr ""
+msgstr "Түзүлөт: Organization + User + UserProfile (role=organization_admin)."
 
-#: app/templates/platform/organization_create.html:97
+#: templates/platform/organization_create.html:97
 msgid "Создать организацию"
-msgstr ""
+msgstr "Уюм түзүү"
 
-#: app/templates/platform/organization_detail.html:32
+#: templates/platform/organization_detail.html:32
 msgid "Создана:"
-msgstr ""
+msgstr "Түзүлгөн:"
 
-#: app/templates/platform/organization_detail.html:33
+#: templates/platform/organization_detail.html:33
 msgid "Обновлена:"
-msgstr ""
+msgstr "Жаңыланган:"
 
-#: app/templates/platform/organization_detail.html:38
+#: templates/platform/organization_detail.html:38
 msgid "Изменить"
-msgstr ""
+msgstr "Өзгөртүү"
 
-#: app/templates/platform/organization_detail.html:40
-#: app/templates/platform/organization_detail.html:120
-#: app/templates/platform/settings.html:213
+#: templates/platform/organization_detail.html:40
+#: templates/platform/organization_detail.html:120
+#: templates/platform/settings.html:213
 msgid "Отмена"
-msgstr ""
+msgstr "Жокко чыгаруу"
 
-#: app/templates/platform/organization_detail.html:46
+#: templates/platform/organization_detail.html:46
 msgid "Отключить"
-msgstr ""
+msgstr "Өчүрүү"
 
-#: app/templates/platform/organization_detail.html:48
+#: templates/platform/organization_detail.html:48
 msgid "Активировать"
-msgstr ""
+msgstr "Активдештирүү"
 
-#: app/templates/platform/organization_detail.html:67
+#: templates/platform/organization_detail.html:67
 msgid "Название"
-msgstr ""
+msgstr "Аталышы"
 
-#: app/templates/platform/organization_detail.html:113
-#: app/templates/platform/organizations.html:41
+#: templates/platform/organization_detail.html:113
+#: templates/platform/organizations.html:41
 msgid "Ожидает"
-msgstr ""
+msgstr "Күтүүдө"
 
-#: app/templates/platform/organization_detail.html:114
-#: app/templates/platform/organizations.html:40
+#: templates/platform/organization_detail.html:114
+#: templates/platform/organizations.html:40
 msgid "Заблокирована"
-msgstr ""
+msgstr "Бөгөттөлгөн"
 
-#: app/templates/platform/organization_detail.html:119
+#: templates/platform/organization_detail.html:119
 msgid "Сохранить изменения"
-msgstr ""
+msgstr "Өзгөртүүлөрдү сактоо"
 
-#: app/templates/platform/organization_detail.html:147
-#: app/templates/platform/organizations.html:28
+#: templates/platform/organization_detail.html:147
+#: templates/platform/organizations.html:28
 msgid "Договор"
-msgstr ""
+msgstr "Келишим"
 
-#: app/templates/platform/organization_detail.html:151
-#: app/templates/platform/settings.html:114
+#: templates/platform/organization_detail.html:151
+#: templates/platform/settings.html:114
 msgid "Тариф"
-msgstr ""
+msgstr "Тариф"
 
-#: app/templates/platform/organization_detail.html:171
+#: templates/platform/organization_detail.html:171
 msgid "Пользователи организации"
-msgstr ""
+msgstr "Уюмдун колдонуучулары"
 
-#: app/templates/platform/organization_detail.html:176
-#: app/templates/platform/settings.html:409
-#: app/templates/platform/settings.html:549
+#: templates/platform/organization_detail.html:176
+#: templates/platform/settings.html:409 templates/platform/settings.html:549
 msgid "Роль"
-msgstr ""
+msgstr "Рол"
 
-#: app/templates/platform/organization_detail.html:184
-#: app/templates/platform/settings.html:131
-#: app/templates/platform/settings.html:561
+#: templates/platform/organization_detail.html:184
+#: templates/platform/settings.html:131 templates/platform/settings.html:561
 msgid "Активен"
-msgstr ""
+msgstr "Активдүү"
 
-#: app/templates/platform/organization_detail.html:193
+#: templates/platform/organization_detail.html:193
 msgid "Нет пользователей"
-msgstr ""
+msgstr "Колдонуучулар жок"
 
-#: app/templates/platform/organization_detail.html:200
+#: templates/platform/organization_detail.html:200
 msgid "Сброс пароля"
-msgstr ""
+msgstr "Сырсөздү баштапкы абалга келтирүү"
 
-#: app/templates/platform/organization_detail.html:205
+#: templates/platform/organization_detail.html:205
 msgid "Новый пароль для"
-msgstr ""
+msgstr "Жаңы сырсөз"
 
-#: app/templates/platform/organization_detail.html:206
+#: templates/platform/organization_detail.html:206
 msgid "Введите новый пароль"
-msgstr ""
+msgstr "Жаңы сырсөздү киргизиңиз"
 
-#: app/templates/platform/organization_detail.html:208
+#: templates/platform/organization_detail.html:208
 msgid "Сбросить"
-msgstr ""
+msgstr "Баштапкы абалга"
 
-#: app/templates/platform/organizations.html:55
+#: templates/platform/organizations.html:55
 msgid "Пока нет организаций"
-msgstr ""
+msgstr "Азырынча уюмдар жок"
 
-#: app/templates/platform/organizations.html:56
+#: templates/platform/organizations.html:56
 msgid "Добавить первую"
-msgstr ""
+msgstr "Биринчисин кошуу"
 
-#: app/templates/platform/request_detail.html:21
+#: templates/platform/request_detail.html:21
 msgid "Заявка от"
-msgstr ""
+msgstr "Өтүнмө"
 
-#: app/templates/platform/request_detail.html:23
-#: app/templates/platform/requests.html:48
+#: templates/platform/request_detail.html:23
+#: templates/platform/requests.html:48
 msgid "Новая"
-msgstr ""
+msgstr "Жаңы"
 
-#: app/templates/platform/request_detail.html:24
-#: app/templates/platform/requests.html:49
+#: templates/platform/request_detail.html:24
+#: templates/platform/requests.html:49
 msgid "В обработке"
-msgstr ""
+msgstr "Иштелүүдө"
 
-#: app/templates/platform/request_detail.html:25
-#: app/templates/platform/requests.html:50
+#: templates/platform/request_detail.html:25
+#: templates/platform/requests.html:50
 msgid "Обработана"
-msgstr ""
+msgstr "Иштелди"
 
-#: app/templates/platform/request_detail.html:26
-#: app/templates/platform/requests.html:51
+#: templates/platform/request_detail.html:26
+#: templates/platform/requests.html:51
 msgid "Отклонена"
-msgstr ""
+msgstr "Четке кагылды"
 
-#: app/templates/platform/request_detail.html:27
+#: templates/platform/request_detail.html:27
 msgid "Отправлена"
-msgstr ""
+msgstr "Жөнөтүлдү"
 
-#: app/templates/platform/request_detail.html:35
+#: templates/platform/request_detail.html:35
 msgid "Детали заявки"
-msgstr ""
+msgstr "Өтүнмөнүн чоо-жайы"
 
-#: app/templates/platform/request_detail.html:62
+#: templates/platform/request_detail.html:62
 msgid "Без комментария"
-msgstr ""
+msgstr "Комментарийсиз"
 
-#: app/templates/platform/request_detail.html:69
+#: templates/platform/request_detail.html:69
 msgid "Действия"
-msgstr ""
+msgstr "Аракеттер"
 
-#: app/templates/platform/request_detail.html:76
+#: templates/platform/request_detail.html:76
 msgid "Изменить статус"
-msgstr ""
+msgstr "Статусту өзгөртүү"
 
-#: app/templates/platform/request_detail.html:84
+#: templates/platform/request_detail.html:84
 msgid "Сохранить статус"
-msgstr ""
+msgstr "Статусту сактоо"
 
-#: app/templates/platform/requests.html:3
-#: app/templates/platform/requests.html:7
+#: templates/platform/requests.html:3 templates/platform/requests.html:7
 msgid "Заявки на подключение"
-msgstr ""
+msgstr "Туташуу өтүнмөлөрү"
 
-#: app/templates/platform/requests.html:29
+#: templates/platform/requests.html:29
 msgid "Телефон / Email"
-msgstr ""
+msgstr "Телефон / Email"
 
-#: app/templates/platform/requests.html:32
+#: templates/platform/requests.html:32
 msgid "Действие"
-msgstr ""
+msgstr "Аракет"
 
-#: app/templates/platform/requests.html:64
+#: templates/platform/requests.html:64
 msgid "Пока нет заявок на подключение"
-msgstr ""
+msgstr "Азырынча туташуу өтүнмөлөрү жок"
 
-#: app/templates/platform/settings.html:3
-#: app/templates/platform/settings.html:7
+#: templates/platform/settings.html:3 templates/platform/settings.html:7
 msgid "Настройки платформы"
-msgstr ""
+msgstr "Платформанын жөндөөлөрү"
 
-#: app/templates/platform/settings.html:8
+#: templates/platform/settings.html:8
 msgid ""
 "Управление глобальными параметрами Green Energy, тарифами, уведомлениями, "
 "устройствами и безопасностью."
 msgstr ""
+"Green Energy'нин глобалдык параметрлерин, тарифтерди, билдирүүлөрдү, "
+"түзмөктөрдү жана коопсуздукту башкаруу."
 
-#: app/templates/platform/settings.html:24
+#: templates/platform/settings.html:24
 msgid "Общие"
-msgstr ""
+msgstr "Жалпы"
 
-#: app/templates/platform/settings.html:29
+#: templates/platform/settings.html:25 templates/platform/settings.html:99
+msgid "Тарифы"
+msgstr "Тарифтер"
+
+#: templates/platform/settings.html:29
 msgid "Безопасность"
-msgstr ""
+msgstr "Коопсуздук"
 
-#: app/templates/platform/settings.html:31
+#: templates/platform/settings.html:31
 msgid "API / IoT"
-msgstr ""
+msgstr "API / IoT"
 
-#: app/templates/platform/settings.html:32
-#: app/templates/platform/settings.html:539
+#: templates/platform/settings.html:32 templates/platform/settings.html:539
 msgid "Администраторы"
-msgstr ""
+msgstr "Администраторлор"
 
-#: app/templates/platform/settings.html:39
+#: templates/platform/settings.html:39
 msgid "Общие настройки"
-msgstr ""
+msgstr "Жалпы жөндөөлөр"
 
-#: app/templates/platform/settings.html:43
+#: templates/platform/settings.html:43
 msgid "Название платформы"
-msgstr ""
+msgstr "Платформанын аталышы"
 
-#: app/templates/platform/settings.html:47
+#: templates/platform/settings.html:47
 msgid "Описание платформы"
-msgstr ""
+msgstr "Платформанын сүрөттөмөсү"
 
-#: app/templates/platform/settings.html:52
+#: templates/platform/settings.html:52
 msgid "Email поддержки"
-msgstr ""
+msgstr "Колдоо email"
 
-#: app/templates/platform/settings.html:56
+#: templates/platform/settings.html:56
 msgid "Телефон поддержки"
-msgstr ""
+msgstr "Колдоо телефону"
 
-#: app/templates/platform/settings.html:62
+#: templates/platform/settings.html:62
 msgid "Основной язык"
-msgstr ""
+msgstr "Негизги тил"
 
-#: app/templates/platform/settings.html:70
+#: templates/platform/settings.html:70
 msgid "Валюта по умолчанию"
-msgstr ""
+msgstr "Демейки валюта"
 
-#: app/templates/platform/settings.html:79
+#: templates/platform/settings.html:79
 msgid "Часовой пояс"
-msgstr ""
+msgstr "Убакыт алкагы"
 
-#: app/templates/platform/settings.html:83
+#: templates/platform/settings.html:83
 msgid "Статус платформы"
-msgstr ""
+msgstr "Платформанын статусу"
 
-#: app/templates/platform/settings.html:86
+#: templates/platform/settings.html:86
 msgid "Тех. работы"
-msgstr ""
+msgstr "Техникалык иштер"
 
-#: app/templates/platform/settings.html:91
+#: templates/platform/settings.html:91
 msgid "Сохранить общие настройки"
-msgstr ""
+msgstr "Жалпы жөндөөлөрдү сактоо"
 
-#: app/templates/platform/settings.html:100
-#: app/templates/platform/settings.html:159
-#: app/templates/platform/settings.html:232
+#: templates/platform/settings.html:100 templates/platform/settings.html:159
+#: templates/platform/settings.html:232
 msgid "Добавить тариф"
-msgstr ""
+msgstr "Тариф кошуу"
 
-#: app/templates/platform/settings.html:104
+#: templates/platform/settings.html:104
 msgid "Всего тарифов"
-msgstr ""
+msgstr "Бардык тарифтер"
 
-#: app/templates/platform/settings.html:106
+#: templates/platform/settings.html:106
 msgid "Организаций"
-msgstr ""
+msgstr "Уюмдар"
 
-#: app/templates/platform/settings.html:107
+#: templates/platform/settings.html:107
 msgid "Инд. договоры"
-msgstr ""
+msgstr "Жеке келишимдер"
 
-#: app/templates/platform/settings.html:115
-#: app/templates/platform/settings.html:171
+#: templates/platform/settings.html:115 templates/platform/settings.html:171
 msgid "Цена"
-msgstr ""
+msgstr "Баа"
 
-#: app/templates/platform/settings.html:116
+#: templates/platform/settings.html:116
 msgid "Период"
-msgstr ""
+msgstr "Мезгил"
 
-#: app/templates/platform/settings.html:117
+#: templates/platform/settings.html:117
 msgid "Объекты"
-msgstr ""
+msgstr "Объекттер"
 
-#: app/templates/platform/settings.html:132
-#: app/templates/platform/settings.html:562
+#: templates/platform/settings.html:132 templates/platform/settings.html:562
 msgid "Отключен"
-msgstr ""
+msgstr "Өчүрүлгөн"
 
-#: app/templates/platform/settings.html:146
+#: templates/platform/settings.html:146
 msgid "Нет добавленных тарифов"
-msgstr ""
+msgstr "Кошулган тарифтер жок"
 
-#: app/templates/platform/settings.html:166
+#: templates/platform/settings.html:166
 msgid "Название тарифа"
-msgstr ""
+msgstr "Тарифтин аталышы"
 
-#: app/templates/platform/settings.html:175
+#: templates/platform/settings.html:175
 msgid "Валюта"
-msgstr ""
+msgstr "Валюта"
 
-#: app/templates/platform/settings.html:185
+#: templates/platform/settings.html:185
 msgid "Период оплаты"
-msgstr ""
+msgstr "Төлөм мезгили"
 
-#: app/templates/platform/settings.html:198
+#: templates/platform/settings.html:198
 msgid "Лимит объектов"
-msgstr ""
+msgstr "Объект чеги"
 
-#: app/templates/platform/settings.html:202
+#: templates/platform/settings.html:202
 msgid "Лимит устройств"
-msgstr ""
+msgstr "Түзмөк чеги"
 
-#: app/templates/platform/settings.html:209
+#: templates/platform/settings.html:209
 msgid "Популярный (выделен плашкой)"
-msgstr ""
+msgstr "Популярдуу (белгиленген)"
 
-#: app/templates/platform/settings.html:214
+#: templates/platform/settings.html:214
 msgid "Сохранить"
-msgstr ""
+msgstr "Сактоо"
 
-#: app/templates/platform/settings.html:232
+#: templates/platform/settings.html:232
 msgid "Редактировать тариф"
-msgstr ""
+msgstr "Тарифти түзөтүү"
 
-#: app/templates/platform/settings.html:242
+#: templates/platform/settings.html:242
 msgid "Настройки устройств"
-msgstr ""
+msgstr "Түзмөк жөндөөлөрү"
 
-#: app/templates/platform/settings.html:247
+#: templates/platform/settings.html:247
 msgid "Префикс Device ID"
-msgstr ""
+msgstr "Device ID префикси"
 
-#: app/templates/platform/settings.html:251
+#: templates/platform/settings.html:251
 msgid "Интервал отправки данных (сек)"
-msgstr ""
+msgstr "Маалымат жөнөтүү аралыгы (сек)"
 
-#: app/templates/platform/settings.html:257
+#: templates/platform/settings.html:257
 msgid "Время до warning-статуса (сек)"
-msgstr ""
+msgstr "Warning статусуна чейинки убакыт (сек)"
 
-#: app/templates/platform/settings.html:261
+#: templates/platform/settings.html:261
 msgid "Время до offline-статуса (мин)"
-msgstr ""
+msgstr "Offline статусуна чейинки убакыт (мүн)"
 
-#: app/templates/platform/settings.html:266
+#: templates/platform/settings.html:266
 msgid "Стандартный лимит мощности (кВт)"
-msgstr ""
+msgstr "Стандарттык кубаттуулук чеги (кВт)"
 
-#: app/templates/platform/settings.html:274
+#: templates/platform/settings.html:274
 msgid "Удалённое отключение"
-msgstr ""
+msgstr "Аралыктан өчүрүү"
 
-#: app/templates/platform/settings.html:275
+#: templates/platform/settings.html:275
 msgid "Разрешить администраторам организаций отключать питание"
-msgstr ""
+msgstr "Уюм администраторлоруна азыктандырууну өчүрүүгө уруксат берүү"
 
-#: app/templates/platform/settings.html:281
+#: templates/platform/settings.html:281
 msgid "Управление реле"
-msgstr ""
+msgstr "Релени башкаруу"
 
-#: app/templates/platform/settings.html:282
+#: templates/platform/settings.html:282
 msgid "Разрешить отправку команд на реле устройств"
-msgstr ""
+msgstr "Түзмөктөрдүн релесине командаларды жөнөтүүгө уруксат берүү"
 
-#: app/templates/platform/settings.html:288
+#: templates/platform/settings.html:288
 msgid "Сохранять историю"
-msgstr ""
+msgstr "Тарыхты сактоо"
 
-#: app/templates/platform/settings.html:289
+#: templates/platform/settings.html:289
 msgid "Хранить детализированную историю показаний в БД"
-msgstr ""
+msgstr "Көрсөткүчтөрдүн деталдуу тарыхын базада сактоо"
 
-#: app/templates/platform/settings.html:295
+#: templates/platform/settings.html:295
 msgid "Период хранения истории по умолчанию (дней)"
-msgstr ""
+msgstr "Тарыхты сактоонун демейки мезгили (күн)"
 
-#: app/templates/platform/settings.html:300
+#: templates/platform/settings.html:300
 msgid "Сохранить настройки устройств"
-msgstr ""
+msgstr "Түзмөк жөндөөлөрүн сактоо"
 
-#: app/templates/platform/settings.html:307
+#: templates/platform/settings.html:307
 msgid "Настройки уведомлений"
-msgstr ""
+msgstr "Билдирүү жөндөөлөрү"
 
-#: app/templates/platform/settings.html:310
+#: templates/platform/settings.html:310
 msgid "События платформы"
-msgstr ""
+msgstr "Платформа окуялары"
 
-#: app/templates/platform/settings.html:314
+#: templates/platform/settings.html:314
 msgid "Устройство ушло offline"
-msgstr ""
+msgstr "Түзмөк offline болду"
 
-#: app/templates/platform/settings.html:315
+#: templates/platform/settings.html:315
 msgid "Устройство снова online"
-msgstr ""
+msgstr "Түзмөк кайра online болду"
 
-#: app/templates/platform/settings.html:316
+#: templates/platform/settings.html:316
 msgid "Превышен лимит мощности"
-msgstr ""
+msgstr "Кубаттуулук чегинен ашты"
 
-#: app/templates/platform/settings.html:317
+#: templates/platform/settings.html:317
 msgid "Новая заявка на подключение"
-msgstr ""
+msgstr "Жаңы туташуу өтүнмөсү"
 
-#: app/templates/platform/settings.html:318
+#: templates/platform/settings.html:318
 msgid "Организация добавила устройство"
-msgstr ""
+msgstr "Уюм түзмөк кошту"
 
-#: app/templates/platform/settings.html:321
+#: templates/platform/settings.html:321
 msgid "Организация изменила настройки"
-msgstr ""
+msgstr "Уюм жөндөөлөрдү өзгөрттү"
 
-#: app/templates/platform/settings.html:322
+#: templates/platform/settings.html:322
 msgid "Ошибка датчика"
-msgstr ""
+msgstr "Сенсор катасы"
 
-#: app/templates/platform/settings.html:323
+#: templates/platform/settings.html:323
 msgid "Подозрительная активность"
-msgstr ""
+msgstr "Шектүү аракет"
 
-#: app/templates/platform/settings.html:324
+#: templates/platform/settings.html:324
 msgid "Низкое качество сигнала"
-msgstr ""
+msgstr "Сигналдын начар сапаты"
 
-#: app/templates/platform/settings.html:325
+#: templates/platform/settings.html:325
 msgid "Устройство не отправляет данные"
-msgstr ""
+msgstr "Түзмөк маалымат жөнөтпөй жатат"
 
-#: app/templates/platform/settings.html:330
+#: templates/platform/settings.html:330
 msgid "Каналы доставки"
-msgstr ""
+msgstr "Жеткирүү каналдары"
 
-#: app/templates/platform/settings.html:333
+#: templates/platform/settings.html:333
 msgid "Email для системных уведомлений"
-msgstr ""
+msgstr "Системалык билдирүүлөр үчүн email"
 
-#: app/templates/platform/settings.html:338
+#: templates/platform/settings.html:338
 msgid "Telegram Bot Token"
-msgstr ""
+msgstr "Telegram Bot Token"
 
-#: app/templates/platform/settings.html:342
+#: templates/platform/settings.html:342
 msgid "Telegram Chat ID"
-msgstr ""
+msgstr "Telegram Chat ID"
 
-#: app/templates/platform/settings.html:347
+#: templates/platform/settings.html:347
 msgid "Webhook URL"
-msgstr ""
+msgstr "Webhook URL"
 
-#: app/templates/platform/settings.html:352
+#: templates/platform/settings.html:352
 msgid "Сохранить настройки уведомлений"
-msgstr ""
+msgstr "Билдирүү жөндөөлөрүн сактоо"
 
-#: app/templates/platform/settings.html:359
+#: templates/platform/settings.html:359
 msgid "Настройки безопасности"
-msgstr ""
+msgstr "Коопсуздук жөндөөлөрү"
 
-#: app/templates/platform/settings.html:364
+#: templates/platform/settings.html:364
 msgid "Время сессии (мин)"
-msgstr ""
+msgstr "Сессия убактысы (мүн)"
 
-#: app/templates/platform/settings.html:368
+#: templates/platform/settings.html:368
 msgid "Попытки входа"
-msgstr ""
+msgstr "Кирүү аракеттери"
 
-#: app/templates/platform/settings.html:372
+#: templates/platform/settings.html:372
 msgid "Блокировка (мин)"
-msgstr ""
+msgstr "Бөгөттөө (мүн)"
 
-#: app/templates/platform/settings.html:378
+#: templates/platform/settings.html:378
 msgid "Вход только активным пользователям"
-msgstr ""
+msgstr "Кирүү бир гана активдүү колдонуучуларга"
 
-#: app/templates/platform/settings.html:381
+#: templates/platform/settings.html:381
 msgid "Требовать сложный пароль"
-msgstr ""
+msgstr "Татаал сырсөздү талап кылуу"
 
-#: app/templates/platform/settings.html:385
+#: templates/platform/settings.html:385
 msgid "Двухфакторная аутентификация (2FA)"
-msgstr ""
+msgstr "Эки факторлуу аутентификация (2FA)"
 
-#: app/templates/platform/settings.html:386
+#: templates/platform/settings.html:386
 msgid "Будет доступно в следующих версиях"
-msgstr ""
+msgstr "Кийинки версияларда жеткиликтүү болот"
 
-#: app/templates/platform/settings.html:392
+#: templates/platform/settings.html:392
 msgid "Ограничение по IP"
-msgstr ""
+msgstr "IP боюнча чектөө"
 
-#: app/templates/platform/settings.html:393
+#: templates/platform/settings.html:393
 msgid "Введите разрешённые IP, каждый с новой строки"
-msgstr ""
+msgstr "Уруксат берилген IP'лерди ар бирин жаңы саптан киргизиңиз"
 
-#: app/templates/platform/settings.html:397
+#: templates/platform/settings.html:397
 msgid "Сохранить настройки безопасности"
-msgstr ""
+msgstr "Коопсуздук жөндөөлөрүн сактоо"
 
-#: app/templates/platform/settings.html:398
+#: templates/platform/settings.html:398
 msgid "Очистить журнал входов"
-msgstr ""
+msgstr "Кирүү журналын тазалоо"
 
-#: app/templates/platform/settings.html:402
+#: templates/platform/settings.html:402
 msgid "Журнал входов"
-msgstr ""
+msgstr "Кирүү журналы"
 
-#: app/templates/platform/settings.html:408
+#: templates/platform/settings.html:408
 msgid "Пользователь"
-msgstr ""
+msgstr "Колдонуучу"
 
-#: app/templates/platform/settings.html:410
+#: templates/platform/settings.html:410
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
-#: app/templates/platform/settings.html:411
+#: templates/platform/settings.html:411
 msgid "Устройство/Браузер"
-msgstr ""
+msgstr "Түзмөк/Браузер"
 
-#: app/templates/platform/settings.html:436
+#: templates/platform/settings.html:436
 msgid "Настройки заявок"
-msgstr ""
+msgstr "Өтүнмө жөндөөлөрү"
 
-#: app/templates/platform/settings.html:441
+#: templates/platform/settings.html:441
 msgid "Форма на лендинге"
-msgstr ""
+msgstr "Лендингдеги форма"
 
-#: app/templates/platform/settings.html:442
+#: templates/platform/settings.html:442
 msgid "Принимать новые заявки с главной страницы"
-msgstr ""
+msgstr "Башкы беттен жаңы өтүнмөлөрдү кабыл алуу"
 
-#: app/templates/platform/settings.html:448
+#: templates/platform/settings.html:448
 msgid "Email получателя заявок"
-msgstr ""
+msgstr "Өтүнмөлөрдү алуучунун email"
 
-#: app/templates/platform/settings.html:453
+#: templates/platform/settings.html:453
 msgid "Отправлять заявки в Telegram"
-msgstr ""
+msgstr "Өтүнмөлөрдү Telegram'га жөнөтүү"
 
-#: app/templates/platform/settings.html:456
+#: templates/platform/settings.html:456
 msgid "Telegram Chat ID для заявок"
-msgstr ""
+msgstr "Өтүнмөлөр үчүн Telegram Chat ID"
 
-#: app/templates/platform/settings.html:461
+#: templates/platform/settings.html:461
 msgid "Автоответ клиенту"
-msgstr ""
+msgstr "Клиентке авто-жооп"
 
-#: app/templates/platform/settings.html:463
+#: templates/platform/settings.html:463
 msgid "Статусы заявок: new, in_progress, contacted, closed, rejected"
-msgstr ""
+msgstr "Өтүнмө статустары: new, in_progress, contacted, closed, rejected"
 
-#: app/templates/platform/settings.html:467
+#: templates/platform/settings.html:467
 msgid "Сохранить настройки заявок"
-msgstr ""
+msgstr "Өтүнмө жөндөөлөрүн сактоо"
 
-#: app/templates/platform/settings.html:474
+#: templates/platform/settings.html:474
 msgid "Настройки API / IoT"
-msgstr ""
+msgstr "API / IoT жөндөөлөрү"
 
-#: app/templates/platform/settings.html:479
+#: templates/platform/settings.html:479
 msgid "API endpoint для устройств"
-msgstr ""
+msgstr "Түзмөктөр үчүн API endpoint"
 
-#: app/templates/platform/settings.html:483
+#: templates/platform/settings.html:483
 msgid "Endpoint получения команд"
-msgstr ""
+msgstr "Командаларды алуу endpoint"
 
-#: app/templates/platform/settings.html:489
+#: templates/platform/settings.html:489
 msgid "Глобальный API Token"
-msgstr ""
+msgstr "Глобалдык API Token"
 
-#: app/templates/platform/settings.html:492
+#: templates/platform/settings.html:492
 msgid "Новый"
-msgstr ""
+msgstr "Жаңы"
 
-#: app/templates/platform/settings.html:499
+#: templates/platform/settings.html:499
 msgid "MQTT Broker"
-msgstr ""
+msgstr "MQTT Broker"
 
-#: app/templates/platform/settings.html:505
+#: templates/platform/settings.html:505
 msgid "MQTT Host"
-msgstr ""
+msgstr "MQTT Host"
 
-#: app/templates/platform/settings.html:509
+#: templates/platform/settings.html:509
 msgid "MQTT Port"
-msgstr ""
+msgstr "MQTT Port"
 
-#: app/templates/platform/settings.html:513
+#: templates/platform/settings.html:513
 msgid "MQTT Username"
-msgstr ""
+msgstr "MQTT Username"
 
-#: app/templates/platform/settings.html:517
+#: templates/platform/settings.html:517
 msgid "MQTT Password"
-msgstr ""
+msgstr "MQTT Password"
 
-#: app/templates/platform/settings.html:523
+#: templates/platform/settings.html:523
 msgid "WebSocket realtime"
-msgstr ""
+msgstr "WebSocket realtime"
 
-#: app/templates/platform/settings.html:527
+#: templates/platform/settings.html:527
 msgid "Последняя проверка API:"
-msgstr ""
+msgstr "Акыркы API текшерүү:"
 
-#: app/templates/platform/settings.html:530
+#: templates/platform/settings.html:530
 msgid "Сохранить API настройки"
-msgstr ""
+msgstr "API жөндөөлөрүн сактоо"
 
-#: app/templates/platform/settings.html:531
+#: templates/platform/settings.html:531
 msgid "Проверить соединение"
-msgstr ""
+msgstr "Туташууну текшерүү"
 
-#: app/templates/platform/settings.html:540
+#: templates/platform/settings.html:540
 msgid "Добавить администратора"
-msgstr ""
+msgstr "Администратор кошуу"
 
-#: app/templates/platform/settings.html:551
+#: templates/platform/settings.html:551
 msgid "Последний вход"
-msgstr ""
+msgstr "Акыркы кирүү"
 
-#: app/templates/settings.html:11
+#: templates/settings.html:11
 msgid "Профиль пользователя"
-msgstr ""
+msgstr "Колдонуучунун профили"
 
-#: app/templates/settings.html:16
+#: templates/settings.html:16
 msgid "Имя пользователя (Логин)"
-msgstr ""
+msgstr "Колдонуучунун аты (Логин)"
 
-#: app/templates/settings.html:29
+#: templates/settings.html:29
 msgid "Фамилия"
-msgstr ""
+msgstr "Фамилия"
 
-#: app/templates/settings.html:32
+#: templates/settings.html:32
 msgid "Сохранить профиль"
-msgstr ""
+msgstr "Профилди сактоо"
 
-#: app/templates/settings.html:43
+#: templates/settings.html:43
 msgid "Название компании"
-msgstr ""
+msgstr "Компаниянын аталышы"
 
-#: app/templates/settings.html:58
+#: templates/settings.html:58
 msgid "Сохранить организацию"
-msgstr ""
+msgstr "Уюмду сактоо"
 
-#: app/templates/settings.html:64
+#: templates/settings.html:64
 msgid "Изменение пароля"
-msgstr ""
+msgstr "Сырсөздү өзгөртүү"
 
-#: app/templates/settings.html:69
+#: templates/settings.html:69
 msgid "Текущий пароль"
-msgstr ""
+msgstr "Учурдагы сырсөз"
 
-#: app/templates/settings.html:73
+#: templates/settings.html:73
 msgid "Новый пароль"
-msgstr ""
+msgstr "Жаңы сырсөз"
 
-#: app/templates/settings.html:77
+#: templates/settings.html:77
 msgid "Подтвердите пароль"
-msgstr ""
+msgstr "Сырсөздү ырастаңыз"
 
-#: app/templates/settings.html:80
+#: templates/settings.html:80
 msgid "Изменить пароль"
-msgstr ""
+msgstr "Сырсөздү өзгөртүү"
+
+#: templates/verify_human.html:3
+#| msgid "Подключение"
+msgid "Подтверждение"
+msgstr "Ырастоо"
+
+#: templates/verify_human.html:10
+#| msgid "Настройки безопасности"
+msgid "Проверка безопасности"
+msgstr "Коопсуздук текшерүүсү"
+
+#: templates/verify_human.html:11
+msgid "Шаг 2 из 2. Подтвердите, что вы не робот."
+msgstr "2 кадамдын 2-си. Робот эмес экениңизди ырастаңыз."
+
+#: templates/verify_human.html:35
+msgid "Я не робот"
+msgstr "Мен робот эмесмин"
+
+#: templates/verify_human.html:44
+#| msgid "Подтвердите пароль"
+msgid "Подтвердите, что вы человек"
+msgstr "Адам экениңизди ырастаңыз"
+
+#: templates/verify_human.html:46
+#| msgid "Введите пароль"
+msgid "Введите ответ"
+msgstr "Жоопту киргизиңиз"
+
+#: templates/verify_human.html:49
+#| msgid "Подтвердите пароль"
+msgid "Подтвердить и войти"
+msgstr "Ырастап кирүү"
+
+#: templates/verify_human.html:53
+#| msgid "Назад к списку"
+msgid "Назад ко входу"
+msgstr "Кирүүгө кайтуу"
+
+#~ msgid "Свяжитесь с нами"
+#~ msgstr "Биз менен байланышыңыз"

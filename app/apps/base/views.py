@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils import translation
 from django.conf import settings
 import json
+import random
 
 from apps.cms.models import ConnectionRequest, Notification
 
@@ -78,19 +80,76 @@ def login_view(request):
                         messages.error(request, 'Организация отключена. Обратитесь к администратору платформы.')
                         return render(request, 'login.html')
 
-            login(request, user)
-
-            if not remember_me:
-                request.session.set_expiry(0)
-
-            if _is_platform_admin(user):
-                return redirect('/platform/dashboard/')
-            return redirect('/dashboard/')
+            # Шаг 1 пройден. Логин не выполняем — сначала проверка «вы не робот» (шаг 2).
+            request.session['pending_user_id'] = user.id
+            request.session['pending_remember'] = bool(remember_me)
+            _generate_human_challenge(request)
+            return redirect('verify_human')
         else:
             messages.error(request, 'Неверный username или password.')
             return render(request, 'login.html')
 
     return render(request, 'login.html')
+
+
+def _generate_human_challenge(request):
+    """Генерирует простую арифметическую капчу и сохраняет ответ в сессии."""
+    a, b = random.randint(1, 9), random.randint(1, 9)
+    request.session['human_a'] = a
+    request.session['human_b'] = b
+
+
+def verify_human_view(request):
+    """Шаг 2 входа: подтверждение «вы не робот» (галочка + пример)."""
+    pending_id = request.session.get('pending_user_id')
+    if not pending_id:
+        return redirect('login')
+
+    if request.method == 'POST':
+        not_robot = request.POST.get('not_robot')
+        try:
+            answer = int(request.POST.get('captcha_answer', ''))
+        except (ValueError, TypeError):
+            answer = None
+
+        correct = request.session.get('human_a', 0) + request.session.get('human_b', 0)
+
+        if not not_robot:
+            messages.error(request, 'Отметьте «Я не робот», чтобы продолжить.')
+            _generate_human_challenge(request)
+        elif answer != correct:
+            messages.error(request, 'Неверный ответ на проверку. Попробуйте ещё раз.')
+            _generate_human_challenge(request)
+        else:
+            user = User.objects.filter(id=pending_id).first()
+            if not user or not user.is_active:
+                _clear_pending(request)
+                messages.error(request, 'Сессия истекла. Войдите заново.')
+                return redirect('login')
+
+            remember = request.session.get('pending_remember', False)
+            _clear_pending(request)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            if not remember:
+                request.session.set_expiry(0)
+
+            if _is_platform_admin(user):
+                return redirect('/platform/dashboard/')
+            return redirect('/dashboard/')
+
+    if 'human_a' not in request.session:
+        _generate_human_challenge(request)
+
+    context = {
+        'a': request.session.get('human_a'),
+        'b': request.session.get('human_b'),
+    }
+    return render(request, 'verify_human.html', context)
+
+
+def _clear_pending(request):
+    for key in ('pending_user_id', 'pending_remember', 'human_a', 'human_b'):
+        request.session.pop(key, None)
 
 
 def logout_view(request):
@@ -120,8 +179,6 @@ def set_language_ajax(request):
 
         if lang_code in allowed_langs:
             translation.activate(lang_code)
-            if hasattr(request, 'session'):
-                request.session[translation.LANGUAGE_SESSION_KEY] = lang_code
 
             response = JsonResponse({'success': True, 'language': lang_code, 'reload': True})
             cookie_name = getattr(settings, 'LANGUAGE_COOKIE_NAME', 'django_language')

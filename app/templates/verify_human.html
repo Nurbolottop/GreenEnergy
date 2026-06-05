@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Подтверждение" %} — Green Energy{% endblock %}
+
+{% block body %}
+<div class="login-wrap">
+    <div class="card login-card">
+        <div class="text-center mb-24">
+            <a href="{% url 'landing' %}" class="logo" style="justify-content:center">⚡ Green <span>Energy</span></a>
+            <h2 style="margin-top:16px;font-size:1.3rem">{% trans "Проверка безопасности" %}</h2>
+            <p class="text-sec" style="margin-top:8px;font-size:.9rem">{% trans "Шаг 2 из 2. Подтвердите, что вы не робот." %}</p>
+        </div>
+
+        {% if messages %}
+        <div style="margin-bottom:20px">
+            {% for message in messages %}
+            <div style="padding:12px 16px;border-radius:8px;font-size:.9rem;
+                {% if message.tags == 'error' %}
+                    background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.2);
+                {% else %}
+                    background:rgba(0,208,132,.12);color:var(--green);border:1px solid rgba(0,208,132,.2);
+                {% endif %}
+            ">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'verify_human' %}">
+            {% csrf_token %}
+
+            <!-- reCAPTCHA-подобный блок -->
+            <label class="captcha-box" id="captchaBox">
+                <input type="checkbox" name="not_robot" value="1" id="notRobot" required>
+                <span class="captcha-check"></span>
+                <span class="captcha-text">{% trans "Я не робот" %}</span>
+                <span class="captcha-logo">
+                    <span style="font-size:1.4rem;line-height:1">🛡️</span>
+                    <span class="text-sec" style="font-size:.6rem;display:block;text-align:center">Green Energy</span>
+                </span>
+            </label>
+
+            <!-- Простая капча-пример -->
+            <div class="form-group" style="margin-top:18px">
+                <label for="captcha_answer">{% trans "Подтвердите, что вы человек" %}: {{ a }} + {{ b }} = ?</label>
+                <input type="number" id="captcha_answer" name="captcha_answer" class="form-control"
+                       placeholder="{% trans 'Введите ответ' %}" required autofocus>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="margin-top:8px">{% trans "Подтвердить и войти" %}</button>
+        </form>
+
+        <div class="text-center mt-24">
+            <a href="{% url 'login' %}" class="text-sec" style="font-size:.85rem">← {% trans "Назад ко входу" %}</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.captcha-box{
+    display:flex;align-items:center;gap:12px;
+    background:var(--bg-input);border:1px solid var(--border);border-radius:10px;
+    padding:14px 16px;cursor:pointer;transition:var(--transition);position:relative;
+}
+.captcha-box:hover{border-color:var(--green)}
+.captcha-box input{position:absolute;opacity:0;width:0;height:0}
+.captcha-check{
+    width:26px;height:26px;border:2px solid var(--text-sec);border-radius:6px;
+    flex-shrink:0;position:relative;transition:var(--transition);background:var(--bg-card);
+}
+.captcha-box input:checked + .captcha-check{background:var(--green);border-color:var(--green)}
+.captcha-box input:checked + .captcha-check::after{
+    content:'';position:absolute;left:8px;top:3px;width:6px;height:12px;
+    border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg);
+}
+.captcha-text{font-size:.95rem;font-weight:500;color:var(--text)}
+.captcha-logo{margin-left:auto;opacity:.8}
+</style>
+{% endblock %}
